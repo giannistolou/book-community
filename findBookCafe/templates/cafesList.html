@@ -1,0 +1,20 @@
+<section class="cafes-list container">
+	{%for cafe in cafes%}
+	<div class="cafe">
+		<div class="imgCnt">
+			<img src="/{{cafe.thumbnail}}" />
+		</div>
+		<div class="content">
+			{% include "cafeIcons.html" %}
+			<span class="location"
+				>{{cafe.region.name}}, {{cafe.region.city.name}}</span
+			>
+			<a
+				href="cafes/{{cafe.name}}-{{cafe.id}}"
+				class="mdc-button mdc-button--raised"
+				>{{cafe.name}}</a
+			>
+		</div>
+	</div>
+	{% endfor %}
+</section>

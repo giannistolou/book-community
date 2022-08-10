@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	{% load static %}
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="{% static 'style/index.css' %}" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<script src="{% static 'bundle.js' %}" async></script>
+</head>
+
+<body>
+	<main>
+		<section class="marketing-header">
+			<div class="video-background"></div>
+			<div class="background-overlay"></div>
+			<div class="app-header-center">
+				<h1 class="app-page-title homepage-version">
+					Βρες το <b>Book café</b> </br> που σου ταιριάζει!
+				</h1>
+				<div class="header-buttons">
+					<a class="mdc-button mdc-button--outlined"
+						href="/cafes">Ανακαλυψε!</a>
+					<a href="/map"
+						class="mdc-button mdc-button--raised">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-map" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"
+								d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
+						</svg>Βρες τα στον χαρτη</a>
+					
+				</div>
+			</div>
+		</section>
+		<section class="sub-text">
+			<div class="home-hero-content">
+				<div class="blogger-hero-subtitle">
+					Είμαστε μια παρέα που μας αρέσει να διαβάζουμε σε καφετέριες, για να αλλάζουμε παραστάσεις!
+				Δεν βρήσκαμε όμως, πολλά book cafe, ή αρκετά από αυτά ήταν μακριά από εκεί που μέναμε. Γι'αυτό, είπαμε
+			να φτιάξουμε την δικιά μας λίστα με τις καφετέριες που μας αρέσει να διαβάζουμε και να την μοιραστούμε.</div>
+					<a href="/cafes"
+						class="mdc-button mdc-button--raised">
+						Που θα πας για διάβασμα;</a>
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<html>
+	<head>
+		{% load static %}
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+		/>
+		<script src="{% static 'bundle.js' %}" async></script>
+	</head>
+
+	<body>
+		{% include "header.html" %}
+		<main class="mdc-top-app-bar--fixed-adjust">
+			<section class="cafe container">
+				<div class="imgCnt">
+					<h1 class="name">{{cafe.name}}</h1>
+					<img
+						src="/{{cafe.thumbnail}}"
+						alt="thumbnail {{cafe.name}}"
+					/>
+				</div>
+				<div class="selection">
+					{% if cafe.facebook %}
+					<a href="{{cafe.facebook}}" target="_blank" class="icon"
+						>{% include "icons/facebook.html" %}</a
+					>
+					{% endif %} {% if cafe.googleMaps %}
+					<a href="{{cafe.googleMaps}}" class="icon" target="_blank">
+						{% include "icons/google.html" %}
+					</a>
+					{% endif %} {% if cafe.instagram %}
+					<a href="{{cafe.instagram}}" class="icon" target="_blank">
+						{% include "icons/instagram.html" %}</a
+					>
+					{% endif %} {% if cafe.tripadvisor %}
+					<a href="{{cafe.tripadvisor}}" class="icon" target="_blank">
+						{% include "icons/map.html" %}
+					</a>
+					{% endif %} {% if cafe.website %}
+					<a href="{{cafe.website}}" class="icon" target="_blank">
+						{% include "icons/link.html" %}</a
+					>
+					{% endif %}
+				</div>
+				<div class="content">
+					<div class="address">
+						<span class="material-symbols-sharp icon">
+							location_on </span
+						>{{cafe.address}}
+					</div>
+					<div class="region">
+						<span class="material-symbols-sharp icon">
+							location_city </span
+						>{{cafe.region.name}}, {{cafe.region.city.name}}
+					</div>
+					{% include "cafeIcons.html" %}
+				</div>
+			</section>
+			<section class="description container">
+				{{cafe.description.html | safe}}
+			</section>
+		</main>
+	</body>
+</html>

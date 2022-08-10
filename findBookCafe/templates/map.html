@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'style/theme.css' %}" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+		/>
+		<title>Display a map on a webpage</title>
+		<meta
+			name="viewport"
+			content="initial-scale=1,maximum-scale=1,user-scalable=no"
+		/>
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
+			rel="stylesheet"
+		/>
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			#map {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		{% include "header.html" %}
+		<main class="mdc-top-app-bar--fixed-adjust">
+			<div id="map"></div>
+		</main>
+		<script>
+			var coordinates = [23.7324272, 37.9753429];
+			mapboxgl.accessToken = "{{map_api|escapejs}}";
+			const map = new mapboxgl.Map({
+				container: "map", // container ID
+				style: "mapbox://styles/mapbox/streets-v11", // style URL
+				center: coordinates, // starting position [lng, lat]
+				zoom: 12, // starting zoom
+				projection: "globe", // display the map as a 3D globe
+			});
+
+			getLocation();
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				}
+			}
+			function showPosition(position) {
+				coordinates = [
+					position.coords.longitude,
+					position.coords.latitude,
+				];
+				map.flyTo({
+					center: coordinates,
+					essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+				});
+			}
+
+			const geojson = {
+				type: "FeatureCollection",
+				features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
+			};
+
+			for (const marker of geojson.features) {
+				new mapboxgl.Marker({ color: "#635642" })
+					.setLngLat(marker.geometry.coordinates)
+					.setPopup(
+						new mapboxgl.Popup({ offset: 25 }).setHTML(
+							`<a href="cafes/${marker.name}-${marker.id}" style="font-weight: bold; font-size:1.2rem;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
+						)
+					)
+					.addTo(map);
+			}
+			map.on("style.load", () => {
+				map.setFog({}); // Set the default atmosphere style
+			});
+		</script>
+	</body>
+</html>
+
+Copy
