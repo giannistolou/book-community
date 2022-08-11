@@ -11,14 +11,22 @@ services:
             - 8000
         env_file:
             - ./.env
+        networks:
+            - default
     nginx:
         build: ./nginx
-        ports:
-            - 1337:80
         volumes:
             - static_volume:/home/app/web/staticfiles
         depends_on:
             - web
+        hostname: cafe-book-nginx
+        networks:
+            - default
+            - nginx
 
 volumes:
     static_volume:
+
+networks:
+    nginx:
+        external: true
