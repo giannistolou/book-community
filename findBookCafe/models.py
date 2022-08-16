@@ -1,3 +1,4 @@
+from cProfile import label
 from random import choices
 from django.db import models
 from django_quill.fields import QuillField
@@ -36,6 +37,7 @@ class Shop(models.Model):
 	type = models.CharField(choices=CAFE_TYPES_OPTIONS, max_length=3, default=CAFE_TYPES_OPTIONS[0])
 	thumbnail = models.ImageField(upload_to ='uploads/', null = True)
 	name = models.CharField(max_length=300)
+	name_en = models.CharField(max_length=300)
 	latitude = models.FloatField(max_length=100)
 	longitude = models.FloatField(max_length=100)
 	address = models.CharField(max_length=300)

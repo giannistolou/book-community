@@ -28,6 +28,7 @@ services:
 
 volumes:
     static_volume:
+    uploads_volume:
 
 networks:
     nginx:
