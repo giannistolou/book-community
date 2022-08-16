@@ -1,0 +1,70 @@
+<div class="cookie-banner" style="display: none">
+	<p>
+		Χρησιμοποιούμε cookies για την υπηρεσία του newsletter, για περισσότερα
+		διάβασε την
+		<a href="https://book-community.com/privacy-policy.html"
+			>πολιτική απορρήτου</a
+		>
+	</p>
+	<div class="options">
+		<button class="decline" onclick="closeCookieBanner()">Απόρριψη</button>
+		<button class="accept" onclick="acceptCookies()">Αποδοχή</button>
+	</div>
+</div>
+
+<section class="newsletter">
+	<div class="container">
+		<div class="title">Κάνε εγγραφή στο newsletter μας</div>
+		<div class="subtitle">
+			Για να μαθαίνεις την πορεία του project και ενδιαφέροντα θέματα γύρω
+			από το βιβλίο!
+		</div>
+
+		<div id="newsletterProblem" style="display: none">
+			<p style="text-align: center">
+				Αποδεχτείτε τα cookies για να κάνετε εγγραφή στο newsletter
+			</p>
+			<button class="btnCookie" onclick="acceptCookies()">
+				Αποδοχή cookies
+			</button>
+		</div>
+		<form class="form">
+			<iframe
+				title="newsletter iframe"
+				frameborder="0"
+				scrolling="no"
+			></iframe>
+		</form>
+	</div>
+</section>
+
+<script>
+	var cookieBanner = document.querySelector(".cookie-banner");
+	var decline = document.querySelector(".decline");
+	var accept = document.querySelector(".accept");
+	var iframes = document.querySelectorAll("iframe");
+	var newsletterProblem = document.querySelector("#newsletterProblem");
+
+	if (localStorage.getItem("cookieSeen") != "shown") {
+		cookieBanner.style.display = "flex";
+		newsletterProblem.style.display = "flex";
+	} else {
+		acceptCookies();
+	}
+
+	function closeCookieBanner() {
+		cookieBanner.style.animation = "cookieHide 1s";
+		setTimeout(() => {
+			cookieBanner.style.display = "none";
+		}, 1000);
+	}
+
+	function acceptCookies() {
+		closeCookieBanner();
+		newsletterProblem.style.display = "none";
+		localStorage.setItem("cookieSeen", "shown");
+		iframes.forEach((el) => {
+			el.src = "https://bookcommunitygr.substack.com/embed";
+		});
+	}
+</script>
