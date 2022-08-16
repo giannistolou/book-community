@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from django.http import Http404
 from .models import Shop
 import environ
 env = environ.Env()
 # Create your views here.
+
+def page404(request):
+	return render(request, '404.html', status=404)
+
 def index(request):
 	return render(request, 'index.html')
 
@@ -12,7 +17,10 @@ def cafes(request):
 
 def cafe(request, cafe):
 	id = cafe.split('-')[-1]
-	cafe = Shop.objects.get(id=id)
+	try:
+		cafe = Shop.objects.get(id=id)
+	except:
+		raise Http404
 	return render(request, 'cafe.html', {'cafe': cafe})
 	
 def libraries(request):
