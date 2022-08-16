@@ -2,10 +2,9 @@
 
 <head>
 	{% load static %}
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{% include "commonHead.html" %}
+	<title>Book Cafe</title>
 	<link rel="stylesheet" href="{% static 'style/index.css' %}" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 	<script src="{% static 'bundle.js' %}" async></script>
 </head>
 
@@ -44,6 +43,7 @@
 			</div>
 		</section>
 	</main>
+	{% include "footer.html" %}
 </body>
 
 </html>

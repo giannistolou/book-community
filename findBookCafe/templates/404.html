@@ -1,0 +1,20 @@
+<html>
+	<head>
+		{% load static %} {% include "commonHead.html" %}
+		<link rel="stylesheet" href="{% static 'style/page404.css' %}" />
+		<title>404 error</title>
+		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+		<script src="{% static 'bundle.js' %}" async></script>
+	</head>
+
+	<body>
+		{% include "header.html" %}
+		<main class="mdc-top-app-bar--fixed-adjust">
+			<div class="page404">
+				<h1>404</h1>
+				<p>Η σελίδα δεν βρέθηκε</p>
+				<a href="/" class="mdc-button mdc-button--raised">Αρχική</a>
+			</div>
+		</main>
+	</body>
+</html>

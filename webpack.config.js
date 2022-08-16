@@ -8,6 +8,8 @@ module.exports = {
 		"./style/index.scss",
 		"./style/cafes.scss",
 		"./style/cafe.scss",
+		"./style/page404.scss",
+		"./style/footer.scss",
 	],
 	output: {
 		filename: "bundle.js",

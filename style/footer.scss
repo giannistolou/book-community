@@ -1,0 +1,105 @@
+@import "./theme.scss";
+
+.newsletter {
+	align-items: center;
+	display: flex;
+	min-height: 50vh;
+	padding-top: 5rem;
+	@media only screen and (min-width: $lg) {
+		min-height: 35vh;
+	}
+
+	.title {
+		padding: 1 0;
+		text-align: center;
+		font-size: 2rem;
+	}
+	background-color: $newsletter-background;
+	color: $on-newsletter;
+	min-height: 30vh;
+	.subtitle {
+		letter-spacing: -0.012em;
+		line-height: 1.5;
+		font-family: Cahuenga, serif;
+		max-width: 700px;
+		font-weight: 400;
+		font-size: 1.2rem;
+		text-align: center;
+		margin: 0.5rem 0;
+		padding: 0 1rem;
+		text-align: center;
+	}
+
+	iframe {
+		width: 100%;
+	}
+}
+
+.btnCookie {
+	font-size: 1rem;
+	background-color: $newsletter-background;
+	color: $on-newsletter;
+	border-radius: 5px;
+	padding: 1rem;
+	text-decoration: none;
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	cursor: pointer;
+}
+
+#newsletterProblem {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.cookie-banner {
+	z-index: 10;
+	position: fixed;
+	bottom: 0;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	background-color: $secondary;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+
+	@media only screen and (min-width: $lg) {
+		width: 100%;
+		bottom: 40px;
+		left: 10%;
+		right: 10%;
+		width: 80%;
+		padding: 5px 14px;
+		flex-direction: row;
+	}
+
+	a {
+		text-decoration: none;
+		cursor: pointer;
+		color: $on-secondary;
+		border-bottom: 1px solid $primary;
+	}
+
+	.options {
+		padding: 1rem 0;
+		column-gap: 1rem;
+		row-gap: 1rem;
+	}
+	button {
+		border: none;
+		padding: 1rem * 0.5;
+		background-color: inherit;
+		cursor: pointer;
+	}
+	.accept {
+		font-size: 1rem;
+		background-color: $newsletter-background;
+		color: $on-newsletter;
+		border-radius: 5px;
+		padding: 0.75rem;
+	}
+}

@@ -1,3 +1,4 @@
+from cProfile import label
 from random import choices
 from django.db import models
 from django_quill.fields import QuillField
@@ -36,6 +37,7 @@ class Shop(models.Model):
 	type = models.CharField(choices=CAFE_TYPES_OPTIONS, max_length=3, default=CAFE_TYPES_OPTIONS[0])
 	thumbnail = models.ImageField(upload_to ='uploads/', null = True)
 	name = models.CharField(max_length=300)
+	name_en = models.CharField(max_length=300)
 	latitude = models.FloatField(max_length=100)
 	longitude = models.FloatField(max_length=100)
 	address = models.CharField(max_length=300)
@@ -46,6 +48,7 @@ class Shop(models.Model):
 	tripadvisor = models.URLField(max_length=300, blank=True)
 	googleMaps = models.URLField(max_length=300, blank=True)
 	isBookShop = models.BooleanField()
+	isAccessibleForPeopleWithDisabilities = models.BooleanField(default=False)
 	isCoffeeAllowed = models.BooleanField(default=True)
 	hasLunch = models.BooleanField(default=False)
 	internetQuality = models.CharField(choices=INTERNET_CHOICE, max_length=1, default=INTERNET_CHOICE[2])

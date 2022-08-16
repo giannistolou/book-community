@@ -6,6 +6,7 @@ services:
         command: gunicorn bookCafe.wsgi:application --bind 0.0.0.0:8000
         volumes:
             - static_volume:/home/app/web/staticfiles
+            - uploads_volume:/home/app/web/uploadsfiles
             - ./db.sqlite3:/home/app/web/db.sqlite3
         expose:
             - 8000
@@ -17,6 +18,7 @@ services:
         build: ./nginx
         volumes:
             - static_volume:/home/app/web/staticfiles
+            - uploads_volume:/home/app/web/uploadsfiles
         depends_on:
             - web
         hostname: cafe-book-nginx
@@ -26,6 +28,7 @@ services:
 
 volumes:
     static_volume:
+    uploads_volume:
 
 networks:
     nginx:

@@ -1,7 +1,9 @@
 $primary: #635642;
-$secondary: #ebeae6;
+$secondary: #e3e1de;
 $on-primary: #ffffff;
 $on-secondary: $primary;
+$newsletter-background: #2f2e41;
+$on-newsletter: $on-primary;
 
 @use "@material/theme" with (
 	$primary: $primary,
