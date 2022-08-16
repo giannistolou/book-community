@@ -37,6 +37,6 @@ def map(request):
 		shop_type = 'Καφετέρια'
 		if shop.type == 'LIB':
 			shop_type = 'Βιβλιοθήκη'
-		data.append({'name': shop.name, 'id': shop.id, 'directions':shop.googleMaps,  'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
+		data.append({'name': shop.name, 'name_en': shop.name_en, 'id': shop.id, 'directions':shop.googleMaps,  'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
 		'geometry':{'type': "Point",'coordinates': [shop.longitude, shop.latitude]}})
 	return render(request, 'map.html', {'shops': data, 'map_api': env('MAP_BOX_API')})
