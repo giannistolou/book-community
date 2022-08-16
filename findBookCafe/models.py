@@ -48,6 +48,7 @@ class Shop(models.Model):
 	tripadvisor = models.URLField(max_length=300, blank=True)
 	googleMaps = models.URLField(max_length=300, blank=True)
 	isBookShop = models.BooleanField()
+	isAccessibleForPeopleWithDisabilities = models.BooleanField(default=False)
 	isCoffeeAllowed = models.BooleanField(default=True)
 	hasLunch = models.BooleanField(default=False)
 	internetQuality = models.CharField(choices=INTERNET_CHOICE, max_length=1, default=INTERNET_CHOICE[2])
