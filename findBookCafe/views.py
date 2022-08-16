@@ -6,10 +6,11 @@ env = environ.Env()
 # Create your views here.
 
 def page404(request, exception):
-	return render(request, '404.html', exception)
+	return render(request, '404.html')
 
 def page500(exception):
-	return render(r'404.html', exception)
+	return render('404.html', exception)
+
 def index(request):
 	return render(request, 'index.html')
 
