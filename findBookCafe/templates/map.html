@@ -61,11 +61,7 @@
 
 			const geojson = {
 				type: "FeatureCollection",
-				features: JSON.parse(
-					"{{shops|escapejs}}"
-						.replace("\u0027", "'")
-						.replace(/'/g, '"')
-				),
+				features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
 			};
 
 			for (const marker of geojson.features) {
@@ -73,7 +69,7 @@
 					.setLngLat(marker.geometry.coordinates)
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }).setHTML(
-							`<a href="cafes/${marker.name_en}-${marker.id}" style="font-weight: bold; font-size:1.2rem;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
+							`<a href="cafes/${marker.name_en}-${marker.id}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
 						)
 					)
 					.addTo(map);
