@@ -61,7 +61,11 @@
 
 			const geojson = {
 				type: "FeatureCollection",
-				features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
+				features: JSON.parse(
+					"{{shops|escapejs}}"
+						.replace("\u0027", "'")
+						.replace(/'/g, '"')
+				),
 			};
 
 			for (const marker of geojson.features) {
