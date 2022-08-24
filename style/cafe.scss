@@ -51,6 +51,19 @@
 
 		@media only screen and (min-width: $lg) {
 			justify-content: space-around;
+
+			.icon {
+				padding: 0.5rem;
+				transition: 0.2s linear background-color;
+				border-radius: 100%;
+			}
+
+			.icon:hover {
+				background-color: $on-primary;
+				svg {
+					fill: $primary !important;
+				}
+			}
 		}
 	}
 	.content {
