@@ -1,7 +1,40 @@
 <html>
 	<head>
 		{% load static %} {% include "commonHead.html" %}
-		<title>{{cafe.name}}</title>
+		<title>{{cafe.name}} | Book Cafe</title>
+		<meta
+			name="keywords"
+			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe,  ες, βιβλιοθήκη,
+		βιβλιοθήκες, library, libraries"
+		/>
+		<meta
+			name="description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
+		<meta property="og:title" content="{{cafe.name}} | Book Cafe" />
+		<meta
+			property="og:description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
+		{% if cafe.type == 'CAF' %}
+		<link
+			rel="canonical"
+			href="https://cafe.book-community.com/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}/"
+		/>
+		<meta
+			property="og:url"
+			content="https://cafe.book-community.com/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}/"
+		/>
+		{% else %}
+		<meta
+			property="og:url"
+			content="https://cafe.book-community.com/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}/"
+		/>
+		<link
+			rel="canonical"
+			href="https://cafe.book-community.com/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}/"
+		/>
+		{% endif %}
 		<link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
 		<script src="{% static 'bundle.js' %}" async></script>
 	</head>
