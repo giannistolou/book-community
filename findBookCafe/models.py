@@ -27,10 +27,12 @@ POWER_OUTLETS_CHOICE = [
 
 class City(models.Model):
 	name = models.CharField(max_length=200, primary_key=True)
+	name_en = models.CharField(max_length=200)
 
 class Region(models.Model):
 	city = models.ForeignKey(City, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, primary_key=True)
+	name_en = models.CharField(max_length=200)
 
 class Shop(models.Model):
 	id = models.AutoField(primary_key=True, editable=False)

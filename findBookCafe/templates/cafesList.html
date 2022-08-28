@@ -12,11 +12,18 @@
 			<span class="location"
 				>{{cafe.region.name}}, {{cafe.region.city.name}}</span
 			>
+			{% if cafe.type == 'CAF' %}
 			<a
-				href="cafes/{{cafe.name_en}}-{{cafe.id}}"
+				href="/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}"
 				class="mdc-button mdc-button--raised cafe-link"
 				>{{cafe.name}}</a
 			>
+			{% else %}
+			<a
+				href="/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}"
+				class="mdc-button mdc-button--raised cafe-link"
+				>{{cafe.name}}</a
+			>{%endif%}
 		</div>
 	</div>
 	{% endfor %}
