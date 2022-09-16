@@ -19,20 +19,20 @@
 		{% if cafe.type == 'CAF' %}
 		<link
 			rel="canonical"
-			href="https://cafe.book-community.com/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
+			href="https://cafe.book-community.com/cafes/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
 		/>
 		<meta
 			property="og:url"
-			content="https://cafe.book-community.com/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
+			content="https://cafe.book-community.com/cafes/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
 		/>
 		{% else %}
 		<meta
 			property="og:url"
-			content="https://cafe.book-community.com/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
+			content="https://cafe.book-community.com/libraries/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
 		/>
 		<link
 			rel="canonical"
-			href="https://cafe.book-community.com/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
+			href="https://cafe.book-community.com/libraries/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
 		/>
 		{% endif %}
 		<link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
