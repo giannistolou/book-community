@@ -14,13 +14,13 @@
 			>
 			{% if cafe.type == 'CAF' %}
 			<a
-				href="/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}"
+				href="/cafes/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
 				class="mdc-button mdc-button--raised cafe-link"
 				>{{cafe.name}}</a
 			>
 			{% else %}
 			<a
-				href="/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}-{{cafe.id}}"
+				href="/libraries/{{cafe.region.city.name_en}}/{{cafe.region.name_en}}/{{cafe.name_en}}"
 				class="mdc-button mdc-button--raised cafe-link"
 				>{{cafe.name}}</a
 			>{%endif%}

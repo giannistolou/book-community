@@ -27,19 +27,22 @@ POWER_OUTLETS_CHOICE = [
 
 class City(models.Model):
 	name = models.CharField(max_length=200, primary_key=True)
-	name_en = models.CharField(max_length=200)
+	name_en = models.CharField(max_length=200, default=name)
+	slug= models.CharField(max_length=200, default=name_en)
 
 class Region(models.Model):
 	city = models.ForeignKey(City, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, primary_key=True)
-	name_en = models.CharField(max_length=200)
+	name_en = models.CharField(max_length=200, default=name)
+	slug= models.CharField(max_length=200, default=name_en)
 
 class Shop(models.Model):
 	id = models.AutoField(primary_key=True, editable=False)
 	type = models.CharField(choices=CAFE_TYPES_OPTIONS, max_length=3, default=CAFE_TYPES_OPTIONS[0])
 	thumbnail = models.ImageField(upload_to ='uploads/', null = True)
 	name = models.CharField(max_length=300)
-	name_en = models.CharField(max_length=300)
+	name_en = models.CharField(max_length=300, default= name)
+	slug = models.CharField(max_length=300, default= name_en)
 	latitude = models.FloatField(max_length=100)
 	longitude = models.FloatField(max_length=100)
 	address = models.CharField(max_length=300)

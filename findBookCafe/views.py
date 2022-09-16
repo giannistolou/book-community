@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render
 from django.http import Http404
 from .models import Region, Shop, City
@@ -43,7 +44,7 @@ def cafe_city(request, type, city):
 	template = findTemplate(type)
 	type = findType(type)
 	try:
-		city_find = City.objects.get(name_en = city)
+		city_find = City.objects.get(slug = city)
 		regions_find = Region.objects.filter(city = city_find)
 		cafes = []
 		for region in regions_find:
@@ -58,20 +59,21 @@ def cafe_region(request, type, city, region):
 	template = findTemplate(type)
 	type = findType(type)
 	try:
-		city_find = City.objects.filter(name_en = city)
-		region_find = Region.objects.get(name_en = region, city = city_find[0])
+		city_find = City.objects.filter(slug = city)
+		region_find = Region.objects.get(slug = region, city = city_find[0])
 		cafes = Shop.objects.filter(region=region_find, type = type)
 	except:
 		raise Http404
 	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes/' + city + '/' + region, 'libraries_url': '/libraries/' + city + '/' + region})
 
 def cafe(request, type, city, region, cafe):
-	id = cafe.split('-')[-1]
 	try:
-		cafe = Shop.objects.get(id=id)
+		city_find = City.objects.get(slug = city)
+		region_find = Region.objects.get(slug = region, city = city_find)
+		cafe_shop = Shop.objects.get(region=region_find, type = findType(type), slug=cafe)
 	except:
 		raise Http404
-	return render(request, 'cafe.html', {'cafe': cafe})
+	return render(request, 'cafe.html', {'cafe': cafe_shop})
 
 def map(request):
 	shops =  Shop.objects.all()
@@ -82,10 +84,7 @@ def map(request):
 		if shop.type == 'LIB':
 			shop_type = 'Βιβλιοθήκη'
 			path_type = 'libraries'
-		print(shop.region.name_en)
-		print(shop.region.city.name_en)
-		path = "/" + path_type + '/' + shop.region.city.name_en + '/' + shop.region.name_en
-		print(path)
-		data.append({'name': shop.name, 'name_en': shop.name_en, 'id': shop.id, 'directions':shop.googleMaps,  'path': path,'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
+		path = "/" + path_type + '/' + shop.region.city.slug + '/' + shop.region.slug
+		data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions':shop.googleMaps,  'path': path,'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
 		'geometry':{'type': "Point",'coordinates': [shop.longitude, shop.latitude]}})
 	return render(request, 'map.html', {'shops': data, 'map_api': env('MAP_BOX_API')})
