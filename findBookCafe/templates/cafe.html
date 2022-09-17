@@ -103,6 +103,7 @@
 				<section class="description container">
 					{{cafe.description.html | safe}}
 				</section>
+				{%if cafes_suggestion %}
 				<section class="suggestion">
 					<h2 class="name">
 						Άλλα μέρη για διάβασμα στην ίδια περιοχή!
@@ -113,6 +114,7 @@
 						{% include "cafeItem.html" %} {%endfor%}
 					</div>
 				</section>
+				{%endif%}
 			</div>
 		</main>
 
