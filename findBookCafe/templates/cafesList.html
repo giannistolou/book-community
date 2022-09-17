@@ -1,30 +1,3 @@
 <section class="cafes-list container">
-	{%for cafe in cafes%}
-	<div class="cafe">
-		<div class="imgCnt">
-			<img
-				src="https://cafe.book-community.com/media/{{cafe.thumbnail}}"
-				alt="{{cafe.name}}"
-			/>
-		</div>
-		<div class="content">
-			{% include "cafeIcons.html" %}
-			<span class="location"
-				>{{cafe.region.name}}, {{cafe.region.city.name}}</span
-			>
-			{% if cafe.type == 'CAF' %}
-			<a
-				href="/cafes/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
-				class="mdc-button mdc-button--raised cafe-link"
-				>{{cafe.name}}</a
-			>
-			{% else %}
-			<a
-				href="/libraries/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}"
-				class="mdc-button mdc-button--raised cafe-link"
-				>{{cafe.name}}</a
-			>{%endif%}
-		</div>
-	</div>
-	{% endfor %}
+	{%for cafe_item in cafes%} {% include "cafeItem.html" %} {% endfor %}
 </section>
