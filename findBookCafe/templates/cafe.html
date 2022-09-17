@@ -42,55 +42,80 @@
 	<body>
 		{% include "header.html" %}
 		<main class="mdc-top-app-bar--fixed-adjust">
-			<section class="cafe container">
-				<div class="imgCnt">
-					<h1 class="name">{{cafe.name}}</h1>
-					<img
-						src="https://cafe.book-community.com/media/{{cafe.thumbnail}}"
-						alt="thumbnail {{cafe.name}}"
-					/>
-				</div>
-				<div class="selection">
-					{% if cafe.facebook %}
-					<a href="{{cafe.facebook}}" target="_blank" class="icon"
-						>{% include "icons/facebook.html" %}</a
-					>
-					{% endif %} {% if cafe.googleMaps %}
-					<a href="{{cafe.googleMaps}}" class="icon" target="_blank">
-						{% include "icons/google.html" %}
-					</a>
-					{% endif %} {% if cafe.instagram %}
-					<a href="{{cafe.instagram}}" class="icon" target="_blank">
-						{% include "icons/instagram.html" %}</a
-					>
-					{% endif %} {% if cafe.tripadvisor %}
-					<a href="{{cafe.tripadvisor}}" class="icon" target="_blank">
-						{% include "icons/map.html" %}
-					</a>
-					{% endif %} {% if cafe.website %}
-					<a href="{{cafe.website}}" class="icon" target="_blank">
-						{% include "icons/link.html" %}</a
-					>
-					{% endif %}
-				</div>
-				<div class="content">
-					<div class="address">
-						<span class="material-symbols-sharp icon">
-							location_on </span
-						>{{cafe.address}}
+			<div class="container bottomSpace">
+				<section class="cafe">
+					<div class="imgCnt">
+						<h1 class="name">{{cafe.name}}</h1>
+						<img
+							src="https://cafe.book-community.com/media/{{cafe.thumbnail}}"
+							alt="thumbnail {{cafe.name}}"
+						/>
 					</div>
-					<div class="region">
-						<span class="material-symbols-sharp icon">
-							location_city </span
-						>{{cafe.region.name}}, {{cafe.region.city.name}}
+					<div class="selection">
+						{% if cafe.facebook %}
+						<a href="{{cafe.facebook}}" target="_blank" class="icon"
+							>{% include "icons/facebook.html" %}</a
+						>
+						{% endif %} {% if cafe.googleMaps %}
+						<a
+							href="{{cafe.googleMaps}}"
+							class="icon"
+							target="_blank"
+						>
+							{% include "icons/google.html" %}
+						</a>
+						{% endif %} {% if cafe.instagram %}
+						<a
+							href="{{cafe.instagram}}"
+							class="icon"
+							target="_blank"
+						>
+							{% include "icons/instagram.html" %}</a
+						>
+						{% endif %} {% if cafe.tripadvisor %}
+						<a
+							href="{{cafe.tripadvisor}}"
+							class="icon"
+							target="_blank"
+						>
+							{% include "icons/map.html" %}
+						</a>
+						{% endif %} {% if cafe.website %}
+						<a href="{{cafe.website}}" class="icon" target="_blank">
+							{% include "icons/link.html" %}</a
+						>
+						{% endif %}
 					</div>
-					{% include "cafeIcons.html" %}
-				</div>
-			</section>
-			<section class="description container">
-				{{cafe.description.html | safe}}
-			</section>
+					<div class="content">
+						<div class="address">
+							<span class="material-symbols-sharp icon">
+								location_on </span
+							>{{cafe.address}}
+						</div>
+						<div class="region">
+							<span class="material-symbols-sharp icon">
+								location_city </span
+							>{{cafe.region.name}}, {{cafe.region.city.name}}
+						</div>
+						{% include "cafeIcons.html" %}
+					</div>
+				</section>
+				<section class="description container">
+					{{cafe.description.html | safe}}
+				</section>
+				<section class="suggestion">
+					<h2 class="name">
+						Άλλα μέρη για διάβασμα στην ίδια περιοχή!
+					</h2>
+					<div class="suggestion-cafes">
+						{% for cafe_item in cafes_suggestion%}
+						<!--  -->
+						{% include "cafeItem.html" %} {%endfor%}
+					</div>
+				</section>
+			</div>
 		</main>
+
 		{% include "footer.html" %}
 	</body>
 </html>

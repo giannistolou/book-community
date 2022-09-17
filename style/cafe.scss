@@ -1,4 +1,6 @@
 @import "./theme.scss";
+@import "./cafeItem.scss";
+
 .cafe {
 	.imgCnt {
 		position: relative;
@@ -107,4 +109,64 @@
 .description {
 	font-family: "Roboto", sans-serif;
 	padding: 0.5 1rem;
+}
+
+.bottomSpace {
+	padding-bottom: 1rem;
+}
+
+.suggestion {
+	padding: 1rem;
+	margin: 0.5rem;
+
+	@media only screen and (min-width: $md) {
+		margin: 0;
+	}
+
+	border: 2px solid $primary;
+	.name {
+		padding: 1rem;
+		background-color: $primary;
+		color: $on-primary;
+		font-family: "Roboto", sans-serif;
+		font-weight: 400;
+		margin: 0;
+		font-size: 1.5rem;
+		width: fit-content;
+		margin-bottom: 1rem;
+
+		@media only screen and (min-width: $lg) {
+			font-size: 2rem;
+		}
+	}
+	.suggestion-cafes {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		column-gap: 1rem;
+		row-gap: 1rem;
+
+		@media only screen and (min-width: $lg) {
+			flex-direction: row;
+		}
+
+		.cafeItem {
+			display: flex;
+			column-gap: 1rem;
+			row-gap: 1rem;
+			flex-direction: column;
+			border-bottom: none;
+
+			@media only screen and (min-width: $lg) {
+				width: 30%;
+			}
+
+			.content {
+				align-items: center;
+				@media only screen and (min-width: $lg) {
+					min-width: 30%;
+				}
+			}
+		}
+	}
 }
