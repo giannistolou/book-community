@@ -1,0 +1,19 @@
+<div class="icons">
+	{%if cafe_item.isCoffeeAllowed%}
+	<span class="material-symbols-sharp icon"> local_cafe </span>
+	{%endif%} {% if cafe_item.isBookShop %}
+	<span class="material-symbols-sharp icon"> book </span>
+	{% endif %} {% if cafe_item.hasLunch %}
+	<span class="material-symbols-sharp icon"> restaurant </span>
+	{% endif %} {%if cafe_item.internetQuality > '0'%}
+	<span class="material-symbols-sharp icon"> wifi </span>
+	{%else%}
+	<span class="material-symbols-sharp icon"> wifi_off </span>
+	{%endif%} {%if cafe_item.powerOutlets > '0' %}
+	<span class="material-symbols-sharp icon"> power </span>
+	{% else %}
+	<span class="material-symbols-sharp icon"> power_off </span>
+	{% endif %} {% if cafe_item.isAccessibleForPeopleWithDisabilities %}
+	<span class="material-symbols-sharp icon"> accessible </span>
+	{% endif %}
+</div>
