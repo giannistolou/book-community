@@ -1,8 +1,24 @@
 <html>
 	<head>
 		{% load static %} {% include "commonHead.html" %}
-		<title>Βρες την καφετέρια που σου ταιριάζει</title>
+		<title>Βρες την καφετέρια που σου ταιριάζει | {{page_title}}</title>
+		<link rel="canonical" href="https://cafe.book-community.com/cafes/" />
 		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+		<meta
+			name="keywords"
+			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
+		βιβλιοθήκες, library, libraries"
+		/>
+		<meta
+			name="description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
+		<meta property="og:url" content="https://cafe.book-community.com/" />
+		<meta property="og:title" content="Book cafes {{page_title}}" />
+		<meta
+			property="og:description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
 		<script src="{% static 'bundle.js' %}" async></script>
 	</head>
 
@@ -18,7 +34,7 @@
 								role="tab"
 								aria-selected="true"
 								tabindex="0"
-								href="/cafes"
+								href="{{cafe_url}}"
 							>
 								<span class="mdc-tab__content">
 									<span
@@ -46,7 +62,7 @@
 								role="tab"
 								aria-selected="true"
 								tabindex="0"
-								href="/libraries"
+								href="{{libraries_url}}"
 							>
 								<span class="mdc-tab__content">
 									<span

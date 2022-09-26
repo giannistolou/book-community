@@ -1,23 +1,14 @@
+{% if page_title and page_title != '' %}
+<div class="container">
+	<h1 class="cafes-title">
+		{{page_title}}
+		<!--  -->
+		{% if type == 'CAF' %}Book Cafes{% endif%}
+		<!--  -->
+		{% if type == 'LIB' %}Βιβλιοθήκες{% endif%}
+	</h1>
+</div>
+{% endif %}
 <section class="cafes-list container">
-	{%for cafe in cafes%}
-	<div class="cafe">
-		<div class="imgCnt">
-			<img
-				src="https://cafe.book-community.com/media/{{cafe.thumbnail}}"
-				alt="{{cafe.name}}"
-			/>
-		</div>
-		<div class="content">
-			{% include "cafeIcons.html" %}
-			<span class="location"
-				>{{cafe.region.name}}, {{cafe.region.city.name}}</span
-			>
-			<a
-				href="cafes/{{cafe.name_en}}-{{cafe.id}}"
-				class="mdc-button mdc-button--raised"
-				>{{cafe.name}}</a
-			>
-		</div>
-	</div>
-	{% endfor %}
+	{%for cafe_item in cafes%} {% include "cafeItem.html" %} {% endfor %}
 </section>

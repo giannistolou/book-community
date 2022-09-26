@@ -3,7 +3,23 @@
 	<head>
 		<title>Βρες την καφετέρια που σου ταιριάζει</title>
 		{% load static %} {% include "commonHead.html" %}
+		<meta
+			name="keywords"
+			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
+		βιβλιοθήκες, library, libraries"
+		/>
+		<meta
+			name="description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
+		<meta property="og:url" content="https://cafe.book-community.com/" />
+		<meta property="og:title" content="Book cafe" />
+		<meta
+			property="og:description"
+			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+		/>
 		<link rel="stylesheet" href="{% static 'style/theme.css' %}" />
+		<link rel="canonical" href="https://cafe.book-community.com/map/" />
 		<meta
 			name="viewport"
 			content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -69,7 +85,7 @@
 					.setLngLat(marker.geometry.coordinates)
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }).setHTML(
-							`<a href="cafes/${marker.name}-${marker.id}" style="font-weight: bold; font-size:1.2rem;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
+							`<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
 						)
 					)
 					.addTo(map);

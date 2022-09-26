@@ -1,0 +1,26 @@
+<div class="cafeItem">
+	<div class="imgCnt">
+		<img
+			src="https://cafe.book-community.com/media/{{cafe_item.thumbnail}}"
+			alt="{{cafe_item.name}}"
+		/>
+	</div>
+	<div class="content">
+		{% include "cafeIconsItem.html" %}
+		<span class="location"
+			>{{cafe_item.region.name}}, {{cafe_item.region.city.name}}</span
+		>
+		{% if cafe_item.type == 'CAF' %}
+		<a
+			href="/cafes/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}"
+			class="mdc-button mdc-button--raised cafe-link"
+			>{{cafe_item.name}}</a
+		>
+		{% else %}
+		<a
+			href="/libraries/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}"
+			class="mdc-button mdc-button--raised cafe-link"
+			>{{cafe_item.name}}</a
+		>{%endif%}
+	</div>
+</div>
