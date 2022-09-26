@@ -38,7 +38,7 @@ def cafes(request, type):
 		cafes = Shop.objects.filter(type = type)
 	except:
 		raise Http404
-	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes', 'libraries_url': '/libraries'})
+	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes', 'libraries_url': '/libraries', 'page_title': '', 'type': type})
 
 def cafe_city(request, type, city):
 	template = findTemplate(type)
@@ -53,7 +53,7 @@ def cafe_city(request, type, city):
 				cafes.append(shop)
 	except:
 		raise Http404
-	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes/' + city, 'libraries_url': '/libraries/' + city})
+	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes/' + city, 'libraries_url': '/libraries/' + city, 'page_title': city_find.name, 'type': type})
 
 def cafe_region(request, type, city, region):
 	template = findTemplate(type)
@@ -64,7 +64,8 @@ def cafe_region(request, type, city, region):
 		cafes = Shop.objects.filter(region=region_find, type = type)
 	except:
 		raise Http404
-	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes/' + city + '/' + region, 'libraries_url': '/libraries/' + city + '/' + region})
+	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes/' + city + '/' + region, 'libraries_url': '/libraries/' + city + '/' + region, 
+	'page_title': city_find[0].name + ', ' + region_find.name, 'type': type})
 
 def cafe(request, type, city, region, cafe):
 	try:
