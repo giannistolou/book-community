@@ -1,3 +1,4 @@
+{% if page_title and page_title != '' %}
 <div class="container">
 	<h1 class="cafes-title">
 		{{page_title}}
@@ -7,6 +8,7 @@
 		{% if type == 'LIB' %}Βιβλιοθήκες{% endif%}
 	</h1>
 </div>
+{% endif %}
 <section class="cafes-list container">
 	{%for cafe_item in cafes%} {% include "cafeItem.html" %} {% endfor %}
 </section>
