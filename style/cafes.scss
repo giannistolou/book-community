@@ -1,6 +1,20 @@
 @import "./theme.scss";
 @import "./cafeItem.scss";
 
+.cafes-title {
+	font-family: "Roboto", sans-serif;
+	text-align: center;
+	border: 1px solid $primary;
+	padding: 0.5rem;
+	margin: 1rem;
+	color: $primary;
+	font-size: 1.2rem;
+
+	@media only screen and (min-width: $lg) {
+		font-size: 2rem;
+	}
+}
+
 .cafes-list {
 	margin-top: 1rem;
 	display: flex;

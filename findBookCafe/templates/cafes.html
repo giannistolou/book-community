@@ -1,7 +1,7 @@
 <html>
 	<head>
 		{% load static %} {% include "commonHead.html" %}
-		<title>Βρες την καφετέρια που σου ταιριάζει</title>
+		<title>Βρες την καφετέρια που σου ταιριάζει | {{page_title}}</title>
 		<link rel="canonical" href="https://cafe.book-community.com/cafes/" />
 		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
 		<meta
@@ -14,7 +14,7 @@
 			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
 		/>
 		<meta property="og:url" content="https://cafe.book-community.com/" />
-		<meta property="og:title" content="Book cafe" />
+		<meta property="og:title" content="Book cafes {{page_title}}" />
 		<meta
 			property="og:description"
 			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
