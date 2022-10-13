@@ -80,6 +80,16 @@
 				features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
 			};
 
+			map.addControl(
+				new mapboxgl.GeolocateControl({
+					positionOptions: {
+						enableHighAccuracy: true,
+					},
+					trackUserLocation: true,
+					showUserHeading: true,
+				})
+			);
+
 			for (const marker of geojson.features) {
 				new mapboxgl.Marker({ color: "#635642" })
 					.setLngLat(marker.geometry.coordinates)
