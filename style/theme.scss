@@ -15,25 +15,13 @@ $on-newsletter: $on-primary;
 @use "@material/button/styles";
 @use "@material/icon-button";
 @use "@material/top-app-bar/mdc-top-app-bar";
-@use "@material/fab";
-@use "@material/floating-label/mdc-floating-label";
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
-@use "@material/textfield";
-@use "@material/snackbar/mdc-snackbar";
-
-@use "@material/data-table/data-table";
-@use "@material/list";
-@import "@material/chips/styles";
-@import "@material/checkbox"; // Required only for data table with row selection.
 @import "@material/tab-bar/mdc-tab-bar";
 @import "@material/tab-scroller/mdc-tab-scroller";
 @import "@material/tab-indicator/mdc-tab-indicator";
 @import "@material/tab/mdc-tab";
-@include textfield.core-styles;
 @include card.core-styles;
-@include data-table.core-styles;
-@include data-table.theme-baseline;
 
 $xs: 0;
 $sm: 576px;
