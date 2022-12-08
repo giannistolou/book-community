@@ -5,18 +5,17 @@ $on-secondary: $primary;
 $newsletter-background: #2f2e41;
 $on-newsletter: $on-primary;
 
-@use "@material/theme" with (
-	$primary: $primary,
+@use "@material/theme" with ($primary: $primary,
 	$secondary: $secondary,
 	$on-primary: $on-primary,
-	$on-secondary: $on-secondary
-);
+	$on-secondary: $on-secondary);
 @use "@material/card";
 @use "@material/button/styles";
 @use "@material/icon-button";
 @use "@material/top-app-bar/mdc-top-app-bar";
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
+@import "@material/chips/styles";
 @import "@material/tab-bar/mdc-tab-bar";
 @import "@material/tab-scroller/mdc-tab-scroller";
 @import "@material/tab-indicator/mdc-tab-indicator";
@@ -37,21 +36,27 @@ body {
 
 .container {
 	max-width: 100%;
+
 	@media only screen and (min-width: $sm) {
 		max-width: 540px;
 	}
+
 	@media only screen and (min-width: $md) {
 		max-width: 720px;
 	}
+
 	@media only screen and (min-width: $lg) {
 		max-width: 992px;
 	}
+
 	@media only screen and (min-width: $xl) {
 		max-width: 1140px;
 	}
+
 	@media only screen and (min-width: $xxl) {
 		max-width: 1320px;
 	}
+
 	margin: 0 auto;
 }
 

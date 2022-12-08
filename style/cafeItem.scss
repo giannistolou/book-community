@@ -16,14 +16,16 @@
 		position: relative;
 		width: 100%;
 		aspect-ratio: 1.7;
-		background-color: #f7f5fb;
+
 		img {
 			position: absolute;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			border-radius: 1rem;
 		}
 	}
+
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -37,7 +39,6 @@
 
 		.cafe-link {
 			padding: 1.5rem;
-			margin: 0 1rem;
 			text-transform: capitalize;
 			width: fit-content;
 
@@ -71,6 +72,7 @@
 			@media only screen and (min-width: $lg) {
 				justify-content: flex-start;
 			}
+
 			.icon {
 				border: 1px solid $on-secondary;
 				user-select: none;
