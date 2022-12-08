@@ -28,7 +28,7 @@ def findTemplate(url_type):
 	if(url_type == 'libraries'):
 		return 'libraries.html'
 	return ''
-
+	
 def cafes(request, type):
 	template = findTemplate(type)
 	type = findType(type)
@@ -38,7 +38,8 @@ def cafes(request, type):
 		cafes = Shop.objects.filter(type = type)
 	except:
 		raise Http404
-	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes', 'libraries_url': '/libraries', 'page_title': '', 'type': type})
+	cities = City.objects.all()
+	return render(request, template, {'cafes': cafes, 'cafe_url': '/cafes', 'libraries_url': '/libraries', 'page_title': '', 'type': type, 'cities': cities})
 
 def cafe_city(request, type, city):
 	template = findTemplate(type)

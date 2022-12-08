@@ -21,9 +21,48 @@
 	flex-direction: column;
 	row-gap: 1rem;
 	padding: 0.5rem;
+
 	@media only screen and (min-width: $lg) {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}
+}
+
+.chips-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	column-gap: 1rem;
+	padding: 1rem 1rem 0 1rem;
+
+
+	.chip {
+		border: 1px solid $primary;
+		display: inline-block;
+		padding: 0.5rem;
+		border-radius: 1rem;
+		min-width: fit-content;
+		transition: 0.3s background-color;
+
+	}
+
+	.chip-active {
+		background-color: $primary;
+		color: $on-primary;
+	}
+
+	@media only screen and (min-width: $lg) {
+		.chip:not(.chip-active):hover {
+			background-color: $primary;
+			color: $on-primary;
+			opacity: 0.7;
+		}
+	}
+}
+
+
+.select-other-city {
+	padding: 1rem 0;
 }
