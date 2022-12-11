@@ -1,7 +1,7 @@
 from unicodedata import name
 from django.shortcuts import render
 from django.http import Http404
-from .models import Region, Shop, City
+from .models import Region, Shop, City, SimplePage
 import environ
 env = environ.Env()
 # Create your views here.
@@ -92,3 +92,10 @@ def map(request):
 		data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions':shop.googleMaps,  'path': path,'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
 		'geometry':{'type': "Point",'coordinates': [shop.longitude, shop.latitude]}})
 	return render(request, 'map.html', {'shops': data, 'map_api': env('MAP_BOX_API')})
+
+def simple_page(request, page_slug):
+	try:
+		page = SimplePage.objects.get(slug = page_slug)
+	except:
+		raise Http404
+	return render(request, 'simplePage.html', {'page_title': page.title, 'content': page.content, 'slug': page_slug})
