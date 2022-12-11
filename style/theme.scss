@@ -82,6 +82,7 @@ a {
 
 main {
 	background-color: $secondary;
+	padding-bottom: 1rem;
 }
 
 img {
@@ -91,4 +92,8 @@ img {
 ::selection {
 	color: $on-primary;
 	background: $primary;
+}
+
+.content{
+	padding: 1rem;
 }
