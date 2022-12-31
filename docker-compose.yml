@@ -3,7 +3,7 @@ version: "3.8"
 services:
     web:
         build: ./
-        command: gunicorn bookCafe.wsgi:application --bind 0.0.0.0:8000
+        command: gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000
         volumes:
             - static_volume:/home/app/web/staticfiles
             - uploads_volume:/home/app/web/uploadsfiles

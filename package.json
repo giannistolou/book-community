@@ -16,6 +16,7 @@
     "@material/textfield": "^13.0.0",
     "@material/theme": "^13.0.0",
     "@material/top-app-bar": "^13.0.0",
+    "bootstrap": "^5.2.3",
     "material-components-web": "^13.0.0"
   },
   "scripts": {
