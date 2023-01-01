@@ -1,4 +1,7 @@
 {
+  "name": "book-community",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
   "dependencies": {
     "@material/banner": "^13.0.0",
     "@material/button": "^13.0.0",
