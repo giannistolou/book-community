@@ -32,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [env("ALLOWED_HOSTS")]
+ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 
 CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com']
 
