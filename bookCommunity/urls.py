@@ -1,4 +1,4 @@
-"""bookCafe URL Configuration
+"""bookCommunity URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -19,8 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('', include('landingPage.urls')),
     path('admin/', admin.site.urls),
-    path('', include('findBookCafe.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'findBookCafe.views.page404'
