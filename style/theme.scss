@@ -5,35 +5,22 @@ $on-secondary: $primary;
 $newsletter-background: #2f2e41;
 $on-newsletter: $on-primary;
 
-@use "@material/theme" with (
-	$primary: $primary,
+@use "@material/theme" with ($primary: $primary,
 	$secondary: $secondary,
 	$on-primary: $on-primary,
-	$on-secondary: $on-secondary
-);
+	$on-secondary: $on-secondary);
 @use "@material/card";
 @use "@material/button/styles";
 @use "@material/icon-button";
 @use "@material/top-app-bar/mdc-top-app-bar";
-@use "@material/fab";
-@use "@material/floating-label/mdc-floating-label";
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
-@use "@material/textfield";
-@use "@material/snackbar/mdc-snackbar";
-
-@use "@material/data-table/data-table";
-@use "@material/list";
 @import "@material/chips/styles";
-@import "@material/checkbox"; // Required only for data table with row selection.
 @import "@material/tab-bar/mdc-tab-bar";
 @import "@material/tab-scroller/mdc-tab-scroller";
 @import "@material/tab-indicator/mdc-tab-indicator";
 @import "@material/tab/mdc-tab";
-@include textfield.core-styles;
 @include card.core-styles;
-@include data-table.core-styles;
-@include data-table.theme-baseline;
 
 $xs: 0;
 $sm: 576px;
@@ -49,21 +36,27 @@ body {
 
 .container {
 	max-width: 100%;
+
 	@media only screen and (min-width: $sm) {
 		max-width: 540px;
 	}
+
 	@media only screen and (min-width: $md) {
 		max-width: 720px;
 	}
+
 	@media only screen and (min-width: $lg) {
 		max-width: 992px;
 	}
+
 	@media only screen and (min-width: $xl) {
 		max-width: 1140px;
 	}
+
 	@media only screen and (min-width: $xxl) {
 		max-width: 1320px;
 	}
+
 	margin: 0 auto;
 }
 
@@ -89,6 +82,7 @@ a {
 
 main {
 	background-color: $secondary;
+	padding-bottom: 1rem;
 }
 
 img {
@@ -98,4 +92,8 @@ img {
 ::selection {
 	color: $on-primary;
 	background: $primary;
+}
+
+.content{
+	padding: 1rem;
 }

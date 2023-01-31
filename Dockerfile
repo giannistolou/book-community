@@ -34,6 +34,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 COPY --from=dependencies --chown=app:app ./dist ./dist
 # copy project
+COPY ./public ./public
 COPY  --chown=app:app . . 
 
 USER app

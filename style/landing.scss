@@ -1,0 +1,564 @@
+$primaryBackgroundColor: #e3e1de;
+$secondaryBackgroundColor: #2f2e41;
+$whiteBackground: #f7f5fb;
+$fontFamily: "Roboto";
+$spacer: 1rem;
+@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+@mixin rowInDesktopColumnInMobile {
+	display: flex;
+	flex-direction: column;
+	@include media-breakpoint-up(lg) {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+}
+
+@mixin borderRadius {
+	border-radius: 5px;
+}
+@mixin sameSpaceSection {
+	padding-top: $spacer * 2;
+	padding-bottom: $spacer * 2;
+}
+@mixin section {
+	@include sameSpaceSection;
+	align-items: center;
+	display: flex;
+	min-height: 50vh;
+	@include media-breakpoint-up(lg){
+		min-height: 35vh;
+	}
+
+	.title {
+		padding: $spacer 0;
+		text-align: center;
+		font-size: 2rem;
+	}
+}
+
+@mixin bookFonts {
+	font-family: 'Gentium Book Basic', serif;
+}
+
+.cards {
+	display: flex;
+	column-gap: $spacer;
+	row-gap: $spacer;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+
+	a {
+		text-decoration: none;
+	}
+
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		background-color: #ffffff;
+		font-family: "Roboto";
+		box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+		border-radius: 10%;
+
+		.img-container {
+
+			img {
+				width: 100%;
+				height: 10rem;
+				object-fit: cover;
+				border-top-left-radius: 10%;
+				border-top-right-radius: 10%;
+			}
+		}
+
+		.details {
+			text-align: left;
+			padding: $spacer;
+
+			.title {
+				text-align: left;
+				font-size: 1.25rem;
+				font-family: 'Source Sans Pro, sans-serif';
+				font-weight: 400;
+				font-style: normal;
+				margin: 0;
+				color: #16171b;
+			}
+
+			.details {
+				color: #727a93;
+				padding: 0;
+				font-size: 1rem;
+				line-height: 1.2;
+			}
+		}
+	}
+
+}
+
+html,
+body {
+	width: 100%;
+	font-family: $fontFamily;
+	margin: 0;
+	//TODO this must change
+	overflow-x: hidden;
+}
+
+body ::-moz-selection,
+html ::-moz-selection {
+	color: $primaryBackgroundColor;
+	background: $secondaryBackgroundColor;
+}
+
+body ::selection,
+html ::selection {
+	color: $primaryBackgroundColor;
+	background: $secondaryBackgroundColor;
+}
+
+.heroImage {
+	background-color: $primaryBackgroundColor;
+	@include section;
+	min-height: 75vh;
+
+	@include media-breakpoint-down(lg) {
+		padding-top: $spacer;
+		min-height: 60vh;
+	}
+
+	.content {
+		display: flex;
+		margin-left: auto;
+		margin-right: auto;
+		align-items: center;
+		@include rowInDesktopColumnInMobile;
+
+		@include media-breakpoint-up(lg) {
+			justify-content: space-between;
+		}
+
+		.textSection {
+			.box {
+				width: fit-content;
+
+				@include media-breakpoint-down(lg) {
+					padding: 0 $spacer * 0.5;
+					width: 100%;
+				}
+
+				.logo {
+					font-family: 'Cardo';
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					color: #635642;
+
+					@include media-breakpoint-down(lg) {
+						justify-content: center;
+						margin-bottom: $spacer *2;
+					}
+
+					.img-container {
+						svg {
+							height: 4.5rem;
+
+							@include media-breakpoint-up(lg) {
+								height: 9rem;
+							}
+						}
+					}
+
+					.text-logo {
+						display: flex;
+						flex-direction: column;
+						font-size: 1.5rem;
+
+						@include media-breakpoint-up(lg) {
+							font-size: 2.5rem;
+						}
+					}
+				}
+
+				.clickNewsletterCnt {
+					@include media-breakpoint-down(lg) {
+						display: none;
+					}
+				}
+
+
+
+				.subtitle {
+					text-align: center;
+					line-height: 3px;
+
+					@include media-breakpoint-up(lg) {
+						text-align: left;
+					}
+
+					font-weight: 300;
+				}
+			}
+		}
+	}
+}
+
+.whatIsBookCommunity {
+	@include section;
+	background: linear-gradient(180deg,
+			$primaryBackgroundColor 0%,
+			$whiteBackground 50%);
+}
+
+.whatMakesBookCommunityDifferent {
+	@include section;
+	background: $primaryBackgroundColor;
+}
+
+.text {
+	text-align: center;
+	margin-bottom: $spacer;
+
+	@include media-breakpoint-up(lg) {
+		text-align: left;
+		margin-bottom: $spacer * 2;
+	}
+
+	p {
+		font-weight: 300;
+		line-height: 1.5;
+		font-size: 1.1rem;
+	}
+
+	.author {
+		text-align: center;
+		font-weight: 300;
+		line-height: 1.5;
+		font-size: 1.1rem;
+
+		@include media-breakpoint-up(lg) {
+			text-align: right;
+		}
+	}
+}
+
+.ourStory {
+	@include section;
+	background: linear-gradient(180deg, #e3e1de 0%, #f7f5fb 50%);
+}
+
+.newsletter {
+	@include section;
+	background-color: $secondaryBackgroundColor;
+	color: $primaryBackgroundColor;
+	min-height: 30vh;
+
+	.subtitle {
+		text-align: center;
+	}
+}
+
+.footer {
+	@include sameSpaceSection;
+	display: flex;
+
+	@include media-breakpoint-up(lg) {
+		align-items: center;
+		justify-content: center;
+	}
+
+	background-color: $primaryBackgroundColor;
+	@include rowInDesktopColumnInMobile;
+
+	.sameRow {
+		@include rowInDesktopColumnInMobile;
+	}
+
+	.form {
+		input {
+			border: 1px solid $secondaryBackgroundColor;
+		}
+
+		@include media-breakpoint-down(md) {
+			max-width: 80%;
+		}
+	}
+
+	.copyright {
+		display: flex;
+		text-align: center;
+
+		flex-direction: column;
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 0;
+			text-align: left;
+			justify-content: flex-start;
+			align-self: center;
+		}
+
+		@include media-breakpoint-down(lg) {
+			span {
+				margin-bottom: $spacer;
+			}
+		}
+	}
+
+	.icons {
+		display: flex;
+		column-gap: $spacer;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		.icon {
+			svg {
+				width: 2rem;
+				height: 2rem;
+				transition: fill 0.2s ease-in-out;
+			}
+		}
+
+		@include media-breakpoint-up(lg) {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			.icon:hover {
+				svg {
+					fill: #ff6b00;
+				}
+			}
+		}
+	}
+}
+
+.form {
+	@include rowInDesktopColumnInMobile;
+
+	@include media-breakpoint-down(md) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	iframe {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+	}
+}
+
+.clickNewsletterCnt {
+	margin-bottom: $spacer;
+	display: flex;
+	justify-content: center;
+
+	@include media-breakpoint-up(lg) {
+		margin: $spacer * 2 0;
+		justify-content: flex-start;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	.clickNewsletter {
+		text-decoration: none;
+		font-size: 1rem;
+		border: 1px solid $secondaryBackgroundColor;
+		color: $secondaryBackgroundColor;
+		width: fit-content;
+		@include borderRadius;
+		padding: $spacer;
+		cursor: pointer;
+		transition: background-color 0.2s ease-in-out;
+
+		@include media-breakpoint-up(lg) {
+			font-size: 1.5rem;
+
+			&:hover {
+				background-color: $secondaryBackgroundColor;
+				color: $primaryBackgroundColor;
+			}
+		}
+	}
+}
+
+.cookie-banner {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: $spacer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	background-color: $primaryBackgroundColor;
+	@include borderRadius;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+
+	@include media-breakpoint-up(lg) {
+		bottom: 40px;
+		left: 10%;
+		right: 10%;
+		width: 80%;
+		padding: 5px 14px;
+		flex-direction: row;
+	}
+
+	a {
+		text-decoration: none;
+		cursor: pointer;
+		color: $secondaryBackgroundColor;
+		border-bottom: 1px solid $secondaryBackgroundColor;
+	}
+
+	.options {
+		padding: $spacer 0;
+		column-gap: $spacer;
+		row-gap: $spacer;
+	}
+
+	button {
+		border: none;
+		padding: $spacer * 0.5;
+		background-color: inherit;
+		cursor: pointer;
+	}
+
+	.accept {
+		font-size: 1rem;
+		background-color: $secondaryBackgroundColor;
+		color: $primaryBackgroundColor;
+		@include borderRadius;
+		padding: $spacer * 0.75;
+	}
+}
+
+#newsletterProblem {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+
+	.btnCookie {
+		background-color: $primaryBackgroundColor;
+		border: none;
+		color: $secondaryBackgroundColor;
+		padding: $spacer;
+		text-decoration: none;
+		width: fit-content;
+		margin-left: auto;
+		margin-right: auto;
+		cursor: pointer;
+		@include borderRadius;
+	}
+}
+
+@keyframes cookieHide {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.quoteCnt {
+	@include section;
+	background-color: $secondaryBackgroundColor;
+	color: $primaryBackgroundColor;
+	min-height: 30vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.bookCoverCnt {
+	display: flex;
+	justify-content: center;
+
+
+	.bookCover {
+		width: 100%;
+		padding: $spacer * 2;
+		color: $primaryBackgroundColor;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		background-color: #635642;
+		aspect-ratio: 0.6; //ratio of a4
+		box-shadow: 17px 15px 53px -10px rgba(0, 0, 0, 0.6);
+		user-select: none;
+
+		@include media-breakpoint-up(xl) {
+			padding: $spacer * 3 $spacer * 4 $spacer * 3 $spacer * 4;
+		}
+
+		h1 {
+			font-weight: normal;
+			margin: 0;
+			padding: 0;
+		}
+
+		.book-title {
+			font-size: 2.5rem;
+			margin-bottom: $spacer;
+			@include bookFonts;
+
+			@include media-breakpoint-up(lg) {
+				font-size: 3rem;
+			}
+		}
+
+		.book-subtitle {
+			font-size: 0.8rem;
+			margin-bottom: $spacer;
+			@include bookFonts;
+
+			@include media-breakpoint-up(lg) {
+				font-size: 1rem;
+			}
+		}
+
+		.authors {
+			font-size: 0.8rem;
+			margin-bottom: $spacer;
+			@include bookFonts;
+
+			@include media-breakpoint-up(lg) {
+				font-size: 1rem;
+			}
+		}
+
+		.book-oldPenSvg {
+			width: 60%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: $spacer;
+
+			@include media-breakpoint-up(lg) {
+				width: 80%;
+			}
+		}
+
+		.end {
+			display: flex;
+			flex-direction: column;
+			align-self: flex-end;
+			margin: 0 auto;
+		}
+
+		.copyright {
+			font-size: 0.8rem;
+			@include bookFonts;
+
+			@include media-breakpoint-up(lg) {
+				font-size: 1rem;
+			}
+		}
+	}
+}

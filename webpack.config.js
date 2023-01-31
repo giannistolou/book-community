@@ -10,6 +10,7 @@ module.exports = {
 		"./style/cafe.scss",
 		"./style/page404.scss",
 		"./style/footer.scss",
+		"./style/landing.scss",
 	],
 	output: {
 		filename: "bundle.js",

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+	{% load static %}
+	<title>Book Community</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="google" content="notranslate" />
+	<link rel="stylesheet" href="{% static 'style/landing.css' %}" />
+	<meta name="application-name" content="Book community" />
+	<link rel="canonical" href="https://book-community.com/" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<script defer data-domain="book-community.com" src="https://plausible.io/js/plausible.js"></script>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="32x32"
+	href="{% static '/favicons/favicon-32x32.png' %}"
+/>
+<link
+	rel="icon"
+	type="image/png"
+	sizes="16x16"
+	href="{% static '/favicons/favicon-16x16.png' %}"
+/>
+<link rel="manifest" href="{% static '/site.webmanifest' %}" />
+<link
+	rel="mask-icon"
+	href="{% static '/safari-pinned-tab.svg' %}"
+	color="#5bbad5"
+/>
+<meta name="apple-mobile-web-app-title" content="Book Community" />
+<meta name="application-name" content="Book Community" />
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#e3e1de" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+	rel="stylesheet"
+/>
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
+
+	<!-- SEO -->
+	<meta name="keywords" content="Book, books, reading, βιβλίο, βιβλία, διάβασμα, social media" />
+	<meta name="description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+
+	<meta property="og:url" content="https://book-community.com/" />
+	<meta property="og:title" content="Book community" />
+	<meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+	<meta property="og:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+</head>
+
+<body>
+	<section class="heroImage">
+		<div class="content container">
+			<div class="textSection col-12 col-md-6">
+				<div class="box">
+					<div class="logo">
+						<div class="img-container">
+							<svg version="1.0" viewBox="0 0 208.000000 181.000000" preserveAspectRatio="xMidYMid meet">
+								<g transform="translate(0.000000,181.000000) scale(0.100000,-0.100000)" fill="#635642"
+									stroke="none">
+									<path d="M312 1698 c-7 -7 -12 -40 -12 -79 0 -98 -8 -111 -74 -132 -31 -10
+										-60 -26 -66 -37 -6 -12 -10 -218 -10 -571 l0 -552 43 7 c23 3 78 12 122 21
+										102 18 205 19 325 0 110 -16 176 -38 277 -89 40 -20 85 -36 101 -36 16 0 63
+										16 104 34 225 104 434 129 675 79 45 -9 86 -13 90 -9 11 10 16 972 6 1061 l-8
+										69 -70 22 c-70 22 -70 22 -72 60 -2 22 -6 68 -9 103 l-6 63 -96 -7 c-124 -9
+										-188 -26 -287 -75 -91 -44 -223 -146 -279 -214 -20 -25 -41 -46 -46 -46 -5 0
+										-33 25 -62 57 -116 124 -307 239 -444 268 -84 18 -186 19 -202 3z m-11 -638
+										c1 -168 4 -339 8 -380 l6 -75 95 -13 c121 -17 213 -49 309 -107 80 -49 171
+										-122 136 -110 -142 49 -351 71 -500 54 -55 -7 -111 -13 -125 -13 l-25 -1 -3
+										493 -2 493 42 18 43 18 7 -36 c4 -20 8 -173 9 -341z m1502 359 l39 -10 -4
+										-492 c-1 -271 -6 -497 -11 -504 -5 -8 -17 -9 -41 -2 -65 18 -220 27 -315 18
+										-51 -5 -145 -22 -209 -39 -63 -16 -117 -28 -119 -26 -2 2 20 24 49 49 133 113
+										281 182 427 198 47 5 94 12 104 15 16 5 17 33 17 405 0 312 3 399 13 399 6 0
+										29 -5 50 -11z" />
+								</g>
+							</svg>
+						</div>
+						<div class="text-logo">
+							<span>Book</span>
+							<span>Community</span>
+						</div>
+					</div>
+
+					<div class="clickNewsletterCnt">
+						<a href="https://bookcommunitygr.substack.com/subscribe?utm_source=substack&utm_medium=landing_page"
+							target="_blank" rel=”noreferrer noopener" class="clickNewsletter">
+							Κάνε εγγραφή στο newsletter
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="bookCoverCnt col-10 col-md-4">
+				<div class="bookCover">
+					<h1 class="book-title">Book Community</h1>
+					<div class="book-subtitle">"Από βιβλιοφάγους για βιβλιοφάγους"</div>
+					<div class="book-oldPenSvg">
+						<?xml version="1.0" standalone="no"?>
+						<svg viewBox="0 0 1280.000000 1103.000000" preserveAspectRatio="xMidYMid meet">
+							<g transform="translate(0.000000,1103.000000) scale(0.100000,-0.100000)" fill="#e5e5e5"
+								stroke="none">
+								<path d="M12125 11019 c-636 -81 -1736 -500 -2696 -1027 -1827 -1002 -3234
+									-2315 -4038 -3767 -34 -60 -61 -107 -61 -105 0 3 7 40 15 83 30 158 16 242
+									-47 291 -71 54 -160 26 -258 -80 -120 -129 -209 -286 -494 -867 -121 -246
+									-221 -445 -223 -444 -2 2 8 60 22 128 36 171 43 286 22 341 -13 34 -27 49 -64
+									69 -45 25 -50 26 -87 13 -65 -23 -103 -60 -180 -177 -106 -162 -233 -395 -376
+									-692 -69 -143 -166 -343 -217 -445 -86 -171 -92 -181 -87 -135 9 87 -10 179
+									-47 225 -31 38 -35 40 -88 40 -99 0 -147 -53 -265 -293 -84 -171 -140 -302
+									-298 -692 -73 -181 -141 -329 -206 -450 -135 -251 -207 -396 -231 -466 -20
+									-58 -36 -76 -428 -473 -879 -888 -1779 -1858 -1755 -1890 39 -52 134 -166 139
+									-166 10 0 160 88 253 148 96 62 100 64 375 174 1394 560 2689 888 3505 888
+									289 0 599 -54 751 -131 81 -41 126 -125 210 -396 110 -356 187 -480 345 -557
+									146 -71 324 -119 554 -148 134 -17 609 -17 785 0 714 68 1548 250 2455 534
+									124 38 228 72 232 74 3 2 -10 54 -30 114 -29 87 -40 109 -52 104 -8 -3 -137
+									-43 -286 -89 -1635 -505 -2962 -653 -3527 -392 -121 56 -151 108 -253 434 -76
+									241 -126 350 -200 432 -85 94 -224 155 -462 205 -186 39 -343 50 -620 43 -408
+									-10 -818 -70 -1351 -198 -446 -107 -1102 -308 -1576 -482 -38 -15 -70 -25 -71
+									-24 -2 1 36 34 84 72 135 109 613 521 862 743 223 200 225 201 272 202 102 1
+									193 26 453 125 39 15 192 62 340 105 299 86 391 119 448 156 96 63 104 170 18
+									232 l-40 29 242 98 c438 177 591 244 684 297 161 92 223 157 223 233 0 54 -29
+									98 -82 124 -36 17 -63 21 -149 21 l-104 0 47 30 c171 107 641 352 1468 763
+									894 444 1040 538 1040 665 0 147 -126 169 -474 82 -66 -16 -121 -28 -122 -27
+									-1 1 108 70 244 152 880 535 1846 1157 2147 1383 144 108 311 258 830 746 88
+									83 315 292 504 465 827 756 1398 1319 1827 1801 623 700 886 1173 810 1455
+									-20 76 -49 126 -101 174 -117 108 -316 151 -560 120z m313 -245 c108 -30 142
+									-93 117 -219 -88 -457 -956 -1449 -2495 -2850 -242 -220 -385 -352 -671 -621
+									-396 -372 -597 -551 -714 -639 -429 -322 -2190 -1430 -2940 -1850 -140 -78
+									-210 -135 -221 -179 -7 -28 37 -120 61 -130 31 -12 120 -6 200 13 44 11 186
+									49 315 85 129 37 244 69 255 72 11 2 -322 -168 -740 -379 -946 -477 -1132
+									-577 -1343 -719 -157 -107 -205 -173 -188 -261 7 -36 56 -90 96 -105 15 -6 57
+									-13 95 -17 l68 -8 -129 -52 c-71 -29 -237 -97 -369 -150 -398 -162 -511 -221
+									-561 -294 -31 -45 -32 -110 -4 -157 20 -31 20 -33 3 -38 -10 -3 -91 -26 -181
+									-51 -90 -25 -201 -58 -247 -75 -47 -16 -85 -27 -85 -26 0 2 107 102 237 222
+									304 280 1169 1087 1698 1584 1543 1450 1895 1774 3475 3195 1223 1100 1388
+									1252 1656 1519 194 194 246 254 426 486 113 146 202 266 199 268 -16 6 -510
+									-207 -611 -264 -655 -373 -2079 -1518 -3895 -3133 -1263 -1124 -1798 -1618
+									-3128 -2890 l-119 -115 40 80 c22 43 81 183 132 309 90 224 203 494 218 520 4
+									8 7 -32 7 -88 1 -138 19 -175 99 -200 l55 -18 41 27 c81 54 200 266 499 889
+									168 350 281 571 281 554 0 -4 -11 -60 -25 -125 -15 -66 -29 -167 -32 -225 l-6
+									-106 31 -46 c29 -41 37 -46 82 -52 69 -10 120 21 194 118 111 145 216 342 516
+									962 114 237 230 458 237 452 2 -2 -12 -67 -31 -144 -83 -338 -80 -459 11 -513
+									86 -51 206 6 253 120 133 324 366 749 603 1105 752 1128 1917 2175 3339 3003
+									849 494 1786 900 2508 1086 346 89 544 109 688 70z" />
+							</g>
+						</svg>
+
+					</div>
+					<div class="end">
+						<div class="copyright">&copy 2022</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="arrow arrow-first"></div>
+		<div class="arrow arrow-second"></div>
+	</section>
+	<section class="whatIsBookCommunity">
+		<div class="container">
+			<div class="title">Τι είναι το book community;</div>
+			<div class="text">
+				<p style="text-align: center;">
+					Το book community είναι μια προσπάθεια, δημιουργίας κοινότητας, η οποία θα φέρει κοντά τα άτομα που
+					τους αρέσει να διαβάζουνε, να συζητάνε και να ανταλλάζουνε ιδέες για τα βιβλία και τα συναισθήματα
+					που τους δημιουργούν αυτά. Όλο αυτό θα επιτευχθεί μέσω, project και δράσεων που συνθέτουν στο book
+					community, ευελπιστώντας να δημιουργηθεί μια μεγαλύτερη και πιο σταθερή κοινότητα βιβλίου.
+				</p>
+			</div>
+		</div>
+	</section>
+	<section class="quoteCnt">
+		<div class="title">
+			"Τα βιβλία είναι σαν πολυσέλιδες επιστολές σε φίλους."
+		</div>
+		<div class="author">
+			Ζαν-Πωλ Ριτέρ
+		</div>
+	</section>
+	<section class="whatMakesBookCommunityDifferent">
+		<div class="container">
+			<div class="title">Project</div>
+			<div class="cards">
+				<a href="https://cafe.book-community.com/" class="card col-10 col-lg-3">
+					<div class="img-container">
+						<img src="https://i.pinimg.com/originals/95/f4/ba/95f4ba77af46b428baf755623d0854a0.jpg" />
+					</div>
+					<div class="details">
+						<p class="title">
+							Book Cafe
+						</p>
+						<div class="details">
+							Το book cafe είναι εδώ για να σε βοηθήσει να βρεις
+							καφετέριες και βιβλιοθήκες στις οποίες μπορείς να διαβάσεις για τη σχολή, για την δουλειά ή
+							για ότι θέλεις εσύ.
+						</div>
+					</div>
+				</a>
+				<a href="https://blog.book-community.com/" class="card col-10 col-lg-3">
+					<div class="img-container">
+						<img
+							src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGJsb2clMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80" />
+					</div>
+					<div class="details">
+						<p class="title">
+							Blog
+						</p>
+						<div class="details">
+							Το blog, είναι ένα μέρος όπου εκφράζουμε τις σκέψεις και συναισθήματα μας. Συζητάμε και
+							κριτικάρουμε διάφορα θέματα γύρω από το βιβλίο.
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+	<section class="ourStory">
+		<div class="container">
+			<div class="title">
+				Η ιστορία μας
+			</div>
+			<div class="text">
+				<p>
+					Στην εποχή που όλοι είμαστε κολλημένοι στα κινητά, κάθε φορά που μπαίνουμε στο μετρό, στο αστικό
+					λεωφορείο, σε μια καφετέρια και βλέπουμε ανθρώπους να διαβάζουν ένα βιβλίο, νιώθουμε σαν να υπάρχει
+					μια κοινή σύνδεση μεταξύ μας. Αυτό το ανακαλύπτουμε και σε συζητήσεις με άτομα που δεν γνωρίζουμε
+					καλά καλά, και με τα οποία χανόμαστε σε συζητήσεις, χάνοντας την αίσθηση του χώρου και του χρόνου.
+				</p>
+				<p>
+					Παρόλα αυτά συνειδητοποιήσαμε, πως απουσιάζει η κοινότητα βιβλίου στην Ελλάδα και αναρρωτηθήκαμε,
+					γιατί συμβαίνει αυτό. Μέσα από συζητήσεις καταλάβαμε, πως έχουμε απομακρυνθεί από τους φυσικούς
+					χώρους του βιβλίου (βιβλιοθήκες, βιβλιοπωλεία, book cafe) και έχουμε απομονωθεί -σαν αναγνώστες-
+					αγοράζοντας με ένα κλιλ, εκφράζοντας κριτικές και συναισθήματα μόνο μέσω αστεριών και αριθμών
+					χάνοντας την ανθρώπινη επαφή.
+				</p>
+				<p>
+					Επίσης ως γενιά των social media, αντί να δημιουργηθεί μια διαδυκτιακή κοινότητα βιβλίου, όπου θα
+					είναι ένας ελεύθερος χώρος έκφρασης σκέψεων και συναισθημάτων, έχει καταλήξει σε έναν χώρο προβολής
+					και επίδειξης βιβλίων, σαν άλλο ένα προϊόν και όχι σαν μια ιδέα και γνώση που μπορεί να σου αλλάξει
+					την ζωή.
+				</p>
+				<p>
+					Έτσι το book community, μέσω των project και των δράσεων θα προσπαθήσει να φέρει κοντά όλα τα άτομα
+					που νιώθουν πως υπάρχει η κοινή σύνδεση του βιβλίου -γιατί έχουν κάτι να πουν, να αισθανθούν ,να
+					εκφράσουν και να μοιραστούν με τα άλλα άτομα-
+				</p>
+				<div class="author">
+					Η ομάδα του <b>Book Community</b>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<section class="newsletter">
+		<div class="container">
+			<div class="title">
+				Κάνε εγγραφή στο newsletter μας
+			</div>
+			<div class="subtitle">
+				Για να μαθαίνεις την πορεία του project και ενδιαφέροντα θέματα γύρω από το βιβλίο!
+			</div>
+
+			<div id="newsletterProblem" style="display: none;">
+				<p style="text-align: center;">Αποδεχτείτε τα cookies για να κάνετε εγγραφή στο newsletter</p>
+				<button class="btnCookie" onclick="acceptCookies()">Αποδοχή cookies</button>
+			</div>
+			<form class="form">
+				<iframe title="newsletter iframe" frameborder="0" scrolling="no"></iframe>
+			</form>
+
+		</div>
+
+	</section>
+	<footer class="footer">
+		<div class="container sameRow">
+			<div class="copyright col-12 col-md-6">
+				<span id="copyright">
+					&copy 2022
+				</span>
+
+			</div>
+			<div class="icons col-12 col-md-6">
+
+				<a class="icon" href="https://github.com/Book-Community" target="_blank">
+					<svg title="github" mlns="http://www.w3.org/2000/svg" class="bi bi-github" viewBox="0 0 16 16">
+						<path
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+					</svg>
+				</a>
+			</div>
+		</div>
+	</footer>
+	<div class="cookie-banner" style="display: none;">
+		<p>
+			Χρησιμοποιούμε cookies για την υπηρεσία του newsletter, για περισσότερα διάβασε την
+			<a href="privacy-policy.html">πολιτική απορρήτου</a>
+		</p>
+		<div class="options">
+			<button class="decline" onclick="closeCookieBanner()">Απόρριψη</button>
+			<button class="accept" onclick="acceptCookies()">Αποδοχή</button>
+		</div>
+
+	</div>
+	<script>
+		var date = new Date;
+		document.getElementById("copyright").innerHTML = "&copy; " + date.getFullYear();
+		var cookieBanner = document.querySelector(".cookie-banner");
+		var decline = document.querySelector(".decline");
+		var accept = document.querySelector(".accept");
+		var iframes = document.querySelectorAll("iframe");
+		var newsletterProblem = document.querySelector("#newsletterProblem");
+
+		if (localStorage.getItem('cookieSeen') != 'shown') {
+			cookieBanner.style.display = "flex";
+			newsletterProblem.style.display = "flex";
+		} else {
+			acceptCookies();
+		}
+
+		function closeCookieBanner() {
+			cookieBanner.style.animation = "cookieHide 1s";
+			setTimeout(() => {
+				cookieBanner.style.display = "none";
+			}, 1000)
+
+		}
+
+		function acceptCookies() {
+			closeCookieBanner();
+			newsletterProblem.style.display = "none";
+			localStorage.setItem('cookieSeen', 'shown');
+			iframes.forEach((el) => {
+				el.src = "https://bookcommunitygr.substack.com/embed"
+			})
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+<div class="chips-container container">
+	{%for city in cities%}
+	{%if activeCity == city %}
+	<a href="{{city.slug}}" class="chip chip-active">{{city.name}}</a>
+	{%else%}
+	<a href="{{city.slug}}" class="chip">{{city.name}}</a>
+	{%endif%}
+	{% endfor %}
+</div>
