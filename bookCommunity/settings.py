@@ -66,7 +66,7 @@ MIDDLEWARE = [
     'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
-ROOT_URLCONF = 'landingPage.urls'
+ROOT_URLCONF = 'bookCommunity.urls'
 ROOT_HOSTCONF = 'bookCommunity.hosts'
 DEFAULT_HOST = 'www'
 
