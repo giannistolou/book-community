@@ -78,8 +78,8 @@ class SimplePage(models.Model):
 
 class Collection(models.Model):
 	id = models.AutoField(primary_key=True, editable=False)
-	title = models.CharField(max_length=500, unique=True)
-	description = QuillField()
+	title = models.CharField(max_length=500)
+	description = models.CharField(max_length=160)
 	slug = models.CharField(max_length=300, unique=True)
 	created_date = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now= True)
