@@ -4,6 +4,7 @@ $on-primary: #ffffff;
 $on-secondary: $primary;
 $newsletter-background: #2f2e41;
 $on-newsletter: $on-primary;
+$dark: #2f2e41;
 
 @use "@material/theme" with ($primary: $primary,
 	$secondary: $secondary,
