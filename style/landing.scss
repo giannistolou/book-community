@@ -1,5 +1,6 @@
-$primaryBackgroundColor: #e3e1de;
-$secondaryBackgroundColor: #2f2e41;
+@import "./theme.scss";
+$primaryBackgroundColor: $secondary;
+$secondaryBackgroundColor: $dark;
 $whiteBackground: #f7f5fb;
 $fontFamily: "Roboto";
 $spacer: 1rem;
@@ -443,9 +444,9 @@ html ::selection {
 	flex-direction: column;
 
 	.btnCookie {
-		background-color: $primaryBackgroundColor;
-		border: none;
+		border: 1px solid $secondaryBackgroundColor;
 		color: $secondaryBackgroundColor;
+		background-color: $primaryBackgroundColor;
 		padding: $spacer;
 		text-decoration: none;
 		width: fit-content;
