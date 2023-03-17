@@ -1,7 +1,7 @@
 from unicodedata import name
 from django.shortcuts import render
 from django.http import Http404
-from .models import Region, Shop, City, SimplePage
+from .models import Region, Shop, City, SimplePage, Collection
 import environ
 env = environ.Env()
 # Create your views here.
@@ -13,7 +13,11 @@ def page500(exception):
 	return render('404.html', exception)
 
 def index(request):
-	return render(request, 'index.html')
+	try:
+		collections = Collection.objects.all()
+	except:
+		collections = []
+	return render(request, 'index.html', {'collections': collections})
 
 def findType(url_type):
 	if(url_type == 'cafes'):
@@ -99,3 +103,11 @@ def simple_page(request, page_slug):
 	except:
 		raise Http404
 	return render(request, 'simplePage.html', {'page_title': page.title, 'content': page.content, 'slug': page_slug})
+
+
+def collection(request, page_slug):
+	try:
+		collection = Collection.objects.filter(slug = page_slug)[0]
+	except:
+		raise Http404
+	return render(request, 'collection.html', {'cafes': collection.shops.all(), 'page_title': collection.title, 'description': collection.description, 'page_slug': collection.slug})

@@ -51,8 +51,32 @@
 						Που θα πας για διάβασμα;</a>
 			</div>
 		</section>
-	</main>
+
+		{% if collections|length > 1  %}
+		<section class="collections">
+			<div class="collections-list">
+			{%for collection in collections%} 
+			<a href="/collections/{{collection.slug}}" class="collection"> 
+				<div class="collection-image">
+				<img
+					src="http://cafe.localhost:8080//media/{{collection.thumbnail}}"
+					alt="{{collection.name}}"
+					loading="lazy"
+				/>
+			</div>
+				<div class="collection-content">
+					<h3 class="collection-title">{{collection.title}}</h3>
+				</div>
+				
+			</a>
+			{% endfor %}
+		</div>
+		</section>
+	{% endif %}
+		
 	{% include "footer.html" %}
+	</main>
+	
 </body>
 
 </html>

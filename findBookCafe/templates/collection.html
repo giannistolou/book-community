@@ -1,0 +1,28 @@
+<html>
+	<head>
+		{% load static %} {% include "commonHead.html" %}
+		<title>{{page_title}}</title>
+		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+		<meta
+			name="keywords"
+			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
+		βιβλιοθήκες, library, libraries"
+		/>
+		<meta property="og:url" content="https://cafe.book-community.com/collections/{{page_slug}}" />
+		<link rel="canonical" href="https://cafe.book-community.com/collections/{{page_slug}}" />
+		<meta property="og:title" content="{{page_title}}" />
+		<meta
+			property="og:description"
+			content="{{description}}"
+		/>
+		<script src="{% static 'bundle.js' %}" async></script>
+	</head>
+
+	<body>
+		{% include "header.html" %}
+		<main class="mdc-top-app-bar--fixed-adjust">
+			{% include "cafesList.html" %}
+		</main>
+		{% include "footer.html" %}
+	</body>
+</html>

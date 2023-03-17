@@ -75,3 +75,16 @@ class SimplePage(models.Model):
 
 	def __str__(self):
 		return str(self.title)
+
+class Collection(models.Model):
+	id = models.AutoField(primary_key=True, editable=False)
+	title = models.CharField(max_length=500)
+	description = models.CharField(max_length=160)
+	slug = models.CharField(max_length=300, unique=True)
+	created_date = models.DateField(auto_now_add = True)
+	updated_on = models.DateField(auto_now= True)
+	thumbnail = models.ImageField(upload_to ='uploads/', null = True)
+	shops = models.ManyToManyField(Shop)
+
+	def __str__(self):
+		return str(self.title)
