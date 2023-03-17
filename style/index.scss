@@ -65,10 +65,11 @@
 		}
 
 		.header-buttons {
-			& > a {
+			&>a {
 				font-size: 1rem;
 				padding: 1.5rem;
 				margin: 1rem 0;
+
 				@media only screen and (min-width: $lg) {
 					margin: 0;
 				}
@@ -119,12 +120,13 @@
 	}
 }
 
-.collections{
-	.collections-title{
+.collections {
+	.collections-title {
 		color: $primary;
 		text-align: center;
 	}
-	.collections-list{
+
+	.collections-list {
 		margin: 1rem 0;
 		display: flex;
 		flex-direction: row;
@@ -133,7 +135,7 @@
 		column-gap: 1rem;
 		padding: 0.5rem;
 
-		.collection{
+		.collection {
 			display: flex;
 			flex-direction: column;
 			min-width: 50%;
@@ -142,12 +144,12 @@
 			@media only screen and (min-width: $lg) {
 				min-width: 30%;
 			}
-	
+
 			.collection-image {
 				position: relative;
 				width: 100%;
 				aspect-ratio: 1.7;
-		
+
 				img {
 					position: absolute;
 					width: 100%;
@@ -156,10 +158,11 @@
 					border-radius: 1rem;
 				}
 			}
-			.collection-title{
+
+			.collection-title {
 				color: $primary;
 			}
 		}
-	
+
 	}
 }
