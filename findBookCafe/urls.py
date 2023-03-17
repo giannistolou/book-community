@@ -7,7 +7,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name='index'),
     path('map/', views.map, name='map'),
-    path('collections/', views.map, name='map'),
     path('collections/<str:page_slug>/', views.collection, name="collection"),
     path('page/<str:page_slug>/', views.simple_page, name='page'),
     path('<str:type>/', views.cafes, name='cafes'),
