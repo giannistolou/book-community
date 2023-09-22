@@ -3,7 +3,7 @@
 	{%if activeCity == city %}
 	<a href="{{city.slug}}" class="chip chip-active">{{city.name}}</a>
 	{%else%}
-	<a href="{{city.slug}}" class="chip">{{city.name}}</a>
+	<a href="{{city.slug}}" class="chip plausible-event-name=pressSelectChipCity">{{city.name}}</a>
 	{%endif%}
 	{% endfor %}
 </div>

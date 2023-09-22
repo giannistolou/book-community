@@ -49,13 +49,13 @@
 					</div>
 					<div class="selection">
 						{% if cafe.facebook %}
-						<a href="{{cafe.facebook}}" target="_blank" class="icon"
+						<a href="{{cafe.facebook}}" target="_blank" class="icon plausible-event-name=cafeFacebookIcon"
 							>{% include "icons/facebook.html" %}</a
 						>
 						{% endif %} {% if cafe.googleMaps %}
 						<a
 							href="{{cafe.googleMaps}}"
-							class="icon"
+							class="icon plausible-event-name=cafeGoogleMapsIcon"
 							target="_blank"
 						>
 							{% include "icons/google.html" %}
@@ -63,7 +63,7 @@
 						{% endif %} {% if cafe.instagram %}
 						<a
 							href="{{cafe.instagram}}"
-							class="icon"
+							class="icon plausible-event-name=cafeInstagramIcon"
 							target="_blank"
 						>
 							{% include "icons/instagram.html" %}</a
@@ -71,13 +71,13 @@
 						{% endif %} {% if cafe.tripadvisor %}
 						<a
 							href="{{cafe.tripadvisor}}"
-							class="icon"
+							class="icon plausible-event-name=cafeTripadvisorIcon"
 							target="_blank"
 						>
 							{% include "icons/map.html" %}
 						</a>
 						{% endif %} {% if cafe.website %}
-						<a href="{{cafe.website}}" class="icon" target="_blank">
+						<a href="{{cafe.website}}" class="icon plausible-event-name=cafeWebsiteIcon" target="_blank">
 							{% include "icons/link.html" %}</a
 						>
 						{% endif %}
