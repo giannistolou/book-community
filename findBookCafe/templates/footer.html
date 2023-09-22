@@ -1,3 +1,4 @@
+{% load static %}
 <div class="cookie-banner" style="display: none">
 	<p>
 		Χρησιμοποιούμε cookies για την υπηρεσία του newsletter, για περισσότερα
@@ -11,6 +12,24 @@
 		<button class="accept" onclick="acceptCookies()">Αποδοχή</button>
 	</div>
 </div>
+
+
+<section class="container-banner-buybook">
+	<div class="container container-banner">
+		<div class="text">
+			<div class="title">Θέλεις να στηρίξεις τα μικρά βιβλιοπωλεία;</div>
+			<div class="subtitle">
+				Έχουμε μια ιδέα για να στηρίξουμε την τοπική κοινότητα των βιβλιοπωλείων και 
+				να διευκολύνουμε τους αναγνώστες και τις αναγνώστριες να βρουν αυτό που ψάχνουν. 
+				Εάν θες να μάθεις περισσότερα πάτα τον σύνδεσμο κάτω ή κάνε εγγραφή στο newsletter μας.
+			</div>
+			<a class="cta plausible-event-name=buybook" href="https://buybook.gr/" target="_blank">Δες περισσότερα</a>
+		</div>
+		<div class="image-container">
+			<img src="{% static 'undraw_bibliophile_re_xarc.svg' %}" alt="My image" style="position: absolute; width: 100%; height: 100%;">
+		</div>
+	</div>
+</section>
 
 <section class="newsletter">
 	<div class="container">
@@ -28,13 +47,9 @@
 				Αποδοχή cookies
 			</button>
 		</div>
-		<form class="form">
-			<iframe
-				title="newsletter iframe"
-				frameborder="0"
-				scrolling="no"
-			></iframe>
-		</form>
+		<div id="#newsletter" style="display: none;">
+			{% include "newsletter.html" %}
+		</div>
 	</div>
 </section>
 
@@ -44,6 +59,7 @@
 	var accept = document.querySelector(".accept");
 	var iframes = document.querySelectorAll("iframe");
 	var newsletterProblem = document.querySelector("#newsletterProblem");
+	var newsletter = document.getElementById("#newsletter");
 
 	if (localStorage.getItem("cookieSeen") != "shown") {
 		cookieBanner.style.display = "flex";
@@ -63,8 +79,7 @@
 		closeCookieBanner();
 		newsletterProblem.style.display = "none";
 		localStorage.setItem("cookieSeen", "shown");
-		iframes.forEach((el) => {
-			el.src = "https://bookcommunitygr.substack.com/embed";
-		});
+		newsletter.style.display = "block";
+		
 	}
 </script>

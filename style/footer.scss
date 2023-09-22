@@ -5,6 +5,7 @@
 	display: flex;
 	min-height: 50vh;
 	padding-top: 5rem;
+
 	@media only screen and (min-width: $lg) {
 		min-height: 35vh;
 	}
@@ -14,9 +15,11 @@
 		text-align: center;
 		font-size: 2rem;
 	}
+
 	background-color: $newsletter-background;
 	color: $on-newsletter;
 	min-height: 30vh;
+
 	.subtitle {
 		letter-spacing: -0.012em;
 		line-height: 1.5;
@@ -32,6 +35,82 @@
 
 	iframe {
 		width: 100%;
+	}
+}
+
+.container-banner-buybook {
+	font-family: "Roboto", sans-serif;
+	align-items: center;
+	display: flex;
+	min-height: 50vh;
+	padding-top: 5rem;
+
+	@media only screen and (min-width: $lg) {
+		min-height: 35vh;
+	}
+
+	.title {
+		padding: 1 0;
+		text-align: center;
+		font-size: 1.5rem;
+
+		@media only screen and (min-width: $lg) {
+			font-size: 2rem;
+		}
+	}
+
+	background-color:$buybook-primary;
+	color: $on-buybook;
+	min-height: 30vh;
+
+	.subtitle {
+		letter-spacing: -0.012em;
+		line-height: 1.5;
+		max-width: 700px;
+		font-weight: 400;
+		font-size: 1.2rem;
+		text-align: center;
+		margin: 0.5rem 0;
+		padding: 0 1rem;
+		text-align: center;
+	}
+
+	.container-banner {
+		display: flex;
+		flex-direction: column;
+
+		@media only screen and (min-width: $lg) {
+			flex-direction: row;
+			flex-wrap: nowrap;
+		}
+
+		.image-container {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 10px;
+
+			@media only screen and (min-width: $lg) {
+				margin-top: unset;
+				width: 300px;
+				height: 300px;
+			}
+		}
+	}
+
+	.cta {
+		width: fit-content;
+		border: 1px solid white;
+		padding: 10px;
+		margin-top: 10px;
+		display: flex;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: transparent;
+		color: white;
+		border-radius: 5px;
 	}
 }
 
@@ -89,12 +168,14 @@
 		column-gap: 1rem;
 		row-gap: 1rem;
 	}
+
 	button {
 		border: none;
 		padding: 1rem * 0.5;
 		background-color: inherit;
 		cursor: pointer;
 	}
+
 	.accept {
 		font-size: 1rem;
 		background-color: $newsletter-background;
