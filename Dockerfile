@@ -22,6 +22,7 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/uploadsfiles
+RUN mkdir $APP_HOME/database
 USER root
 
 # set environment variables
@@ -38,3 +39,5 @@ COPY ./public ./public
 COPY  --chown=app:app . . 
 
 USER app
+EXPOSE 8000
+CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]
