@@ -5,33 +5,29 @@ services:
         build: ./
         command: gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000
         volumes:
-            - static_volume:/home/app/web/staticfiles
-            - uploads_volume:/home/app/web/uploadsfiles
-            - ./db.sqlite3:/home/app/web/db.sqlite3
+            - staticfiles:/home/app/web/staticfiles
+            - uploadsfiles:/home/app/web/uploadsfiles
+            - database:/home/app/web/database
         expose:
             - 8000
-        env_file:
-            - ./.env
-        networks:
-            - default
-        restart: always
+        environment:
+            - ALLOWED_HOSTS
+            - DEBUG
+            - SECRET_KEY
+            - MAP_BOX_API
+        # restart: always
     nginx:
         build: ./nginx
         volumes:
-            - static_volume:/home/app/web/staticfiles
-            - uploads_volume:/home/app/web/uploadsfiles
+            - staticfiles:/home/app/web/staticfiles
+            - uploadsfiles:/home/app/web/uploadsfiles
         depends_on:
             - web
-        hostname: cafe-book-nginx
-        networks:
-            - default
-            - nginx
-        restart: always
-
+        # restart: always
 volumes:
-    static_volume:
-    uploads_volume:
-
-networks:
-    nginx:
-        external: true
+    staticfiles:
+        name: staticfilesBookCommunity
+    uploadsfiles:
+        name: uploadsfilesBookCommunity
+    database:
+        name: databaseBookCommunity
