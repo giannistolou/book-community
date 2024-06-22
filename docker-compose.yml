@@ -26,5 +26,8 @@ services:
         # restart: always
 volumes:
     staticfiles:
+        name: staticfilesBookCommunity
     uploadsfiles:
+        name: uploadsfilesBookCommunity
     database:
+        name: databaseBookCommunity
