@@ -10,8 +10,11 @@ services:
             - database:/home/app/web/database
         expose:
             - 8000
-        env_file:
-            - ./.env
+        environment:
+            - ALLOWED_HOSTS
+            - DEBUG
+            - SECRET_KEY
+            - MAP_BOX_API
         # restart: always
     nginx:
         build: ./nginx
