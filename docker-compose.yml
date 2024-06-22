@@ -26,5 +26,8 @@ services:
         # restart: always
 volumes:
     staticfiles:
+        external: true
     uploadsfiles:
+        external: true
     database:
+        external: true
