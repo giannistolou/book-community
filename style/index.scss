@@ -127,7 +127,8 @@
 	}
 
 	.collections-list {
-		margin: 1rem 0;
+		max-width: 1440px;
+		margin: 1rem auto;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
