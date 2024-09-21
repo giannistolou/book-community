@@ -2,171 +2,197 @@
 @import "./cafeItem.scss";
 
 .cafe {
-	.imgCnt {
-		position: relative;
-		width: 100%;
-		aspect-ratio: 1.777;
-		margin: 0 auto;
-		background-color: $primary;
+   margin-top: 1rem;
+   padding: 0 1rem;
 
-		@media only screen and (min-width: $lg) {
-			margin-top: 1rem;
-		}
+   .imgCnt {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1.777;
+      margin: 0 auto;
+      background-color: $primary;
+      border-radius: 10px;
 
-		img {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+      @media only screen and (min-width: $lg) {
+         width: 75%;
+         margin-top: 1rem;
+      }
 
-		.name {
-			position: absolute;
-			padding: 1rem;
-			background-color: $primary;
-			color: $on-primary;
-			z-index: 2;
-			font-family: "Roboto", sans-serif;
-			font-weight: 400;
-			margin: 0;
-			left: 0;
-			top: 30%;
-			font-size: 2rem;
-			@media only screen and (min-width: $lg) {
-				top: 0;
-			}
-		}
-	}
-	.selection {
-		background-color: $primary;
-		color: $on-primary;
-		padding: 1rem 2rem;
-		svg {
-			fill: $on-primary;
-			width: 2rem;
-			height: 2rem;
-		}
-		display: flex;
-		justify-content: space-between;
-		flex-direction: row;
-		align-items: center;
+      img {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         border-radius: 10px;
+      }
 
-		@media only screen and (min-width: $lg) {
-			justify-content: space-around;
+      .name {
+         position: absolute;
+         padding: 1rem;
+         background-color: $primary;
+         color: $on-primary;
+         z-index: 2;
+         font-family: "Roboto", sans-serif;
+         font-weight: 400;
+         margin: 0;
+         left: 0;
+         top: 30%;
+         font-size: 2rem;
+         @media only screen and (min-width: $lg) {
+            top: 0;
+         }
+      }
+   }
 
-			.icon {
-				padding: 0.5rem;
-				transition: 0.2s linear background-color;
-				border-radius: 100%;
-			}
+   .content {
+      @media only screen and (min-width: $lg) {
+         margin: 1rem auto;
+			max-width: 75%;
+      }
+   }
 
-			.icon:hover {
-				background-color: $on-primary;
-				svg {
-					fill: $primary !important;
-				}
-			}
-		}
-	}
-	.content {
-		margin-top: 1rem;
-		padding: 0 1rem;
-		line-height: 1.5;
-		.region {
-			font-family: "Roboto", sans-serif;
-			font-weight: 400;
-			display: flex;
-			align-items: center;
-			column-gap: 0.5em;
-			margin-bottom: 0.5rem;
-		}
-		.address {
-			font-family: "Roboto", sans-serif;
-			font-weight: 400;
-			display: flex;
-			align-items: center;
-			column-gap: 0.5em;
-			margin-bottom: 0.5rem;
-		}
-		.icons {
-			cursor: default;
-			user-select: none;
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			row-gap: 0.5rem;
-			column-gap: 0.5rem;
-		}
-		.icon {
-			border: 1px solid $on-secondary;
-			user-select: none;
-			padding: 0.2rem;
-			border-radius: 100%;
-			color: $on-secondary;
-		}
-	}
+   .selection {
+      color: $on-primary;
+      padding: 1rem 2rem;
+      width: 50%;
+      margin: 0 auto;
+      svg {
+         fill: $primary;
+         width: 1.5rem;
+         height: 1.5rem;
+         @media only screen and (min-width: $lg) {
+            width: 2rem;
+            height: 2rem;
+         }
+      }
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+
+      @media only screen and (min-width: $lg) {
+         justify-content: space-around;
+
+         .icon {
+            padding: 0.5rem;
+            transition: 0.2s linear background-color;
+            border-radius: 100%;
+         }
+
+         .icon:hover {
+            background-color: $on-primary;
+            svg {
+               fill: $primary !important;
+            }
+         }
+      }
+   }
+   .content {
+      margin-top: 1rem;
+      padding: 0 1rem;
+      line-height: 1.5;
+      .region {
+         font-family: "Roboto", sans-serif;
+         font-weight: 400;
+         display: flex;
+         align-items: center;
+         column-gap: 0.5em;
+         margin-bottom: 0.5rem;
+      }
+      .address {
+         font-family: "Roboto", sans-serif;
+         font-weight: 400;
+         display: flex;
+         align-items: center;
+         column-gap: 0.5em;
+         margin-bottom: 0.5rem;
+      }
+      .icons {
+         cursor: default;
+         user-select: none;
+         display: flex;
+         flex-direction: row;
+         flex-wrap: wrap;
+         row-gap: 0.5rem;
+         column-gap: 0.5rem;
+      }
+      .icon {
+         border: 1px solid $on-secondary;
+         user-select: none;
+         padding: 0.2rem;
+         border-radius: 100%;
+         color: $on-secondary;
+      }
+   }
 }
 .description {
-	font-family: "Roboto", sans-serif;
-	padding: 0.5 1rem;
+   font-family: "Roboto", sans-serif;
+   font-size: 1.1rem;
+   padding: 0.5 1rem;
+   line-height: 1.6;
+
+   margin: 1rem auto;
+	@media only screen and (min-width: $lg) {
+		max-width: 75%;
+	}
 }
 
 .bottomSpace {
-	padding-bottom: 1rem;
+   padding-bottom: 1rem;
 }
 
 .suggestion {
-	padding: 1rem;
-	margin: 0.5rem;
+   padding: 1rem;
+   margin: 0.5rem;
 
-	@media only screen and (min-width: $md) {
-		margin: 0;
-	}
+   @media only screen and (min-width: $md) {
+      margin: 0;
+   }
 
-	border: 2px solid $primary;
-	.name {
-		padding: 1rem;
-		background-color: $primary;
-		color: $on-primary;
-		font-family: "Roboto", sans-serif;
-		font-weight: 400;
-		margin: 0;
-		font-size: 1.5rem;
-		width: fit-content;
-		margin-bottom: 1rem;
+   border: 2px solid $primary;
+   .name {
+      padding: 1rem;
+      background-color: $primary;
+      color: $on-primary;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      margin: 0;
+      font-size: 1.5rem;
+      width: fit-content;
+      margin-bottom: 1rem;
 
-		@media only screen and (min-width: $lg) {
-			font-size: 2rem;
-		}
-	}
-	.suggestion-cafes {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		column-gap: 1rem;
-		row-gap: 1rem;
+      @media only screen and (min-width: $lg) {
+         font-size: 2rem;
+      }
+   }
+   .suggestion-cafes {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      column-gap: 1rem;
+      row-gap: 1rem;
 
-		@media only screen and (min-width: $lg) {
-			flex-direction: row;
-		}
+      @media only screen and (min-width: $lg) {
+         flex-direction: row;
+      }
 
-		.cafeItem {
-			display: flex;
-			column-gap: 1rem;
-			row-gap: 1rem;
-			flex-direction: column;
-			border-bottom: none;
+      .cafeItem {
+         display: flex;
+         column-gap: 1rem;
+         row-gap: 1rem;
+         flex-direction: column;
+         border-bottom: none;
 
-			@media only screen and (min-width: $lg) {
-				width: 30%;
-			}
+         @media only screen and (min-width: $lg) {
+            width: 30%;
+         }
 
-			.content {
-				align-items: center;
-				@media only screen and (min-width: $lg) {
-					min-width: 30%;
-				}
-			}
-		}
-	}
+         .content {
+            align-items: center;
+            @media only screen and (min-width: $lg) {
+               min-width: 30%;
+            }
+         }
+      }
+   }
 }

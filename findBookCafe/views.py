@@ -2,7 +2,6 @@ from unicodedata import name
 from django.shortcuts import render
 from django.http import Http404
 from .models import Region, Shop, City, SimplePage, Collection
-import environ
 # Create your views here.
 
 def page404(request, exception):
