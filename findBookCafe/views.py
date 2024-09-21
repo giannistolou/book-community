@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.http import Http404
 from .models import Region, Shop, City, SimplePage, Collection
 import environ
-env = environ.Env()
 # Create your views here.
 
 def page404(request, exception):
@@ -95,7 +94,7 @@ def map(request):
 		path = "/" + path_type + '/' + shop.region.city.slug + '/' + shop.region.slug
 		data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions':shop.googleMaps,  'path': path,'shopType': shop_type, 'type': "Feature", 'properties': {'iconSize': [60, 60]},
 		'geometry':{'type': "Point",'coordinates': [shop.longitude, shop.latitude]}})
-	return render(request, 'map.html', {'shops': data, 'map_api': env('MAP_BOX_API')})
+	return render(request, 'map.html', {'shops': data})
 
 def simple_page(request, page_slug):
 	try:
