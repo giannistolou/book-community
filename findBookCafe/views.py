@@ -76,7 +76,7 @@ def cafe(request, type, city, region, cafe):
 	try:
 		city_find = City.objects.get(slug = city)
 		region_find = Region.objects.get(slug = region, city = city_find)
-		cafe_shop = Shop.objects.get(region=region_find, type = findType(type), slug=cafe).order_by('order_position')
+		cafe_shop = Shop.objects.get(region=region_find, type = findType(type), slug=cafe)
 		cafes_suggestion = Shop.objects.filter(region=region_find).order_by('?')
 		cafes_suggestion = cafes_suggestion.exclude(id=cafe_shop.id)[:3]
 	except:
