@@ -11,12 +11,12 @@ admin.site.register(Region)
 
 class ShopAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('name', 'order_position')
-    ordering = ('order_position',)
+    ordering = ['order_position']
 
 admin.site.register(Shop, ShopAdmin)
 admin.site.register(SimplePage)
 class CollectionAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'order_position')
-    ordering = ('order_position',)
+    ordering = ['order_position']
 
 admin.site.register(Collection, CollectionAdmin)
