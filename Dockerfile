@@ -38,6 +38,9 @@ COPY --from=dependencies --chown=app:app ./dist ./dist
 COPY ./public ./public
 COPY  --chown=app:app . . 
 
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 USER app
 EXPOSE 8000
 CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]
