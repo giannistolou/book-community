@@ -1,110 +1,104 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Βρες την καφετέρια που σου ταιριάζει</title>
-		{% load static %} {% include "commonHead.html" %}
-		<meta
-			name="keywords"
-			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
+   <head>
+      <title>Βρες την καφετέρια που σου ταιριάζει</title>
+      {% load static %} {% include "commonHead.html" %}
+      <meta
+         name="keywords"
+         content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
 		βιβλιοθήκες, library, libraries"
-		/>
-		<meta
-			name="description"
-			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
-		/>
-		<meta property="og:url" content="https://cafe.book-community.com/" />
-		<meta property="og:title" content="Book cafe" />
-		<meta
-			property="og:description"
-			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
-		/>
-		<link rel="stylesheet" href="{% static 'style/theme.css' %}" />
-		<link rel="canonical" href="https://cafe.book-community.com/map/" />
-		<meta
-			name="viewport"
-			content="initial-scale=1,maximum-scale=1,user-scalable=no"
-		/>
-		<link
-			href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css"
-			rel="stylesheet"
-		/>
-		<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-			}
-			#map {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				width: 100%;
-			}
-		</style>
-	</head>
-	<body>
-		{% include "header.html" %}
-		<main class="mdc-top-app-bar--fixed-adjust">
-			<div id="map"></div>
-		</main>
-		<script>
-			var coordinates = [23.7324272, 37.9753429];
-			mapboxgl.accessToken = "{{map_api|escapejs}}";
-			const map = new mapboxgl.Map({
-				container: "map", // container ID
-				style: "mapbox://styles/mapbox/streets-v11", // style URL
-				center: coordinates, // starting position [lng, lat]
-				zoom: 12, // starting zoom
-				projection: "globe", // display the map as a 3D globe
-			});
+      />
+      <meta
+         name="description"
+         content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+      />
+      <meta property="og:url" content="https://cafe.book-community.com/" />
+      <meta property="og:title" content="Book cafe" />
+      <meta
+         property="og:description"
+         content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+      />
+      <link rel="stylesheet" href="{% static 'style/theme.css' %}" />
+      <link rel="canonical" href="https://cafe.book-community.com/map/" />
+      <meta
+         name="viewport"
+         content="initial-scale=1,maximum-scale=1,user-scalable=no"
+      />
+      <link
+         rel="stylesheet"
+         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+         crossorigin=""
+      />
+      <script
+         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+         crossorigin=""
+      ></script>
 
-			getLocation();
-			function getLocation() {
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(showPosition);
-				}
-			}
-			function showPosition(position) {
-				coordinates = [
-					position.coords.longitude,
-					position.coords.latitude,
-				];
-				map.flyTo({
-					center: coordinates,
-					essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-				});
-			}
+      <style>
+         body {
+            margin: 0;
+            padding: 0;
+         }
+         #map {
+            position: absolute;
+            top: 60px;
+            bottom: 0;
+            width: 100%;
+         }
+      </style>
+   </head>
+   <body>
+      {% include "header.html" %}
+      <main class="mdc-top-app-bar--fixed-adjust">
+         <div id="map"></div>
+      </main>
 
-			const geojson = {
-				type: "FeatureCollection",
-				features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
-			};
+      <script>
+         var coordinates = [37.9753429, 23.7324272];
 
-			map.addControl(
-				new mapboxgl.GeolocateControl({
-					positionOptions: {
-						enableHighAccuracy: true,
-					},
-					trackUserLocation: true,
-					showUserHeading: true,
-				})
-			);
+         // Initialize the Leaflet map
+         var map = L.map("map").setView(coordinates, 12);
 
-			for (const marker of geojson.features) {
-				new mapboxgl.Marker({ color: "#635642" })
-					.setLngLat(marker.geometry.coordinates)
-					.setPopup(
-						new mapboxgl.Popup({ offset: 25 }).setHTML(
-							`<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
-						)
-					)
-					.addTo(map);
-			}
-			map.on("style.load", () => {
-				map.setFog({}); // Set the default atmosphere style
-			});
-		</script>
-	</body>
+         // Add a tile layer to the map
+         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+               '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+         }).addTo(map);
+
+         // Geolocation
+         function getLocation() {
+            if (navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(showPosition);
+            }
+         }
+
+         function showPosition(position) {
+            coordinates = [position.coords.latitude, position.coords.longitude];
+            map.setView(coordinates, 12);
+         }
+
+         getLocation();
+
+         // Add markers from geojson
+         const geojson = {
+            type: "FeatureCollection",
+            features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
+         };
+
+         for (const marker of geojson.features) {
+            L.marker(
+               [marker.geometry.coordinates[1], marker.geometry.coordinates[0]],
+               { color: "#635642" }
+            )
+               .bindPopup(
+                  `<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
+               )
+               .addTo(map);
+         }
+      </script>
+   </body>
 </html>
 
 Copy
