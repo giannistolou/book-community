@@ -39,8 +39,13 @@ COPY ./public ./public
 COPY  --chown=app:app . . 
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN python3 manage.py collectstatic --noinput
 
 USER app
 EXPOSE 8000
+
+# Run database migrations
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
+
 CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]
