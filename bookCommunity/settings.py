@@ -33,7 +33,6 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
-ALLOWED_HOSTS = ['cafe.127.0.0.1:8000', '127.0.0.1:8000', '127.0.0.1:8000', '127.0.0.1', 'cafe.localhost', 'localhost', 'localhost:8000']
 
 CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com']
 
