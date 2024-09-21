@@ -61,7 +61,8 @@ class Shop(models.Model):
 	description = QuillField()
 	created_date = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now= True)
-
+	order_position = models.IntegerField(default=0)
+	
 	def __str__(self):
 		return str(self.id) + ' ' + self.name + ' ' + self.type
 

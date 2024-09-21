@@ -39,7 +39,7 @@ def cafes(request, type):
 	if type != 'CAF' and type != 'LIB':
 		raise Http404
 	try:
-		cafes = Shop.objects.filter(type = type)
+		cafes = Shop.objects.filter(type = type).order_by('order_position')
 	except:
 		raise Http404
 	cities = City.objects.all()
@@ -53,7 +53,7 @@ def cafe_city(request, type, city):
 		regions_find = Region.objects.filter(city = city_find)
 		cafes = []
 		for region in regions_find:
-			result = Shop.objects.filter(region=region, type = type)
+			result = Shop.objects.filter(region=region, type = type).order_by('order_position')
 			for shop in result:
 				cafes.append(shop)
 	except:
@@ -65,7 +65,7 @@ def cafe_region(request, type, city, region):
 	type = findType(type)
 	try:
 		city_find = City.objects.filter(slug = city)
-		region_find = Region.objects.get(slug = region, city = city_find[0])
+		region_find = Region.objects.get(slug = region, city = city_find[0]).order_by('order_position')
 		cafes = Shop.objects.filter(region=region_find, type = type)
 	except:
 		raise Http404
@@ -76,7 +76,7 @@ def cafe(request, type, city, region, cafe):
 	try:
 		city_find = City.objects.get(slug = city)
 		region_find = Region.objects.get(slug = region, city = city_find)
-		cafe_shop = Shop.objects.get(region=region_find, type = findType(type), slug=cafe)
+		cafe_shop = Shop.objects.get(region=region_find, type = findType(type), slug=cafe).order_by('order_position')
 		cafes_suggestion = Shop.objects.filter(region=region_find).order_by('?')
 		cafes_suggestion = cafes_suggestion.exclude(id=cafe_shop.id)[:3]
 	except:
