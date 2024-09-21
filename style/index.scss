@@ -139,7 +139,7 @@
 		.collection {
 			display: flex;
 			flex-direction: column;
-			min-width: 50%;
+			min-width: 75%;
 			border-radius: 10px;
 
 			@media only screen and (min-width: $lg) {
@@ -156,12 +156,14 @@
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
-					border-radius: 1rem;
+					border-radius: 10px;
 				}
 			}
 
 			.collection-title {
 				color: $primary;
+				text-align: center;
+				font-family: "Roboto", sans-serif;
 			}
 		}
 
