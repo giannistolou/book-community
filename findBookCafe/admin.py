@@ -15,4 +15,8 @@ class ShopAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 admin.site.register(Shop, ShopAdmin)
 admin.site.register(SimplePage)
-admin.site.register(Collection)
+class CollectionAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ('title', 'order_position')
+    ordering = ('order_position',)
+
+admin.site.register(Collection, CollectionAdmin)
