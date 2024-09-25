@@ -5,6 +5,7 @@
    margin-top: 1rem;
    padding: 0 1rem;
 
+
    .imgCnt {
       position: relative;
       width: 100%;
@@ -50,6 +51,7 @@
 			max-width: 75%;
       }
    }
+   
 
    .selection {
       color: $on-primary;
@@ -194,5 +196,15 @@
             }
          }
       }
+   }
+}
+
+.cafeMap{
+   aspect-ratio: 1;
+   z-index: 1;
+   @media only screen and (min-width: $lg) {
+      margin: 1rem auto;
+      max-width: 50%;
+      aspect-ratio: 2;
    }
 }
