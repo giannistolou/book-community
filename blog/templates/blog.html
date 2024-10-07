@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+	{% load static %}
+	{% include "blogCommonHead.html" %}
+	
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="google" content="notranslate" />
+	<link rel="stylesheet" href="{% static 'style/article-components.css' %}" />
+	<!-- SEO -->
+	<title>Book Community</title>
+	<meta name="keywords" content="Book, books, reading, βιβλίο, βιβλία, διάβασμα, social media" />
+	<meta name="description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+
+	<meta property="og:url" content="https://book-community.com/" />
+	<meta property="og:title" content="Book community" />
+	<meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+	<meta property="og:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+</head>
+
+<body>
+	<div class="container articlesGrid articleComponentContainer">
+        {% include "article-components/bigArticle.html" %}
+		{% include "article-components/bigArticle.html" %}
+		{% include "article-components/bigArticle.html" %}
+		{% include "article-components/bigArticle.html" %}
+    </div>
+</body>
+
+
+</html>

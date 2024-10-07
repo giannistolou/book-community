@@ -8,6 +8,8 @@ module.exports = {
 		"./style/index.scss",
 		"./style/cafes.scss",
 		"./style/cafe.scss",
+		"./style/article-components.scss",
+		"./style/inside-article.scss",
 		"./style/page404.scss",
 		"./style/footer.scss",
 		"./style/landing.scss",

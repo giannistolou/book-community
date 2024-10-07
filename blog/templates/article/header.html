@@ -1,0 +1,38 @@
+<div class="articleHeader">
+    <h1 class="title">
+          Η Μεταμόρφωση
+      </h1>
+    <ul class="articleInfo">
+      <li class="author">
+        <a
+          href="/authors/{{ post.author.slug }}"
+          class="flex items-center hover:text-primary font-medium"
+        >
+          <img
+            src="https://picsum.photos/50/50"
+            alt="{{ post.author.name }}"
+            width="50"
+            height="50"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>Ioannis Apostolou</span>
+        </a>
+      </li>
+      <li class="">{% include "svg/date.html" %} 15/20/2021</li>
+      <li class="">
+        {% include "svg/category.html" %}
+        <ul>
+          <li class="inline-block">
+            <a
+              href="/categories/{{ post.category.slug }}"
+              >Book</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  
+   
+  </div>
+  

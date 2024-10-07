@@ -1,0 +1,163 @@
+@import "./theme.scss";
+
+.articleHeader{
+
+    .articleInfo {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        color: #333; 
+        padding-left: 0;
+        justify-content: center;
+
+        li {
+            margin-right: 1.25rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-weight: 500; 
+            
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+                transition: color 0.3s;
+                
+                &:hover {
+                    color: $primary;
+                }
+                
+                img {
+                    margin-right: 0.5rem; 
+                    height: 1.5rem; 
+                    width: 1.5rem; 
+                    border-radius: 50%; 
+                }
+                
+                span {
+                    font-weight: 500; 
+                }
+            }
+            
+            svg {
+                margin-right: 0.25rem; 
+                height: 1.25rem; 
+                width: 1.25rem; 
+                color: #666; 
+            }
+            
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                
+                li {
+                    display: inline-block;
+                    
+                    a {
+                        margin-right: 0.5rem; 
+                        text-decoration: none;
+                        color: inherit;
+                        transition: color 0.3s;
+                        
+                        &:hover {
+                            color: $primary;
+                        }
+                        
+                        font-weight: 500; 
+                    }
+                }
+            }
+        }
+    }
+
+    .title {
+        margin-bottom: 1rem; 
+        text-align: center;
+        a {
+            display: block; 
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}
+
+.articleImage{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.947368421;
+    display: block;
+    img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+}
+
+
+.content {
+    p {
+        margin-bottom: 1rem; // Add bottom margin for spacing
+        color: #333; // Replace with your desired text color
+        line-height: 1.6; // Adjust line height for readability
+    }
+
+    blockquote {
+        margin: 1.5rem 0; // Add top and bottom margin for spacing
+        padding: 1rem 1.5rem; // Add padding for inner spacing
+        border-left: 4px solid #007bff; // Replace with your desired primary color
+        background-color: #f9f9f9; // Light background color for blockquote
+        color: #555; // Replace with your desired text color
+
+        p {
+            margin: 0; // Remove default margin
+        }
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem; // Add bottom margin for spacing
+    }
+    
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 1rem; // Equivalent to mr-4 in Tailwind
+        margin-bottom: 1rem; // Equivalent to mb-4 in Tailwind
+        gap: 0.75rem; // Equivalent to space-x-3 in Tailwind
+    
+        li {
+            display: inline-block;
+    
+            a {
+                display: block;
+                padding: 0.5rem 1rem; // Equivalent to px-4 py-2 in Tailwind
+                border-radius: 0.5rem; // Equivalent to rounded-lg in Tailwind
+                background-color: #f0f0f0; // Replace with your theme light color
+                color: #333; // Replace with your dark text color
+                font-weight: 600; // Equivalent to font-semibold in Tailwind
+                font-size: 0.875rem; // Equivalent to text-sm in Tailwind
+                text-decoration: none;
+                transition: color 0.3s, background-color 0.3s; // Equivalent to transition duration-300 in Tailwind
+    
+                &:hover {
+                    color: #007bff; // Replace with your primary color
+                }
+            }
+        }
+    }
+    
+}
