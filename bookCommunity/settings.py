@@ -42,6 +42,7 @@ CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-com
 INSTALLED_APPS = [
     'findBookCafe.apps.FindbookcafeConfig',
     'landingPage.apps.LandingpageConfig',
+    'blog.apps.BlogConfig',
     'adminsortable2',
     'django_quill',
     'django.contrib.admin',
