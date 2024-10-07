@@ -49,8 +49,11 @@ article{
 }
 .similarPostGrid{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .articleInfoCnt{
