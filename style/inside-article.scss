@@ -133,32 +133,32 @@
         margin-bottom: 1rem; // Add bottom margin for spacing
     }
     
-    .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: 1rem; // Equivalent to mr-4 in Tailwind
-        margin-bottom: 1rem; // Equivalent to mb-4 in Tailwind
-        gap: 0.75rem; // Equivalent to space-x-3 in Tailwind
-    
-        li {
-            display: inline-block;
-    
-            a {
-                display: block;
-                padding: 0.5rem 1rem; // Equivalent to px-4 py-2 in Tailwind
-                border-radius: 0.5rem; // Equivalent to rounded-lg in Tailwind
-                background-color: #f0f0f0; // Replace with your theme light color
-                color: #333; // Replace with your dark text color
-                font-weight: 600; // Equivalent to font-semibold in Tailwind
-                font-size: 0.875rem; // Equivalent to text-sm in Tailwind
-                text-decoration: none;
-                transition: color 0.3s, background-color 0.3s; // Equivalent to transition duration-300 in Tailwind
-    
-                &:hover {
-                    color: #007bff; // Replace with your primary color
-                }
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 1rem; // Equivalent to mr-4 in Tailwind
+    margin-bottom: 1rem; // Equivalent to mb-4 in Tailwind
+    gap: 0.75rem; // Equivalent to space-x-3 in Tailwind
+
+    li {
+        display: inline-block;
+
+        a {
+            display: block;
+            padding: 0.5rem 1rem; // Equivalent to px-4 py-2 in Tailwind
+            border-radius: 0.5rem; // Equivalent to rounded-lg in Tailwind
+            background-color: #f0f0f0; // Replace with your theme light color
+            color: #333; // Replace with your dark text color
+            font-weight: 600; // Equivalent to font-semibold in Tailwind
+            font-size: 0.875rem; // Equivalent to text-sm in Tailwind
+            text-decoration: none;
+            transition: color 0.3s, background-color 0.3s; // Equivalent to transition duration-300 in Tailwind
+
+            &:hover {
+                color: #007bff; // Replace with your primary color
             }
         }
     }
-    
 }
