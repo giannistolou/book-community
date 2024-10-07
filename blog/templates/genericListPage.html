@@ -22,6 +22,7 @@
 
 <body>
 	{% include "blogHeader.html" %}
+    <h1 class="genericTitle">{{title}}</h1>
 	<div class="container articlesGrid articleComponentContainer">
 		{% for post in posts %}
         	{% include "article-components/bigArticle.html" %}

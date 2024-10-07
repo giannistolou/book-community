@@ -1,45 +1,33 @@
 <div class="articleInfoCnt">
-  <ul class="articleInfo">
-    {% if not hideAuthor %}
-    <li class="author">
-      <a
-        href="/authors/{{ post.author.slug }}"
-      >
-        <img
-          src="https://picsum.photos/50/50"
-          alt="{{ post.author.name }}"
-          class="mr-2 h-6 w-6 rounded-full"
-          width="50"
-          height="50"
-          loading="lazy"
-          decoding="async"
-        />
-        <span>Ioannis Apostolou</span>
-      </a>
-    </li>
-    {% endif %}
-    <li class="">{% include "svg/date.html" %} 15/20/2021</li>
-    <li class="">
-      {% include "svg/category.html" %}
-      <ul>
-        <li class="inline-block">
-          <a
-            href="/categories/{{ post.category.slug }}"
-            >Book</a
-          >
-        </li>
-      </ul>
-    </li>
-  </ul>
-
-  <h3 class="title">
-    <a
-      href="/post-{{ post.id }}"
-      >Η Μεταμόρφωση</a
-    >
-  </h3>
-  <p class="description">
-    Η μεταμόρφωση του Κάφκα είναι ένα βαθύτατα συμβολικό κείμενο, που μιλάει για
-    την ανθρώπινη ύπαρξη και τις εσωτερικές μεταβολές που μπορούν…
-  </p>
-</div>
+    <ul class="articleInfo">
+      {% if not hideAuthor %}
+      <li class="author">
+        <a href="/author/{{ post.author.slug }}">
+          <img
+            src="{{ post.author.image_url|default:'https://picsum.photos/50/50' }}"
+            alt="{{ post.author.name }}"
+            class="mr-2 h-6 w-6 rounded-full"
+            width="50"
+            height="50"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{{ post.author.name }}</span>
+        </a>
+      </li>
+      {% endif %}
+      <li class="">{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
+      <li class="">
+        {% include "svg/category.html" %}
+        <ul>
+          <li class="inline-block">
+            <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  
+    <h3 class="title">
+      <a href="/post/{{ post.slug }}">{{ post.title }}</a>
+    </h3>
+  </div>
