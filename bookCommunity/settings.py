@@ -34,7 +34,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 
-CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com', 'https://blog2.book-community.com']
+CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com', 'https://blog.book-community.com']
 
 
 # Application definition
