@@ -2,33 +2,63 @@
 <html lang="el">
 
 <head>
-	{% load static %}
-	{% include "blogCommonHead.html" %}
-	
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="google" content="notranslate" />
-	<link rel="stylesheet" href="{% static 'style/article-components.css' %}" />
-	<!-- SEO -->
-	<title>Book Community</title>
-	<meta name="keywords" content="Book, books, reading, βιβλίο, βιβλία, διάβασμα, social media" />
-	<meta name="description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+    {% load static %}
+    {% include "blogCommonHead.html" %}
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
+    <link rel="stylesheet" href="{% static 'style/article-components.css' %}" />
+    <!-- SEO -->
+    <title>Book Community</title>
+    <meta name="keywords" content="Book, books, reading, βιβλίο, βιβλία, διάβασμα, social media" />
+    <meta name="description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
 
-	<meta property="og:url" content="https://book-community.com/" />
-	<meta property="og:title" content="Book community" />
-	<meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
-	<meta property="og:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+    <meta property="og:url" content="https://book-community.com/" />
+    <meta property="og:title" content="Book community" />
+    <meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+    <meta property="og:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="el_GR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Book Community" />
+    <meta name="twitter:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
+    <meta name="twitter:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+    <meta name="twitter:site" content="@bookcommunity" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Book Community",
+        "url": "https://book-community.com/",
+        "description": "Το κοινωνικό δίκτυο του βιβλίου...",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Book Community",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://book-community.com/static/favicons/favicon-32x32.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://book-community.com/"
+        }
+    }
+    </script>
 </head>
 
 <body>
-	{% include "blogHeader.html" %}
-	<div class="container articlesGrid articleComponentContainer">
-		{% for post in posts %}
-        	{% include "article-components/bigArticle.html" %}
-		{% endfor %}
+    {% include "blogHeader.html" %}
+    <div class="container articlesGrid articleComponentContainer">
+        {% for post in posts %}
+            {% include "article-components/bigArticle.html" %}
+        {% endfor %}
     </div>
-	{% include "footer.html" %}
+    {% include "footer.html" %}
 </body>
-
 
 </html>
