@@ -3,7 +3,7 @@
 
 .articlesGrid{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 50% 50%;
     gap: 1rem;
     article:first-child, article:nth-child(5n){
             grid-column: span 2;
@@ -131,7 +131,10 @@ article{
 
     .title {
         margin-bottom: 1rem; 
-
+        font-size: 1rem;
+        @include media-breakpoint-up(lg){
+            font-size: 1.5rem;
+        }
         a {
             display: block; 
             text-decoration: none;
@@ -141,6 +144,7 @@ article{
             &:hover {
                 color: $primary;
             }
+           
         }
     }
 
