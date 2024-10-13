@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -30,7 +31,10 @@ class BlogPost(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    content = models.TextField()
+    content =  RichTextField(null=True, blank=True, 
+    config_name="special", external_plugin_resources=[(
+    'youtube', '/static/shareledge/ckeditor-plugins/youtube/youtube/', 'plugin.js',
+    )])
     thumbnail = models.ImageField(upload_to='post-image/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
