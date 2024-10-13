@@ -198,3 +198,13 @@ article{
     margin: 1rem auto;
     text-transform: capitalize;
 }
+
+.headerImageGenericPage{
+    display: flex;
+    justify-content: center;
+    img{
+        height: 150px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+}

@@ -22,7 +22,12 @@
 
 <body>
 	{% include "blogHeader.html" %}
-    <h1 class="genericTitle">{{title}}</h1>
+	{% if pageimage %}
+    <div class="headerImageGenericPage">
+        <img src="{{ pageimage }}" alt="{{ title }}">
+    </div>
+    {% endif %}
+    <h1 class="genericTitle">{% if hasHashtag %}#{% endif %}{{ title }}</h1>
 	<div class="container articlesGrid articleComponentContainer">
 		{% for post in posts %}
         	{% include "article-components/bigArticle.html" %}

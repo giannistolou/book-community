@@ -27,12 +27,12 @@ def post(request, post_slug,):
 def posts_by_tag(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
     posts = BlogPost.objects.filter(tags=tag)
-    return render(request, 'genericListPage.html', {'posts': posts, 'title': tag.name})
+    return render(request, 'genericListPage.html', {'posts': posts, 'title': tag.name, 'hasHashtag': True})
 
 def posts_by_author(request, author_slug):
     author = get_object_or_404(Author, slug=author_slug)
     posts = BlogPost.objects.filter(author=author)
-    return render(request, 'genericListPage.html', {'posts': posts, 'title': author.name})
+    return render(request, 'genericListPage.html', {'posts': posts, 'title': author.name, "pageImage": author.image_url})
 
 def posts_by_category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
