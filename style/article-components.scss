@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 1rem;
-    article:first-child, article:nth-child(5n){
+    article:first-child, article:nth-child(6n){
             grid-column: span 2;
     }
 
