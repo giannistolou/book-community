@@ -106,14 +106,17 @@
 }
 
 
-.content {
+.articleContent {
     p {
         margin-bottom: 1rem; // Add bottom margin for spacing
         color: #333; // Replace with your desired text color
         line-height: 1.6; // Adjust line height for readability
     }
     img{
+        display: block;
         max-width: 100%;
+        width: auto;
+        height: auto;
     }
     iframe{
         max-width: 100%;
@@ -129,6 +132,31 @@
             margin: 0; // Remove default margin
         }
     }
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #000;
+        margin-bottom: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3,
+    .subTitle {
+        font-size: 1.6rem;
+    }
+
+    h4,
+    h5,
+    h6 {
+        font-size: 1.5rem;
+    }
+
+
 
     .flex-container {
         display: flex;
