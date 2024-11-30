@@ -6,4 +6,5 @@ host_patterns = patterns('',
     host(r'^$', settings.ROOT_URLCONF, name='www'),
     host(r'cafe', 'findBookCafe.urls', name='cafe'),
     host(r'blog', 'blog.urls', name='blog'),
+    host(r'admin', 'admin.site.urls', name='admin')
 )
