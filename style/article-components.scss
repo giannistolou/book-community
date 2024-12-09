@@ -1,0 +1,210 @@
+@import "./theme.scss";
+@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.articlesGrid{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 1rem;
+    article:first-child, article:nth-child(6n){
+            grid-column: span 2;
+    }
+
+    gap: 0.5rem;
+    @include media-breakpoint-up(lg) {
+        gap: 1rem;
+    }
+
+}
+article{
+    .thumbnail{
+        img{
+            border-radius: 0.5rem;
+        }
+    }
+}
+
+.articleComponentContainer{
+    @include media-breakpoint-up(lg) {
+        max-width: 925px;
+    }
+}
+.bigArticle{
+    .thumbnail{
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1.947368421;
+        display: block;
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.titleSimilarPost{
+    margin-bottom: 1rem; 
+    text-align: center;
+}
+.similarPostGrid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.articleInfoCnt{
+
+    .articleInfo {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        row-gap: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        color: #333; 
+        padding-left: 0;
+        li {
+            margin-right: 1.25rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-weight: 500; 
+            
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+                transition: color 0.3s;
+                
+                &:hover {
+                    color: $primary;
+                }
+                
+                img {
+                    margin-right: 0.5rem; 
+                    height: 1.5rem; 
+                    width: 1.5rem; 
+                    border-radius: 50%; 
+                }
+                
+                span {
+                    font-weight: 500; 
+                }
+            }
+            
+            svg {
+                margin-right: 0.25rem; 
+                height: 1.25rem; 
+                width: 1.25rem; 
+                color: #666; 
+            }
+            
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                
+                li {
+                    display: inline-block;
+                    
+                    a {
+                        margin-right: 0.5rem; 
+                        text-decoration: none;
+                        color: inherit;
+                        transition: color 0.3s;
+                        
+                        &:hover {
+                            color: $primary;
+                        }
+                        
+                        font-weight: 500; 
+                    }
+                }
+            }
+        }
+    }
+
+    .title {
+        margin-bottom: 1rem; 
+        font-size: 1rem;
+        @include media-breakpoint-up(lg){
+            font-size: 1.5rem;
+        }
+        a {
+            display: block; 
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+
+            &:hover {
+                color: $primary;
+            }
+           
+        }
+    }
+
+    .description {
+        color: #333; 
+        line-height: 1.6; 
+        margin-top: 0; 
+        margin-bottom: 1rem; 
+    }
+}
+
+.logo {
+    width: fit-content;
+    margin: 1rem auto;
+    font-family: 'Cardo';
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #635642;
+
+    @include media-breakpoint-down(lg) {
+        justify-content: center;
+        margin-bottom: $spacer *2;
+    }
+
+    .img-container {
+        svg {
+            height: 4.5rem;
+
+            @include media-breakpoint-up(lg) {
+                height: 6rem;
+            }
+        }
+    }
+
+    .text-logo {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.5rem;
+
+        @include media-breakpoint-up(lg) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.genericTitle{
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    margin: 1rem auto;
+    text-transform: capitalize;
+}
+
+.headerImageGenericPage{
+    display: flex;
+    justify-content: center;
+    img{
+        height: 150px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    {% load static %}
+    {% include "blogCommonHead.html" %}
+    <link rel="stylesheet" href="{% static 'style/inside-article.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate" />
+    <link rel="stylesheet" href="{% static 'style/article-components.css' %}" />
+    <!-- SEO -->
+    <title>{{ post.title }} - Book Community</title>
+
+    <meta property="og:url" content="https://book-community.com/post/{{ post.slug }}" />
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:image" content="https://book-community.com/media/{{ post.thumbnail }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="el_GR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ post.title }}" />
+    <meta name="twitter:image" content="https://book-community.com/media/{{ post.thumbnail }}" />
+    <meta name="twitter:site" content="@bookcommunity" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://book-community.com/post/{{ post.slug }}"
+      },
+      "headline": "{{ post.title }}",
+      "image": "https://book-community.com/media/{{ post.thumbnail }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ post.author.name }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Book Community",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://book-community.com/static/favicons/favicon-32x32.png"
+        }
+      },
+      "datePublished": "{{ post.published_at|date:'Y-m-d' }}",
+      "dateModified": "{{ post.updated_at|date:'Y-m-d' }}"
+    }
+    </script>
+  </head>
+
+  <body>
+    {% include "blogHeader.html" %}
+    <div class="container articleComponentContainer">
+      {% include "article/header.html" %}
+      <div class="articleImage">
+        <img
+          src="https://book-community.com/media/{{ post.thumbnail }}"
+          alt="{{ post.title }}"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {% include "article/content.html" %}
+      {% include "article/similarPost.html" %}
+    </div>
+  </body>
+</html>

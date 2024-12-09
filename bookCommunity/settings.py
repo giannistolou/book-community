@@ -34,7 +34,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 
-CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com']
+CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com', 'https://blog.book-community.com']
 
 
 # Application definition
@@ -42,8 +42,10 @@ CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-com
 INSTALLED_APPS = [
     'findBookCafe.apps.FindbookcafeConfig',
     'landingPage.apps.LandingpageConfig',
+    'blog.apps.BlogConfig',
     'adminsortable2',
     'django_quill',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
