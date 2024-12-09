@@ -1,0 +1,32 @@
+<div class="articleHeader">
+    <h1 class="title">
+        {{ post.title }}
+    </h1>
+    <ul class="articleInfo">
+        <li class="author">
+            <a
+                href="/author/{{ post.author.slug }}"
+                class="flex items-center hover:text-primary font-medium"
+            >
+                <img
+                    src="{{ post.author.image_url|default:'https://picsum.photos/50/50' }}"
+                    alt="{{ post.author.name }}"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <span>{{ post.author.name }}</span>
+            </a>
+        </li>
+        <li class="">{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
+        <li class="">
+            {% include "svg/category.html" %}
+            <ul>
+                <li class="inline-block">
+                    <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

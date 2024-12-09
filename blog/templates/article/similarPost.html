@@ -1,0 +1,6 @@
+<h2 class="titleSimilarPost">Σχετικά Άρθρα</h2>
+<div class="container articleComponentContainer similarPostGrid">
+    {% for similar_post in similar_posts %}
+        {% include "article-components/bigArticle.html" with post=similar_post hideAuthor=True %}
+    {% endfor %}
+</div>
