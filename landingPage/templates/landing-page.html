@@ -91,7 +91,7 @@
 					</div>
 
 					<div class="clickNewsletterCnt">
-						<a href="https://bookcommunitygr.substack.com/subscribe?utm_source=substack&utm_medium=landing_page"
+						<a href="#newsletter"
 							target="_blank" rel=”noreferrer noopener" class="mdc-button mdc-button--raised" style="padding: 1.5rem">
 							Κάνε εγγραφή στο newsletter
 						</a>
@@ -261,7 +261,7 @@
 
 		</div>
 	</section>
-	<section class="newsletter">
+	<section id="newsletter" class="newsletter">
 		<div class="container">
 			<div class="title">
 				Κάνε εγγραφή στο newsletter μας
@@ -336,9 +336,6 @@
 			closeCookieBanner();
 			newsletterProblem.style.display = "none";
 			localStorage.setItem('cookieSeen', 'shown');
-			iframes.forEach((el) => {
-				el.src = "https://bookcommunitygr.substack.com/embed"
-			})
 		}
 	</script>
 </body>
