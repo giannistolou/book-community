@@ -2,7 +2,7 @@
 	<head>
 		{% load static %} {% include "commonHead.html" %}
 		<title>Βρες την καφετέρια που σου ταιριάζει | {{page_title}}</title>
-		<link rel="canonical" href="https://cafe.book-community.com/cafes/" />
+		<link rel="canonical" content="https://cafe.book-community.com{{cafe_url}}" />
 		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
 		<meta
 			name="keywords"
@@ -13,7 +13,7 @@
 			name="description"
 			content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
 		/>
-		<meta property="og:url" content="https://cafe.book-community.com/{{cafe_url}}" />
+		<meta property="og:url" content="https://cafe.book-community.com{{cafe_url}}" />
 		<meta property="og:title" content="Book cafes {{page_title}}" />
 		<meta
 			property="og:description"
