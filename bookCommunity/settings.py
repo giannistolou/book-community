@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 import environ
 
+DOMAIN_PATHS = ['', 'blog.', 'cafe.', 'www.']
+
 env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, 'development_stage_key'),
@@ -31,12 +33,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
-
-CSRF_TRUSTED_ORIGINS = ['https://cafe.book-community.com', 'https://www.book-community.com', 'https://book-community.com', 'https://blog.book-community.com']
-
-
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
 # Application definition
 
 INSTALLED_APPS = [
