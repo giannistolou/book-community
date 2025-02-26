@@ -2,8 +2,7 @@
 @import "./cafeItem.scss";
 
 .cafe {
-   margin-top: 1rem;
-   padding: 0 1rem;
+   padding: 1rem;
 
 
    .imgCnt {
@@ -16,7 +15,6 @@
 
       @media only screen and (min-width: $lg) {
          width: 75%;
-         margin-top: 1rem;
       }
 
       img {
