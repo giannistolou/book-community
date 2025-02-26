@@ -1,5 +1,5 @@
 <!-- filepath: /j:/Repositories/book-community/findBookCafe/templates/cafes.html -->
-<html>
+<html data-theme="retro">
 <head>
     {% load static %}
     {% include "commonHead.html" %}
@@ -12,6 +12,7 @@
     <meta property="og:title" content="Book cafes {{page_title}}" />
     <meta property="og:description" content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!" />
     <script src="{% static 'bundle.js' %}" async></script>
+    <link rel="stylesheet" href="{% static 'style/output.css' %}" />
 </head>
 
 <body>

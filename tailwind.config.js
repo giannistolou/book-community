@@ -1,28 +1,44 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui"
+export default {
+  content: ["./findBookCafe/**/*.{html,js}", "./landingPage/**/*.{html,js}"],
   daisyui: {
-    themes: [
-      {
-        mytheme: {
-          primary: "#635642",
-
-          secondary: "#2f2e41",
-
-          accent: "#a8dadc",
-
-          neutral: "#333333",
-
-          "base-100": "#f5f5f5",
-
-          info: "#3abff8",
-
-          success: "#36d399",
-
-          warning: "#fbbd23",
-
-          error: "#f87272",
-        },
-      },
-    ],
+    themes: ["retro", ],
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
-};
+  themes: [
+    "light",
+    "dark",
+    "cupcake",
+    "bumblebee",
+    "emerald",
+    "corporate",
+    "synthwave",
+    "retro",
+    "cyberpunk",
+    "valentine",
+    "halloween",
+    "garden",
+    "forest",
+    "aqua",
+    "lofi",
+    "pastel",
+    "fantasy",
+    "wireframe",
+    "black",
+    "luxury",
+    "dracula",
+    "cmyk",
+    "autumn",
+    "business",
+    "acid",
+    "lemonade",
+    "night",
+    "coffee",
+    "winter",
+    "dim",
+    "nord",
+    "sunset",
+  ],
+  plugins: [daisyui],
+}
+  
