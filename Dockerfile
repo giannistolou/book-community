@@ -7,7 +7,7 @@ COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
 RUN yarn build
-RUN yarn run tailwindcss -i ./input.css -o ./dist/output.css  
+RUN npx tailwindcss -i ./input.css -o ./dist/output.css  
 
 FROM python:3.10.6-alpine as production
 
