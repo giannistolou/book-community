@@ -1,13 +1,26 @@
 {% if page_title and page_title != '' %}
-<div class="container">
-	<h1 class="cafes-title">
-		{{page_title}}
-	</h1>
+<div class="container mx-auto">
+  <h1
+    class="text-center border p-4 m-6 text-neutral text-2xl rounded-lg font-semibold shadow-lg bg-base-100 lg:text-4xl"
+  >
+    {{page_title}}
+  </h1>
 </div>
-{% else %}
-{% include "citiesBar.html" %}
-{% endif %}
+{% else %} {% include "citiesBar.html" %} {% endif %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
 
-<section class="cafes-list container">
-	{%for cafe_item in cafes%} {% include "cafeItem.html" %} {% endfor %}
+<section
+  class="container mx-auto mt-4 grid grid-cols-1 gap-4 p-2 lg:grid-cols-2"
+>
+  {% for cafe_item in cafes %} {% include "cafeItem.html" %} {% endfor %}
 </section>
