@@ -39,6 +39,45 @@
             </a>
         </div>
 
+								<span class="mdc-tab-indicator">
+									<span
+										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+									></span>
+								</span>
+								<span class="mdc-tab__ripple"></span>
+							</a>
+							<a
+								class="mdc-tab"
+								role="tab"
+								aria-selected="true"
+								tabindex="0"
+								href="{{libraries_url}}"
+							>
+								<span class="mdc-tab__content">
+									<span
+										class="mdc-tab__icon material-symbols-sharp"
+										aria-hidden="true"
+									>
+										local_library
+									</span>
+									<h1 class="mdc-tab__text-label"
+										>Βιβλιοθηκες</h1
+									>
+								</span>
+
+								<span
+									class="mdc-tab-indicator mdc-tab-indicator--active"
+								>
+									<span
+										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+									></span>
+								</span>
+								<span class="mdc-tab__ripple"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 			{% include "cafesList.html" %}
 		</main>
 		{% include "footer.html" %}

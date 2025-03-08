@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'adminsortable2',
     'django_quill',
-    'ckeditor',
+    'prose',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,3 +146,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+PROSE_ATTACHMENT_ALLOWED_FILE_SIZE = 15

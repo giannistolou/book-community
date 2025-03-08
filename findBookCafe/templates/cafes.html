@@ -15,21 +15,79 @@
     <link rel="stylesheet" href="{% static 'style/output.css' %}" />
 </head>
 
-<body>
-    {% include "header.html" %}
-    <main>
-        <div class="tabs">
-            <a class="tab tab-bordered tab-active" href="{{cafe_url}}">
-                <span class="material-symbols-sharp">local_cafe</span>
-                <span>Καφετεριες</span>
-            </a>
-            <a class="tab tab-bordered" href="{{libraries_url}}">
-                <span class="material-symbols-sharp">local_library</span>
-                <span>Βιβλιοθηκες</span>
-            </a>
-        </div>
-        {% include "cafesList.html" %}
-    </main>
-    {% include "footer.html" %}
-</body>
+	<style>
+		.cafe-tab-title{
+			font-size: 0.85rem;
+			font-weight:400;
+		}
+	</style>
+	<body>
+		{% include "header.html" %}
+		<main class="mdc-top-app-bar--fixed-adjust">
+			<div class="mdc-tab-bar" role="tablist">
+				<div class="mdc-tab-scroller">
+					<div class="mdc-tab-scroller__scroll-area">
+						<div class="mdc-tab-scroller__scroll-content">
+							<a
+								class="mdc-tab mdc-tab--active"
+								role="tab"
+								aria-selected="true"
+								tabindex="0"
+								href="{{cafe_url}}"
+							>
+								<span class="mdc-tab__content">
+									<span
+										class="mdc-tab__icon material-symbols-sharp"
+										aria-hidden="true"
+									>
+										local_cafe</span
+									>
+									<h1 class="mdc-tab__text-label text-xl cafe-tab-title"
+										>Καφετεριες</h1
+									>
+								</span>
+
+								<span
+									class="mdc-tab-indicator mdc-tab-indicator--active"
+								>
+									<span
+										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+									></span>
+								</span>
+								<span class="mdc-tab__ripple"></span>
+							</a>
+							<a
+								class="mdc-tab plausible-event-name=libraryTabButton"
+								role="tab"
+								aria-selected="true"
+								tabindex="0"
+								href="{{libraries_url}}"
+							>
+								<span class="mdc-tab__content">
+									<span
+										class="mdc-tab__icon material-symbols-sharp"
+										aria-hidden="true"
+									>
+										local_library
+									</span>
+									<span class="mdc-tab__text-label cafe-tab-title"
+										>Βιβλιοθηκες</span
+									>
+								</span>
+
+								<span class="mdc-tab-indicator">
+									<span
+										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+									></span>
+								</span>
+								<span class="mdc-tab__ripple"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% include "cafesList.html" %}
+		</main>
+		{% include "footer.html" %}
+	</body>
 </html>
