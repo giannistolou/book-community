@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "daisyui";
+
 $primary: #635642;
 $secondary: #e3e1de;
 $on-primary: #ffffff;
