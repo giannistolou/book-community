@@ -3,7 +3,7 @@ import daisyui from "daisyui"
 export default {
   content: ["./findBookCafe/**/*.{html,js}", "./landingPage/**/*.{html,js}"],
   daisyui: {
-    themes: ["retro", "coffee"],
+    themes: ["retro"],
   },
   plugins: [daisyui],
 }

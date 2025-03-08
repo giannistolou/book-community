@@ -1,85 +1,32 @@
+<!-- filepath: /j:/Repositories/book-community/findBookCafe/templates/libraries.html -->
 <html data-theme="retro">
-	<head>
-		{% load static %} {% include "commonHead.html" %}
-		<title>Βρες την βιβλιοθήκη που σου ταιριάζει | {{page_title}}</title>
-		<link
-			rel="canonical"
-			href="https://cafe.book-community.com/libraries/"
-		/>
-		<meta
-			name="keywords"
-			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
-		βιβλιοθήκες, library, libraries"
-		/>
-		<meta
-			name="description"
-			content="Βρες το βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!"
-		/>
-		<meta property="og:url" content="https://cafe.book-community.com/" />
-		<meta property="og:title" content="Βιβλιοθήκες {{page_title}}" />
-		<meta
-			property="og:description"
-			content="Βρες την βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!"
-		/>
-		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
-		<script src="{% static 'bundle.js' %}" async></script>
-	</head>
 
-	<body>
-		{% include "header.html" %}
-		<main>
-		<div class="tabs">
-            <a class="tab tab-bordered tab-active" href="{{cafe_url}}">
-                <span class="material-symbols-sharp">local_cafe</span>
-                <span>Καφετεριες</span>
-            </a>
-            <a class="tab tab-bordered" href="{{libraries_url}}">
-                <span class="material-symbols-sharp">local_library</span>
-                <span>Βιβλιοθηκες</span>
-            </a>
-        </div>
+<head>
+    {% load static %}
+    {% include "commonHead.html" %}
+    <title>Βρες την βιβλιοθήκη που σου ταιριάζει | {{page_title}}</title>
+    <link rel="canonical" href="https://cafe.book-community.com/libraries/" />
+    <meta name="keywords" content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη, βιβλιοθήκες, library, libraries" />
+    <meta name="description" content="Βρες το βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!" />
+    <meta property="og:url" content="https://cafe.book-community.com/" />
+    <meta property="og:title" content="Βιβλιοθήκες {{page_title}}" />
+    <meta property="og:description" content="Βρες την βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!" />
+    <link rel="stylesheet" href="{% static 'style/output.css' %}" />
+    <script src="{% static 'bundle.js' %}" async></script>
+</head>
 
-								<span class="mdc-tab-indicator">
-									<span
-										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
-									></span>
-								</span>
-								<span class="mdc-tab__ripple"></span>
-							</a>
-							<a
-								class="mdc-tab"
-								role="tab"
-								aria-selected="true"
-								tabindex="0"
-								href="{{libraries_url}}"
-							>
-								<span class="mdc-tab__content">
-									<span
-										class="mdc-tab__icon material-symbols-sharp"
-										aria-hidden="true"
-									>
-										local_library
-									</span>
-									<h1 class="mdc-tab__text-label"
-										>Βιβλιοθηκες</h1
-									>
-								</span>
+<body>
+    {% include "header.html" %}
+    <main>
+		{%include "tabs.html" with active_tab="library"%}
+		<section class="container mx-auto py-10">
+			<h2 class="text-3xl font-bold text-center mb-8 cafes-title">
+			  Βρες την βιβλιοθήκη που σου ταιριάζει
+			</h2>
+			<div class="cafes-list">{% include "cafesList.html" %}</div>
+		  </section>
+    </main>
+    {% include "footer.html" %}
+</body>
 
-								<span
-									class="mdc-tab-indicator mdc-tab-indicator--active"
-								>
-									<span
-										class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
-									></span>
-								</span>
-								<span class="mdc-tab__ripple"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			{% include "cafesList.html" %}
-		</main>
-		{% include "footer.html" %}
-	</body>
 </html>
