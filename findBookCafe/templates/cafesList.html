@@ -1,15 +1,36 @@
+<!-- filepath: /j:/Repositories/book-community/findBookCafe/templates/cafesList.html -->
 {% if page_title and page_title != '' %}
 <div class="container mx-auto">
-  <h1
-    class="text-center border p-4 m-6 text-neutral text-2xl rounded-lg font-semibold shadow-lg bg-base-100 lg:text-4xl"
-  >
-    {{page_title}}
-  </h1>
+    <h1 class="text-center border p-4 m-6 text-neutral text-2xl rounded-lg font-semibold shadow-lg bg-base-100 lg:text-4xl">
+        {{page_title}}
+    </h1>
 </div>
-{% else %} {% include "citiesBar.html" %} {% endif %}
+{% else %}
+{% include "citiesBar.html" %}
+{% endif %}
 
-<section
-  class="container mx-auto mt-4 grid grid-cols-1 gap-4 p-2 lg:grid-cols-2"
->
-  {% for cafe_item in cafes %} {% include "cafeItem.html" %} {% endfor %}
+<section class="container mx-auto mt-4 grid grid-cols-1 gap-4 p-2 lg:grid-cols-2">
+    {% for cafe_item in page_obj %}
+        {% include "cafeItem.html" %}
+    {% endfor %}
 </section>
+
+<div class="container mx-auto mt-4 flex justify-center">
+    <div class="btn-group flex flex-wrap justify-center gap-2">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Προηγούμενη</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <span class="btn btn-neutral">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" class="btn btn-outline">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Επόμενη</a>
+        {% endif %}
+    </div>
+</div>
