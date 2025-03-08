@@ -1,19 +1,40 @@
-<div class="icons">
-	{%if cafe.isCoffeeAllowed%}
-	<span class="material-symbols-sharp icon"> local_cafe </span>
-	{%endif%} {% if cafe.isBookShop %}
-	<span class="material-symbols-sharp icon"> book </span>
-	{% endif %} {% if cafe.hasLunch %}
-	<span class="material-symbols-sharp icon"> restaurant </span>
-	{% endif %} {%if cafe.internetQuality > '0'%}
-	<span class="material-symbols-sharp icon"> wifi </span>
-	{%else%}
-	<span class="material-symbols-sharp icon"> wifi_off </span>
-	{%endif%} {%if cafe.powerOutlets > '0' %}
-	<span class="material-symbols-sharp icon"> power </span>
-	{% else %}
-	<span class="material-symbols-sharp icon"> power_off </span>
-	{% endif %} {% if cafe.isAccessibleForPeopleWithDisabilities %}
-	<span class="material-symbols-sharp icon"> accessible </span>
-	{% endif %}
+<div class="icons cursor-default select-none justify-center flex flex-wrap gap-1 lg:justify-start">
+    {% if cafe.isCoffeeAllowed %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/cup-fill.svg" %}
+    </div>
+    {% endif %}
+    {% if cafe.isBookShop %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/book.svg" %}
+    </div>
+    {% endif %}
+    {% if cafe.hasLunch %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/egg-fried.svg" %}
+    </div>
+    {% endif %}
+    {% if cafe.internetQuality > '0' %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/wifi.svg" %}
+    </div>
+    {% else %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/wifi-off.svg" %}
+    </div>
+    {% endif %}
+    {% if cafe.powerOutlets > '0' %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/plug.svg" %}
+    </div>
+    {% else %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/plug-fill.svg" %}
+    </div>
+    {% endif %}
+    {% if cafe.isAccessibleForPeopleWithDisabilities %}
+    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+        {% include "icons/bootstrap/universal-access.svg" %}
+    </div>
+    {% endif %}
 </div>
