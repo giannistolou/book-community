@@ -1,82 +1,105 @@
 <html>
+  <head>
+    {% load static %} {% include "commonHead.html" %}
+    <title>Book Cafe</title>
 
-<head>
-	{% load static %}
-	{% include "commonHead.html" %}
-	<title>Book Cafe</title>
-	
-	<meta name="keywords" content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
-	βιβλιοθήκες, library, libraries" />
-	<meta name="description" content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!" />
-	<meta property="og:url" content="https://cafe.book-community.com/" />
-	<meta property="og:title" content="Book cafe" />
-	<meta property="og:description" content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!" />	
-	
-	<link rel="stylesheet" href="{% static 'style/index.css' %}" />
-	<link rel="canonical" href="https://cafe.book-community.com/" />
-	<script src="{% static 'bundle.js' %}" async></script>
-</head>
+    <meta
+      name="keywords"
+      content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
+    βιβλιοθήκες, library, libraries"
+    />
+    <meta
+      name="description"
+      content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+    />
+    <meta property="og:url" content="https://cafe.book-community.com/" />
+    <meta property="og:title" content="Book cafe" />
+    <meta
+      property="og:description"
+      content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
+    />
 
-<body>
-	<main>
-		<section class="marketing-header">
-			<div class="image-background"></div>
-			<div class="background-overlay"></div>
-			<div class="app-header-center">
-				<h1 class="app-page-title homepage-version">
-					Βρες το <b>Book café</b> </br> που σου ταιριάζει!
-				</h1>
-				<div class="header-buttons">
-					<a class="mdc-button mdc-button--outlined"
-						href="/cafes">Ανακαλυψε!</a>
-					<a href="/map"
-						class="mdc-button mdc-button--raised">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-							class="bi bi-map" viewBox="0 0 16 16">
-							<path fill-rule="evenodd"
-								d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
-						</svg>Βρες τα στον χαρτη</a>
-					
-				</div>
-			</div>
-		</section>
-		<section class="sub-text">
-			<div class="home-hero-content">
-				<div class="blogger-hero-subtitle">
-					Είμαστε μια παρέα που μας αρέσει να διαβάζουμε σε καφετέριες, για να αλλάζουμε παραστάσεις!
-				Δεν βρίσκαμε όμως, πολλά book cafe, ή αρκετά από αυτά ήταν μακριά από εκεί που μέναμε. Γι'αυτό, είπαμε
-			να φτιάξουμε την δικιά μας λίστα με τις καφετέριες που μας αρέσει να διαβάζουμε και να την μοιραστούμε.</div>
-					<a href="/cafes"
-						class="mdc-button mdc-button--raised">
-						Που θα πας για διάβασμα;</a>
-			</div>
-		</section>
+    <link rel="stylesheet" href="{% static 'style/output.css' %}" />
+    <link rel="canonical" href="https://cafe.book-community.com/" />
+    <script src="{% static 'bundle.js' %}" async></script>
+  </head>
 
-		{% if collections|length > 1  %}
-		<section class="collections container">
-			<div class="collections-list">
-			{%for collection in collections%} 
-			<a href="/collections/{{collection.slug}}" class="collection"> 
-				<div class="collection-image">
-				<img
-					src="https://cafe.book-community.com/media/{{collection.thumbnail}}"
-					alt="{{collection.name}}"
-					loading="lazy"
-				/>
-			</div>
-				<div class="collection-content">
-					<h3 class="collection-title">{{collection.title}}</h3>
-				</div>
-				
-			</a>
-			{% endfor %}
-		</div>
-		</section>
-	{% endif %}
-		
-	{% include "footer.html" %}
-	</main>
-	
-</body>
+  <body>
+    <main>
+      <section
+        class="hero min-h-screen bg-cover bg-center relative"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1516196252840-f9947d2bcb7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+        "
+      >
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content z-10">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">
+              Βρες το <b>Book café</b> που σου ταιριάζει!
+            </h1>
+            <div class="mt-8 flex justify-center space-x-4">
+              <a class="btn" href="/cafes">Ανακαλυψε!</a>
+              <a href="/map" class="btn btn-neutral">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-map"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  /></svg
+                >Βρες τα στον χαρτη
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-secondary text-on-secondary py-20">
+        <div class="container mx-auto text-center">
+          <div class="max-w-2xl mx-auto">
+            <p class="text-lg mb-8">
+              Είμαστε μια παρέα που μας αρέσει να διαβάζουμε σε καφετέριες, για
+              να αλλάζουμε παραστάσεις! Δεν βρίσκαμε όμως, πολλά book cafe, ή
+              αρκετά από αυτά ήταν μακριά από εκεί που μέναμε. Γι'αυτό, είπαμε
+              να φτιάξουμε την δικιά μας λίστα με τις καφετέριες που μας αρέσει
+              να διαβάζουμε και να την μοιραστούμε.
+            </p>
+            <a href="/cafes" class="btn btn-neutral"
+              >Που θα πας για διάβασμα;</a
+            >
+          </div>
+        </div>
+      </section>
 
+      {% if collections|length > 1 %}
+      <section class="container mx-auto py-10">
+        <h2 class="text-3xl font-bold text-center mb-8">Collections</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          {% for collection in collections %}
+          <a
+            href="/collections/{{collection.slug}}"
+            class="card w-80 bg-base-100 shadow-xl"
+          >
+            <figure class="relative h-48">
+              <img
+                src="https://cafe.book-community.com/media/{{collection.thumbnail}}"
+                alt="{{collection.name}}"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">{{collection.title}}</h3>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %} {% include "footer.html" %}
+    </main>
+  </body>
 </html>
