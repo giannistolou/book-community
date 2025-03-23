@@ -38,13 +38,9 @@
 		}
 
 		.cafe-link {
-			padding: 1.5rem;
+			padding: 1rem;
 			text-transform: capitalize;
 			width: fit-content;
-
-			@media only screen and (min-width: $lg) {
-				padding: 2rem;
-			}
 		}
 
 		svg {
