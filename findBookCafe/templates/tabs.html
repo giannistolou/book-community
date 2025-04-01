@@ -1,0 +1,12 @@
+<section class="pt-10">
+<div role="tablist" class="tabs tabs-boxed container mx-auto">
+    <a role="tab" class="tab gap-2 {% if active_tab == 'cafe' %}tab-active{% endif %}" href="{{cafe_url}}">
+        {%include "icons/bootstrap/cup-fill.svg" %}
+        <span>Καφετεριες</span>
+    </a>
+    <a role="tab" class="tab gap-2 {% if active_tab == 'library' %}tab-active{% endif %}" href="{{libraries_url}}">
+        {%include "icons/bootstrap/book.svg" %}
+        <span>Βιβλιοθηκες</span>
+    </a>
+</div>
+</section>

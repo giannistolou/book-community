@@ -9,23 +9,6 @@ $buybook-primary: #6c63ff;
 $on-buybook: $on-newsletter;
 
 
-@use "@material/theme" with ($primary: $primary,
-	$secondary: $secondary,
-	$on-primary: $on-primary,
-	$on-secondary: $on-secondary);
-@use "@material/card";
-@use "@material/button/styles";
-@use "@material/icon-button";
-@use "@material/top-app-bar/mdc-top-app-bar";
-@use "@material/line-ripple/mdc-line-ripple";
-@use "@material/notched-outline/mdc-notched-outline";
-@import "@material/chips/styles";
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab/mdc-tab";
-@include card.core-styles;
-
 $xs: 0;
 $sm: 576px;
 $md: 768px;
@@ -37,6 +20,7 @@ body {
 	margin: 0;
 	background-color: #f7f5fb;
 	font-family: 'Roboto', sans-serif;
+	color: black;
 }
 
 .container {

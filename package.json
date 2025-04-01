@@ -1,34 +1,22 @@
 {
   "name": "book-community",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "GPL-3.0",
   "dependencies": {
-    "@material/banner": "^13.0.0",
-    "@material/button": "^13.0.0",
-    "@material/card": "^13.0.0",
-    "@material/chips": "^13.0.0",
-    "@material/data-table": "^13.0.0",
-    "@material/fab": "^13.0.0",
-    "@material/floating-label": "^13.0.0",
-    "@material/icon-button": "^13.0.0",
-    "@material/line-ripple": "^13.0.0",
-    "@material/list": "^13.0.0",
-    "@material/notched-outline": "^13.0.0",
-    "@material/snackbar": "^13.0.0",
-    "@material/switch": "^13.0.0",
-    "@material/textfield": "^13.0.0",
-    "@material/theme": "^13.0.0",
-    "@material/top-app-bar": "^13.0.0",
+    "@tailwindcss/cli": "^4.0.9",
+    "@tailwindcss/typography": "^0.5.16",
     "bootstrap": "^5.2.3",
-    "material-components-web": "^13.0.0"
+    "tailwindcss": "^4.0.12"
   },
   "scripts": {
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack",
+    "build:css": "npx tailwindcss -i ./input.css -o ./dist/output.css"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "css-loader": "^6.7.0",
+    "daisyui": "^5.0.9",
     "extract-loader": "^5.1.0",
     "file-loader": "^6.2.0",
     "postcss-loader": "^6.2.1",
