@@ -105,6 +105,13 @@
                   {% include "icons/link.html" %}</a
                >
                {% endif %}
+               <a
+                  href="https://remotework.cafe/"
+                  class="icon plausible-event-name=cafeWebsiteIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+                  target="_blank"
+               >
+                  {% include "icons/rwcafe.html" %}</a
+               >
             </div>
             <div class="content mt-4 px-4 leading-6">
                <div class="address font-roboto font-normal flex items-center gap-2 mb-2">
@@ -126,6 +133,16 @@
          <section class="container mx-auto suggestion p-4 my-2 border-2 border-primary lg:my-0">
             <h2 class="name p-4 bg-primary text-on-primary font-roboto font-normal m-0 text-xl w-fit mb-4 lg:text-2xl">Άλλα μέρη για διάβασμα στην ίδια περιοχή!</h2>
             <div class="suggestion-cafes flex flex-col justify-center gap-4 lg:flex-row">
+               {% for cafe_item in cafes_suggestion %}
+               {% include "cafeItem.html" %}
+               {% endfor %}
+            </div>
+         </section>
+         {% endif %}
+         {% if cafes_suggestion %}
+         <section class="container mx-auto suggestion remoteWorkCafe p-4 my-2 border-2 border-primary lg:my-0" style="margin-top: 2rem;">
+            <h2 class="name remoteWorkCafe p-4 remote-work-cafe-background text-on-primary font-roboto font-normal m-0 text-xl w-fit mb-4 lg:text-2xl">Προτάσεις Remote Work Cafe!</h2>
+            <div class="suggestion-cafes remoteWorkCafes flex flex-col justify-center gap-4 lg:flex-row">
                {% for cafe_item in cafes_suggestion %}
                {% include "cafeItem.html" %}
                {% endfor %}

@@ -1,3 +1,15 @@
 @import "tailwindcss" source(none);
 @source "./public/*.{html,js}";
 @plugin "daisyui";
+
+.remote-work-cafe-bg{
+    background-color: rgb(255 82 99);
+}
+
+.remote-work-cafe-color{
+    color: rgb(255 82 99);
+}
+
+.remote-work-cafe-border{
+    border-color: rgb(255 82 99);
+}
