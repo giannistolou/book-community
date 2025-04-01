@@ -5,21 +5,13 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 1rem;
-    max-width: 100%;
     article:first-child, article:nth-child(6n){
             grid-column: span 2;
-
-        
-                @include media-breakpoint-up(lg) {
-                    max-width: 100%;
-                }
-            
     }
 
     gap: 0.5rem;
     @include media-breakpoint-up(lg) {
         gap: 1rem;
-        max-width: 990px;
     }
 
 }
@@ -32,8 +24,9 @@ article{
 }
 
 .articleComponentContainer{
+    max-width: 900px;
     @include media-breakpoint-up(lg) {
-        max-width: 925px;
+        max-width: 925px !important;
     }
 }
 .bigArticle{
@@ -166,7 +159,8 @@ article{
 
 .logo {
     width: fit-content;
-    margin: 1rem auto;
+    margin: 0 auto;
+    padding: 1rem auto;
     font-family: 'Cardo';
     display: flex;
     flex-direction: row;
