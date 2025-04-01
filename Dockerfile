@@ -1,14 +1,17 @@
 # pull official base image
-FROM node:lts-alpine as dependencies
+FROM node:20.18 as dependencies
 
 COPY ./package.json .
 RUN yarn install
 COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
-COPY ./input.css .
+COPY ./input.css ./input.css
+
+
 RUN yarn build
-RUN npx tailwindcss -i ./input.css -o ./dist/output.css
+COPY . .
+RUN yarn build:css
 
 FROM python:3.10.6-alpine as production
 
@@ -25,7 +28,6 @@ RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/uploadsfiles
 RUN mkdir $APP_HOME/database
 USER root
-
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
