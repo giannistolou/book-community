@@ -1,5 +1,5 @@
 const autoprefixer = require("autoprefixer");
-
+const path = require('path');
 module.exports = {
 	mode: "development",
 	entry: [
@@ -16,7 +16,9 @@ module.exports = {
 	],
 	output: {
 		filename: "bundle.js",
+		path: path.resolve(__dirname, 'dist')
 	},
+	
 	module: {
 		rules: [
 			{
