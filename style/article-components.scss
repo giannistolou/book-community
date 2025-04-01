@@ -5,13 +5,21 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 1rem;
+    max-width: 100%;
     article:first-child, article:nth-child(6n){
             grid-column: span 2;
+
+        
+                @include media-breakpoint-up(lg) {
+                    max-width: 100%;
+                }
+            
     }
 
     gap: 0.5rem;
     @include media-breakpoint-up(lg) {
         gap: 1rem;
+        max-width: 990px;
     }
 
 }
