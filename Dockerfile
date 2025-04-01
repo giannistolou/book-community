@@ -1,13 +1,14 @@
 # pull official base image
-FROM node:16.10.0 as dependencies
+FROM node:lts-alpine as dependencies
 
 COPY ./package.json .
 RUN yarn install
 COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
+COPY ./tailwind.config.js .
 RUN yarn build
-RUN npx tailwindcss -i ./input.css -o ./dist/output.css  
+RUN npx tailwindcss -i ./input.css -o ./dist/output.css
 
 FROM python:3.10.6-alpine as production
 
