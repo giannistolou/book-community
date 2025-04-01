@@ -6,7 +6,7 @@ RUN yarn install
 COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
-COPY ./tailwind.config.js .
+COPY ./input.css .
 RUN yarn build
 RUN npx tailwindcss -i ./input.css -o ./dist/output.css
 
