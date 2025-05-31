@@ -24,6 +24,7 @@ article{
 }
 
 .articleComponentContainer{
+    margin-top: 1rem;
     max-width: 900px;
     @include media-breakpoint-up(lg) {
         max-width: 925px !important;
@@ -138,7 +139,7 @@ article{
         @include media-breakpoint-up(lg){
             font-size: 1.5rem;
         }
-        
+
         a {
             display: block; 
             text-decoration: none;
