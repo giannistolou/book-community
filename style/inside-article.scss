@@ -78,6 +78,11 @@
     .title {
         margin-bottom: 1rem; 
         text-align: center;
+        font-size: 2rem; 
+        font-weight: bold;
+        margin-top: 2rem;
+        color: $primary;
+        
         a {
             display: block; 
             text-decoration: none;
