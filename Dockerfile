@@ -10,8 +10,8 @@ COPY ./input.css ./input.css
 
 
 RUN yarn build
-COPY . .
 RUN yarn build:css
+COPY . .
 
 FROM python:3.10.6-alpine as production
 
