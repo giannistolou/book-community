@@ -1,5 +1,5 @@
 asgiref==3.7.2
-Django==4.2.20
+Django==4.2.21
 django-environ==0.10.0
 django-quill-editor==0.1.40
 gunicorn==23.0.0
