@@ -63,6 +63,7 @@
             <div class="selection text-on-primary p-4 w-1/2 mx-auto flex justify-between items-center lg:justify-around">
                {% if cafe.facebook %}
                <a
+                  rel="noopener noreferrer"
                   href="{{cafe.facebook}}"
                   target="_blank"
                   class="icon plausible-event-name=cafeFacebookIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
@@ -99,6 +100,7 @@
                {% if cafe.website %}
                <a
                   href="{{cafe.website}}"
+                  rel="noopener noreferrer"
                   class="icon plausible-event-name=cafeWebsiteIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
                   target="_blank"
                >
