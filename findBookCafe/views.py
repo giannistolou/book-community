@@ -13,7 +13,7 @@ def page500(exception):
 
 def index(request):
     try:
-        collections = Collection.objects.all().order_by('order_position')
+        collections = Collection.objects.all().order_by('order_position')[:4]
     except:
         collections = []
     return render(request, 'index.html', {'collections': collections})
