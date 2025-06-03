@@ -25,7 +25,7 @@
     {% else %}
     <a href="/libraries/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}" class="card-body block">
     {% endif %}
-        {% include "cafeIcons.html" %}
+       {% include "cafeIcons.html" with cafe=cafe_item %}   
         <div class="location text-gray-600">{{cafe_item.region.name}}, {{cafe_item.region.city.name}}</div>
         <div class="btn btn-neutral mt-4 w-full">{{cafe_item.name}}</div>
     </a>
