@@ -39,7 +39,7 @@ def cafes(request, type):
         raise Http404
     try:
         cafes = Shop.objects.filter(type=type).order_by('order_position')
-        paginator = Paginator(cafes, 10)  # Show 10 cafes per page
+        paginator = Paginator(cafes, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
     except:
