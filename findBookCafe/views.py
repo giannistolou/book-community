@@ -120,3 +120,13 @@ def collection(request, page_slug):
     except:
         raise Http404
     return render(request, 'collection.html', {'page_obj': page_obj, 'page_title': collection.title, 'description': collection.description, 'page_slug': collection.slug})
+
+def collections(request):
+    try:
+        collections = Collection.objects.all().order_by('order_position')
+        paginator = Paginator(collections, 10) 
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    except:
+        raise Http404
+    return render(request, 'collections.html', {'page_obj': page_obj, 'page_title': 'Λίστες'})

@@ -1,0 +1,54 @@
+<html>
+  <head>
+    {% load static %}
+    {% include "commonHead.html" %}
+    <title>Collections</title>
+  </head>
+  <body>
+    <main>
+    {% include "header.html" %}
+      <section class="container mx-auto py-10">
+        <h1 class="text-3xl font-bold text-center mb-8">{{ page_title }}</h1>
+        <p class="text-lg text-center mb-8">{{ description }}</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          {% for collection in page_obj %}
+          <a
+            href="/collections/{{ collection.slug }}"
+            class="card w-80 bg-base-100 shadow-xl"
+          >
+            <figure class="relative h-48">
+              <img
+                src="https://cafe.book-community.com/media/{{ collection.thumbnail }}"
+                alt="{{ collection.title }}"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title">{{ collection.title }}</h3>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% if page_obj.has_other_pages %}
+        <div class="pagination flex justify-center mt-8">
+          {% if page_obj.has_previous %}
+          <a
+            href="?page={{ page_obj.previous_page_number }}"
+            class="btn btn-neutral"
+            >Προηγούμενη</a
+          >
+          {% endif %}
+          {% if page_obj.has_next %}
+          <a
+            href="?page={{ page_obj.next_page_number }}"
+            class="btn btn-neutral"
+            >Επόμενη</a
+          >
+          {% endif %}
+        </div>
+        {% endif %}
+      </section>
+      {% include "footer.html" %}
+    </main>
+  </body>
+</html>
