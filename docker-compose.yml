@@ -16,7 +16,7 @@ services:
             - ALLOWED_HOSTS
             - DEBUG
             - SECRET_KEY
-        # restart: always
+        restart: always
     nginx:
         build: ./nginx
         volumes:
@@ -24,7 +24,7 @@ services:
             - uploadsfiles:/home/app/web/uploadsfiles
         depends_on:
             - web
-        # restart: always
+        restart: always
 volumes:
     staticfiles:
         name: staticfilesBookCommunity
