@@ -31,7 +31,7 @@
          background-color: $primary;
          color: $on-primary;
          z-index: 2;
-         font-family: "Roboto", sans-serif;
+         font-family: "Verdana", sans-serif;
          font-weight: 400;
          margin: 0;
          left: 0;
@@ -92,7 +92,7 @@
       padding: 0 1rem;
       line-height: 1.5;
       .region {
-         font-family: "Roboto", sans-serif;
+         font-family: "Verdana", sans-serif;
          font-weight: 400;
          display: flex;
          align-items: center;
@@ -100,7 +100,7 @@
          margin-bottom: 0.5rem;
       }
       .address {
-         font-family: "Roboto", sans-serif;
+         font-family: "Verdana", sans-serif;
          font-weight: 400;
          display: flex;
          align-items: center;
@@ -126,7 +126,7 @@
    }
 }
 .description {
-   font-family: "Roboto", sans-serif;
+   font-family: "Verdana", sans-serif;
    font-size: 1.1rem;
    padding: 0.5 1rem;
    line-height: 1.6;
@@ -154,7 +154,7 @@
       padding: 1rem;
       background-color: $primary;
       color: $on-primary;
-      font-family: "Roboto", sans-serif;
+      font-family: "Verdana", sans-serif;
       font-weight: 400;
       margin: 0;
       font-size: 1.5rem;

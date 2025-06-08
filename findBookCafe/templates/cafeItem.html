@@ -5,7 +5,9 @@
             <img
                 src="https://cafe.book-community.com/media/{{cafe_item.thumbnail}}"
                 alt="{{cafe_item.name}}"
+                  {% if lazy != False %}
                 loading="lazy"
+                {% endif %}
                 class="w-full h-72 object-cover"
             />
         </a>
@@ -14,7 +16,9 @@
             <img
                 src="https://cafe.book-community.com/media/{{cafe_item.thumbnail}}"
                 alt="{{cafe_item.name}}"
+                   {% if lazy != False %}
                 loading="lazy"
+                {% endif %}
                 class="w-full h-72 object-cover"
             />
         </a>

@@ -2,16 +2,14 @@
 FROM node:20.18 as dependencies
 
 COPY ./package.json .
-RUN yarn install
+RUN yarn install --no-cache
 COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
-COPY ./input.css ./input.css
-
 
 RUN yarn build
 COPY . .
-RUN yarn build:css
+
 
 
 FROM python:3.10.6-alpine as production
