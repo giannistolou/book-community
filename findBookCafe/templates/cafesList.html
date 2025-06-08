@@ -9,8 +9,12 @@
 {% endif %}
 
 <section class="container mx-auto mt-4 grid grid-cols-1 gap-4 p-2 lg:grid-cols-2">
-    {% for cafe_item in page_obj %}
-        {% include "cafeItem.html" %}
+   {% for cafe_item in page_obj %}
+        {% if forloop.first %}
+            {% include "cafeItem.html" with lazy=False %}
+        {% else %}
+            {% include "cafeItem.html" %}
+        {% endif %}
     {% endfor %}
 </section>
 
