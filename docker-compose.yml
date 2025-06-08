@@ -17,8 +17,8 @@ services:
         restart: always
     nginx:
         build: ./nginx
-        ports:
-            - "8000:80"
+        # ports:
+            # - "8000:80"
         volumes:
             - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles
