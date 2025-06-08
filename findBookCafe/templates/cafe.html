@@ -1,4 +1,4 @@
-<html data-theme="retro">
+<html data-theme="retro" lang="el">
   <head>
     {% load static %} {% include "commonHead.html" %}
     <title>{{cafe.name}} | Book Cafe</title>
@@ -22,6 +22,31 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        script.integrity =
+          "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+        script.crossOrigin = "";
+        script.async = true;
+        document.body.appendChild(script);
+        script.onload = function () {
+          // Initialize the map after the script has loaded
+          var map = L.map("map").setView([{{cafe.latitude}}, {{cafe.longitude}}], 15);
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(map);
+
+          L.marker([{{cafe.latitude}}, {{cafe.longitude}}])
+            .addTo(map)
+            .bindPopup("{{cafe.name}}")
+            .openPopup();
+        };
+      });
+    </script>
 
     {% if cafe.type == 'CAF' %}
     <link
@@ -157,22 +182,6 @@
       </section>
       {% endif %}
     </main>
-    <script>
-      var coordinates = [{{ cafe.latitude }}, {{ cafe.longitude }}];
-
-      // Initialize the Leaflet map
-      var map = L.map("map").setView(coordinates, 12);
-
-      // Add a tile layer to the map
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-
-      // Add a marker at the cafe's coordinates
-      L.marker(coordinates).addTo(map)
-         .bindPopup("<b>{{ cafe.name }}</b><br>{{ cafe.address }}")
-         .openPopup().addTo(map);
-    </script>
     {% include "footer.html" %}
   </body>
 </html>
