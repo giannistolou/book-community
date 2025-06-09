@@ -1,32 +1,31 @@
 <!-- Begin Mailchimp Signup Form -->
-<link
-  href="//cdn-images.mailchimp.com/embedcode/classic-071822.css"
-  rel="stylesheet"
-  type="text/css"
-/>
-<style type="text/css">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "//cdn-images.mailchimp.com/embedcode/classic-071822.css";
+    document.head.appendChild(link);
+  });
+</script>
+<style>
   #mc_embed_signup {
     background: transparent;
-    clear: left;
     font: 14px Helvetica, Arial, sans-serif;
-    width: "100%";
-  }
-
-  #mce-EMAIL-HELPERTEXT {
-    background: transparent;
-  }
-
-  input {
-    background: transparent;
-  }
-  .container-newsletter {
     max-width: 600px;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: auto;
   }
-  .error {
-    background-color: white;
-    margin-top: 5px;
+  input[type="email"] {
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+  }
+  .button {
+    background-color: #635642;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
   }
 </style>
 <div id="mc_embed_signup">
@@ -35,7 +34,7 @@
     method="post"
     id="mc-embedded-subscribe-form"
     name="mc-embedded-subscribe-form"
-    class="validate container-newsletter"
+    class="plausible-event-name=newsletter validate container-newsletter"
     target="_blank"
     novalidate
   >
@@ -88,6 +87,8 @@
               title="Mailchimp - email marketing made easy and fun"
               ><img
                 src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_light_dtp.svg"
+                loading="lazy"
+                alt="Mailchimp Logo"
             /></a>
           </p>
         </div>
@@ -95,27 +96,32 @@
     </div>
   </form>
 </div>
-<script
-  type="text/javascript"
-  src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
-></script>
-<script type="text/javascript">
-  (function ($) {
-    window.fnames = new Array();
-    window.ftypes = new Array();
-    fnames[0] = "EMAIL";
-    ftypes[0] = "email";
-    fnames[1] = "FNAME";
-    ftypes[1] = "text";
-    fnames[2] = "LNAME";
-    ftypes[2] = "text";
-    fnames[3] = "ADDRESS";
-    ftypes[3] = "address";
-    fnames[4] = "PHONE";
-    ftypes[4] = "phone";
-    fnames[5] = "BIRTHDAY";
-    ftypes[5] = "birthday";
-  })(jQuery);
-  var $mcj = jQuery.noConflict(true);
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js";
+    script.async = true;
+    document.body.appendChild(script);
+    script.onload = function () {
+      (function ($) {
+        window.fnames = new Array();
+        window.ftypes = new Array();
+        fnames[0] = "EMAIL";
+        ftypes[0] = "email";
+        fnames[1] = "FNAME";
+        ftypes[1] = "text";
+        fnames[2] = "LNAME";
+        ftypes[2] = "text";
+        fnames[3] = "ADDRESS";
+        ftypes[3] = "address";
+        fnames[4] = "PHONE";
+        ftypes[4] = "phone";
+        fnames[5] = "BIRTHDAY";
+        ftypes[5] = "birthday";
+      })(jQuery);
+      var $mcj = jQuery.noConflict(true);
+    };
+  });
 </script>
 <!--End mc_embed_signup-->
