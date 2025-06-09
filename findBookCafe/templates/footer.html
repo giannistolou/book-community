@@ -104,17 +104,19 @@
 
 <script>
   var cookieBanner = document.querySelector(".cookie-banner");
-  var decline = document.querySelector(".decline");
-  var accept = document.querySelector(".accept");
-  var iframes = document.querySelectorAll("iframe");
   var newsletterProblem = document.querySelector("#newsletterProblem");
   var newsletter = document.getElementById("newsletter");
 
-  if (localStorage.getItem("cookieSeen") != "shown") {
-    cookieBanner.style.display = "flex";
-    newsletterProblem.style.display = "flex";
-  } else {
-    acceptCookies();
+  function showCookieBanner() {
+    if (localStorage.getItem("cookieSeen") != "shown") {
+      cookieBanner.style.display = "flex";
+      newsletterProblem.style.display = "flex";
+    } else {
+      acceptCookies();
+    }
+
+    document.removeEventListener("click", showCookieBanner);
+    document.removeEventListener("scroll", showCookieBanner);
   }
 
   function closeCookieBanner() {
@@ -130,4 +132,7 @@
     localStorage.setItem("cookieSeen", "shown");
     newsletter.style.display = "block";
   }
+
+  document.addEventListener("click", showCookieBanner);
+  document.addEventListener("scroll", showCookieBanner);
 </script>
