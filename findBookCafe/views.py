@@ -129,4 +129,4 @@ def collections(request):
         page_obj = paginator.get_page(page_number)
     except:
         raise Http404
-    return render(request, 'collections.html', {'page_obj': page_obj, 'page_title': 'Λίστες'})
+    return render(request, 'collections.html', {'page_obj': page_obj, 'page_title': 'Book Cafe Playlist'})
