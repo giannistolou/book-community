@@ -1,0 +1,20 @@
+// body text: Lora
+// Heading ui: Open Sans
+
+@font-face {
+  font-family: "Lora";
+  src: url("../../fonts/Lora/static/Lora-Regular.ttf") format("truetype"),
+       url("../../fonts/Lora/static/Lora-Italic.ttf") format("truetype"),
+       url("../../fonts/Lora/static/Lora-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/Open_Sans/static/OpenSans-Regular.ttf") format("truetype"),
+       url("../../fonts/Open_Sans/static/OpenSans-Bold.ttf") format("truetype"),
+       url("../../fonts/Open_Sans/static/OpenSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

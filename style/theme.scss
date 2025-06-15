@@ -1,88 +1,41 @@
-$primary: #4e3e2f;
-$secondary: #F8F4E9;
-$on-primary: white;
-$on-secondary: $primary;
-$newsletter-background: #3a3950;
-$on-newsletter: $on-primary;
-$dark: #2f2e41;
-$buybook-primary: #6c63ff;
-$on-buybook: $on-newsletter;
-$background: #F8F4E9;
-$text: #333333;
-
-$xs: 0;
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1200px;
-$xxl: 1400px;
+@use "./theme/colors.scss" as *;
+// @use "./theme/fonts.scss" as *;
+@use "./theme/mixins.scss" as *;
+@use "./theme/typography.scss" as *;
+@use "./theme/breakpoints.scss" as *;
+@use "sass:map";
 
 body {
-	margin: 0;
-	background-color: $background;
-	font-family: "Verdana", sans-serif;
-	color: black;
+  margin: 0;
+  background-color: $background;
 }
 
 .container {
-	max-width: calc(100% - 2rem);
-	@media only screen and (min-width: $sm) {
-		max-width: 540px;
-	}
-
-	@media only screen and (min-width: $md) {
-		max-width: 720px;
-	}
-
-	@media only screen and (min-width: $lg) {
-		max-width: 992px;
-	}
-
-	@media only screen and (min-width: $xl) {
-		max-width: 1140px;
-	}
-
-	@media only screen and (min-width: $xxl) {
-		max-width: 1320px;
-	}
-
-	margin: 0 auto;
+  max-width: calc(100% - 2rem);
+  @include media-breakpoint-up(xs) {
+    max-width: calc(100% - 2rem);
+  }
+  @include media-breakpoint-up(sm) {
+    max-width: map.get($grid-breakpoints, sm);
+  }
+  @include media-breakpoint-up(md) {
+    max-width: map.get($grid-breakpoints, md);
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: map.get($grid-breakpoints, lg); 
+  }
 }
 
 a {
-	text-decoration: none;
-	color: $primary;
-}
-
-.on-primary {
-	color: $on-primary;
-}
-
-.mdc-button--outlined {
-	color: $on-primary !important;
-	border-color: $on-primary !important;
-}
-
-.mdc-top-app-bar {
-	a {
-		display: flex;
-	}
-}
-
-main {
-	background-color: $background;
-	padding-bottom: 1rem;
+  text-decoration: none;
+  color: $primary;
 }
 
 img {
-	user-select: none;
+  user-select: none;
 }
 
 ::selection {
-	color: $on-primary;
-	background: $primary;
-}
-
-.content {
-	padding: 1rem;
+  color: $on-primary;
+  background: $primary;
 }

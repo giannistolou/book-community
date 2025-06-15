@@ -1,0 +1,19 @@
+$primary: #4e3e2f;
+$secondary: #F8F4E9;
+$background: #F8F4E9;
+
+// https://www.accessibilitychecker.org/color-contrast-checker/
+$black: #333333;
+$white: #ffffff;
+
+$on-background: $black;
+$on-primary: $white;
+$on-secondary: $black;
+
+
+$newsletter-background: #3a3950;
+$on-newsletter: $on-primary;
+$dark: #2f2e41;
+$on-dark: white;
+$buybook-primary: #19181b;
+$on-buybook: $on-newsletter;

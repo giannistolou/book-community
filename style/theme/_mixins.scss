@@ -1,0 +1,26 @@
+//  https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
+@use "./breakpoints.scss" as *;
+@use "sass:map";
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  @return map.get($breakpoints, $name);
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @media (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin transition($property, $duration: 0.3s, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+  @content;
+}

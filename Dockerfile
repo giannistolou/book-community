@@ -6,7 +6,7 @@ RUN yarn install --no-cache
 COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
-
+COPY ./fonts ./fonts
 RUN yarn build
 COPY . .
 
