@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="el">
   <head>
     {% load static %} {% include "commonHead.html" %}
@@ -19,19 +20,17 @@
       content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
     <link rel="canonical" href="https://cafe.book-community.com/" />
+    <link ref="stylesheet" href="{% static 'style/cafe.css' %}" />
     <script src="{% static 'bundle.js' %}" async></script>
   </head>
 
-  <body>
+  <body class="viewLandingCafe">
     <main>
       <section
-        class="hero min-h-screen bg-cover bg-center relative"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1516196252840-f9947d2bcb7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
-        "
+        class="hero"
       >
-        <div class="absolute inset-0 bg-black opacity-60"></div>
-        <div class="hero-content text-center text-neutral-content z-10">
+        <img src="{% static 'background-image.webp' %}" class="hero-image"  alt="Background Image"/>
+        <div class="hero-content">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">
               Βρες το <b>Book café</b> που σου ταιριάζει!
@@ -50,8 +49,9 @@
                   <path
                     fill-rule="evenodd"
                     d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  /></svg
-                >Βρες τα στον χαρτη
+                  />
+                </svg>
+                <span>Βρες τα στον χαρτη</span>
               </a>
             </div>
           </div>
@@ -77,7 +77,10 @@
       {% if collections|length > 1 %}
       <section class="container mx-auto py-10">
         <h2 class="text-3xl font-bold text-center mb-8 hover:underline">
-          <a href="/collections/{{collection.slug}}" class="hover:text-primary hover:underline">
+          <a
+            href="/collections/{{collection.slug}}"
+            class="hover:text-primary hover:underline"
+          >
             Book Cafe Playlist
           </a>
         </h2>
@@ -100,8 +103,11 @@
           </a>
           {% endfor %}
         </div>
-        <a href="/collections" class="btn btn-neutral mt-8 flex justify-center w-fit mx-auto"
-          >Δες όλες τις λίστες</a>
+        <a
+          href="/collections"
+          class="btn btn-neutral mt-8 flex justify-center w-fit mx-auto"
+          >Δες όλες τις λίστες</a
+        >
       </section>
       {% endif %} {% include "footer.html" %}
     </main>

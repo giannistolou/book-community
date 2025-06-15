@@ -5,17 +5,13 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
-  entry: [
-    "./style/theme/_breakpoints.scss",
-    "./style/theme/_colors.scss",
-    "./style/theme/_fonts.scss",
-    "./style/theme/_mixins.scss",
-    "./style/theme/_typography.scss",
-    "./style/theme.scss",
-  ],
+  entry: {
+    cafe: "./style/screens/cafe/index.scss",
+    common: "./style/common.scss",
+  },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: '[name].js',
+    path: path.resolve(__dirname, "dist/style"),
     clean: true,
   },
   plugins: [
@@ -61,6 +57,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp|avif)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name][ext]",
+          publicPath: "/images/",
+        },
+      },
     ],
-  },
+  }
 };

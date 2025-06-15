@@ -7,7 +7,8 @@ COPY ./webpack.config.js .
 COPY ./style ./style
 COPY ./app.js .
 COPY ./fonts ./fonts
-RUN yarn build
+COPY ./images ./images
+RUN yarn build --no-cache
 COPY . .
 
 

@@ -1,41 +1,6 @@
-@use "./theme/colors.scss" as *;
-@use "./theme/fonts.scss" as *;
-@use "./theme/mixins.scss" as *;
-@use "./theme/typography.scss" as *;
-@use "./theme/breakpoints.scss" as *;
-@use "sass:map";
+@forward "./theme/colors";
+@forward "./theme/fonts";
+@forward "./theme/mixins";
+@forward "./theme/typography";
+@forward "./theme/breakpoints";
 
-body {
-  margin: 0;
-  background-color: $background;
-}
-
-.container {
-  max-width: calc(100% - 2rem);
-  @include media-breakpoint-up(xs) {
-    max-width: calc(100% - 2rem);
-  }
-  @include media-breakpoint-up(sm) {
-    max-width: map.get($grid-breakpoints, sm);
-  }
-  @include media-breakpoint-up(md) {
-    max-width: map.get($grid-breakpoints, md);
-  }
-  @include media-breakpoint-up(lg) {
-    max-width: map.get($grid-breakpoints, lg); 
-  }
-}
-
-a {
-  text-decoration: none;
-  color: $primary;
-}
-
-img {
-  user-select: none;
-}
-
-::selection {
-  color: $on-primary;
-  background: $primary;
-}
