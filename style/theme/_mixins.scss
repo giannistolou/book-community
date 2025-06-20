@@ -6,6 +6,10 @@
   @return map.get($breakpoints, $name);
 }
 
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  @return map.get($breakpoints, $name) - 1px;
+}
+
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
   @media (min-width: $min) {
@@ -23,4 +27,11 @@
 @mixin transition($property, $duration: 0.3s, $timing: ease-in-out) {
   transition: $property $duration $timing;
   @content;
+}
+
+@mixin animHover($property, $duration: 0.3s, $timing: ease-in-out) {
+  &:hover {
+    @include transition($property, $duration, $timing);
+    @content;
+  }
 }

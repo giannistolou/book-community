@@ -20,24 +20,25 @@
       content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
     <link rel="canonical" href="https://cafe.book-community.com/" />
-    <link ref="stylesheet" href="{% static 'style/cafe.css' %}" />
-    <script src="{% static 'bundle.js' %}" async></script>
+    <link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
   </head>
 
   <body class="viewLandingCafe">
     <main>
-      <section
-        class="hero"
-      >
-        <img src="{% static 'background-image.webp' %}" class="hero-image"  alt="Background Image"/>
+      <section class="hero">
+        <img
+          src="{% static 'background-image.webp' %}"
+          class="hero-image"
+          alt="Background Image"
+        />
+        <div class="backdrop"></div>
         <div class="hero-content">
-          <div class="max-w-md">
-            <h1 class="text-5xl font-bold">
+            <h1 class="title">
               Βρες το <b>Book café</b> που σου ταιριάζει!
             </h1>
-            <div class="mt-8 flex justify-center space-x-4">
-              <a class="btn" href="/cafes">Ανακαλυψε!</a>
-              <a href="/map" class="btn btn-neutral">
+            <div class="group-buttons">
+              <a class="button primary-button  buttons-hero" href="/cafes">Ανακαλυψε!</a>
+              <a href="/map" class="button secondary-button buttons-hero">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -54,20 +55,20 @@
                 <span>Βρες τα στον χαρτη</span>
               </a>
             </div>
-          </div>
+
         </div>
       </section>
-      <section class="bg-secondary text-on-secondary py-20">
-        <div class="container mx-auto text-center">
-          <div class="max-w-2xl mx-auto">
-            <p class="text-lg mb-8">
+      <section class="about-us">
+        <div class="container">
+          <div class="about-us-content">
+            <p class="paragraph">
               Είμαστε μια παρέα που μας αρέσει να διαβάζουμε σε καφετέριες, για
               να αλλάζουμε παραστάσεις! Δεν βρίσκαμε όμως, πολλά book cafe, ή
               αρκετά από αυτά ήταν μακριά από εκεί που μέναμε. Γι'αυτό, είπαμε
               να φτιάξουμε την δικιά μας λίστα με τις καφετέριες που μας αρέσει
               να διαβάζουμε και να την μοιραστούμε.
             </p>
-            <a href="/cafes" class="btn btn-neutral"
+            <a href="/cafes" class="button primary-button about-button"
               >Που θα πας για διάβασμα;</a
             >
           </div>
@@ -75,22 +76,21 @@
       </section>
 
       {% if collections|length > 1 %}
-      <section class="container mx-auto py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 hover:underline">
+      <section class="container commonSectionPadding">
+        <h2 class="commonSectionTitle">
           <a
             href="/collections/{{collection.slug}}"
-            class="hover:text-primary hover:underline"
           >
             Book Cafe Playlist
           </a>
         </h2>
-        <div class="flex flex-wrap justify-center gap-4">
+        <div class="collections-grid">
           {% for collection in collections %}
           <a
             href="/collections/{{collection.slug}}"
-            class="card w-80 bg-base-100 shadow-xl"
+            class="card"
           >
-            <figure class="relative h-48">
+            <figure>
               <img
                 src="https://cafe.book-community.com/media/{{collection.thumbnail}}"
                 alt="{{collection.name}}"
@@ -105,7 +105,7 @@
         </div>
         <a
           href="/collections"
-          class="btn btn-neutral mt-8 flex justify-center w-fit mx-auto"
+          class="button primary-button view-all-collections"
           >Δες όλες τις λίστες</a
         >
       </section>

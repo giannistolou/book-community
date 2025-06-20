@@ -10,7 +10,7 @@ module.exports = {
     common: "./style/common.scss",
   },
   output: {
-    filename: '[name].js',
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist/style"),
     clean: true,
   },
@@ -66,5 +66,5 @@ module.exports = {
         },
       },
     ],
-  }
+  },
 };
