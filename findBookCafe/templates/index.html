@@ -33,29 +33,28 @@
         />
         <div class="backdrop"></div>
         <div class="hero-content">
-            <h1 class="title">
-              Βρες το <b>Book café</b> που σου ταιριάζει!
-            </h1>
-            <div class="group-buttons">
-              <a class="button primary-button  buttons-hero" href="/cafes">Ανακαλυψε!</a>
-              <a href="/map" class="button secondary-button buttons-hero">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-map"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  />
-                </svg>
-                <span>Βρες τα στον χαρτη</span>
-              </a>
-            </div>
-
+          <h1 class="title">Βρες το <b>Book café</b> που σου ταιριάζει!</h1>
+          <div class="group-buttons">
+            <a class="button primary-button buttons-hero" href="/cafes"
+              >Ανακαλυψε!</a
+            >
+            <a href="/map" class="button secondary-button buttons-hero">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                />
+              </svg>
+              <span>Βρες τα στον χαρτη</span>
+            </a>
+          </div>
         </div>
       </section>
       <section class="about-us">
@@ -78,30 +77,12 @@
       {% if collections|length > 1 %}
       <section class="container commonSectionPadding">
         <h2 class="commonSectionTitle">
-          <a
-            href="/collections/{{collection.slug}}"
-          >
-            Book Cafe Playlist
-          </a>
+          <a href="/collections/{{collection.slug}}"> Book Cafe Playlist </a>
         </h2>
         <div class="collections-grid">
           {% for collection in collections %}
-          <a
-            href="/collections/{{collection.slug}}"
-            class="card"
-          >
-            <figure>
-              <img
-                src="https://cafe.book-community.com/media/{{collection.thumbnail}}"
-                alt="{{collection.name}}"
-                class="absolute inset-0 w-full h-full object-cover"
-              />
-            </figure>
-            <div class="card-body">
-              <h3 class="card-title">{{collection.title}}</h3>
-            </div>
-          </a>
-          {% endfor %}
+           {% include "components/collection-card.html" with collection=collection %}
+          {%endfor %}
         </div>
         <a
           href="/collections"

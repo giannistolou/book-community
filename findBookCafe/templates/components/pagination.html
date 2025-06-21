@@ -1,0 +1,19 @@
+{% if pagination.has_other_pages %}
+<div class="pagination commonSectionPadding">
+  {% if pagination.has_previous %}
+  <a
+    href="?page={{ pagination.previous_page_number }}"
+    class="button secondary-button"
+  >
+    &laquo; Προηγούμενη</a
+  >
+  {% endif %} {% if pagination.has_next %}
+  <a
+    href="?page={{ pagination.next_page_number }}"
+    class="button secondary-button"
+  >
+    Επόμενη &raquo;
+  </a>
+  {% endif %}
+</div>
+{% endif %}

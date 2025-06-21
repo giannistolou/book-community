@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     cafe: "./style/screens/cafe/index.scss",
     common: "./style/common.scss",
+    collections: "./style/screens/cafe/collections.scss"
   },
   output: {
     filename: "[name].js",
