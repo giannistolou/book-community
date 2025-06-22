@@ -1,0 +1,84 @@
+@use "../theme" as *;
+@use "sass:map";
+@use "sass:color";
+
+.navbar {
+  background-color: $primary;
+  color: $on-primary;
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  a {
+    text-decoration: none;
+    color: $on-primary;
+    font-family: $primary-font;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+    font-family: $primary-font;
+    &:hover {
+      color: color.adjust($on-primary, $lightness: -20%);
+    }
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 2rem;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+
+ 
+  }
+     .menu-item {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: $borderRadius;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 1rem;
+
+      & > .icon {
+        svg {
+          width: 1.5rem;
+          height: 1.5rem;
+          aspect-ratio: 1;
+        }
+      }
+
+      &:hover {
+        background-color: color.adjust($primary, $lightness: -10%);
+      }
+    }
+
+  .mobile-menu {
+    display: none;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+
+    .menu-icon {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+    }
+  }
+}

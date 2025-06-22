@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:color";
 @use "./components/newsletter.scss" as *;
+@use "./components/navbar.scss" as *;
 
 body {
   margin: 0;
@@ -142,3 +143,4 @@ img {
     opacity: 0.6;
   }
 }
+

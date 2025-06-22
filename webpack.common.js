@@ -1,14 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 
 module.exports = {
-  mode: "production",
   entry: {
     cafe: "./style/screens/cafe/index.scss",
     common: "./style/common.scss",
-    collections: "./style/screens/cafe/collections.scss"
+    collections: "./style/screens/cafe/collections.scss",
   },
   output: {
     filename: "[name].js",
@@ -19,7 +17,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new CssMinimizerPlugin(),
   ],
   module: {
     rules: [
@@ -44,7 +41,6 @@ module.exports = {
           },
         ],
       },
-
       {
         test: /\.(woff(2)?|ttf|eot|svg)$/,
         use: [
