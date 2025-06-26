@@ -1,7 +1,7 @@
 $primary: #4e3e2f;
 $secondary: #ece3ca;
 $background: #F8F4E9;
-
+$surface: $background;
 // https://www.accessibilitychecker.org/color-contrast-checker/
 $black: #333333;
 $white: #ffffff;
@@ -9,6 +9,7 @@ $white: #ffffff;
 $on-background: $black;
 $on-primary: $white;
 $on-secondary: $black;
+$on-surface: $on-background;
 
 
 $newsletter-background: #3a3950;
