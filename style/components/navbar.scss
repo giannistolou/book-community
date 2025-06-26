@@ -14,6 +14,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
   }
+
   a {
     text-decoration: none;
     color: $on-primary;
@@ -27,11 +28,22 @@
   }
 
   .logo {
-    font-size: 1.5rem;
     font-weight: bold;
 
-    @include media-breakpoint-up(lg) {
-      font-size: 2rem;
+    svg {
+      width: 1.5rem;
+      fill: white;
+
+      g {
+        fill: white;
+      }
+      @include media-breakpoint-up(lg) {
+        width: 2rem;
+      }
+    }
+
+    @include animHover(background-color, 0.3s, ease-in-out) {
+      background-color: color.adjust($primary, $lightness: -10%);
     }
   }
 
@@ -43,30 +55,28 @@
     @include media-breakpoint-down(md) {
       display: none;
     }
-
- 
   }
-     .menu-item {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      border-radius: $borderRadius;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      gap: 1rem;
+  .menu-item {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
 
-      & > .icon {
-        svg {
-          width: 1.5rem;
-          height: 1.5rem;
-          aspect-ratio: 1;
-        }
-      }
-
-      &:hover {
-        background-color: color.adjust($primary, $lightness: -10%);
+    & > .icon {
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        aspect-ratio: 1;
       }
     }
+
+     @include animHover(background-color) {
+      background-color: color.adjust($primary, $lightness: -10%);
+    }
+  }
 
   .mobile-menu {
     display: none;

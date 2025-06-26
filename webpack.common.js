@@ -7,6 +7,7 @@ module.exports = {
     cafe: "./style/screens/cafe/index.scss",
     common: "./style/common.scss",
     collections: "./style/screens/cafe/collections.scss",
+    navbar: "./style/components/navbar.scss",
   },
   output: {
     filename: "[name].js",
