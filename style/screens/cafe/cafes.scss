@@ -1,5 +1,7 @@
-@import "./theme.scss";
-@import "./cafeItem.scss";
+@use "../../theme.scss" as *;
+@use "../../cafeItem.scss" as *;
+@use "../../components/tabs.scss" as *;
+@use "sass:color";
 
 .cafes-title {
 	font-family: "Verdana", sans-serif;
@@ -12,7 +14,7 @@
 	border-radius: 10px;
 	font-weight: 500;
 	
-	@media only screen and (min-width: $lg) {
+	@include media-breakpoint-up(lg) {
 		font-size: 2rem;
 	}
 }
@@ -24,7 +26,7 @@
 	row-gap: 1rem;
 	padding: 0.5rem;
 
-	@media only screen and (min-width: $lg) {
+	@include media-breakpoint-up(lg) {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -55,7 +57,7 @@
 		color: $on-primary;
 	}
 
-	@media only screen and (min-width: $lg) {
+	@include media-breakpoint-up(lg) {
 		.chip:not(.chip-active):hover {
 			background-color: $primary;
 			color: $on-primary;

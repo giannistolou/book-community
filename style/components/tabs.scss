@@ -1,0 +1,63 @@
+@use "../theme" as *;
+@use "sass:color";
+
+.tab-container{
+    margin-top: 2rem;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $primary;
+  width: fit-content;
+  border-radius: $borderRadius;
+  padding: 0.5rem;
+  gap: 1rem;
+
+  &.tabs-boxed {
+    background: color.adjust($primary, $lightness: 10%);
+    box-shadow: 0 2px 8px rgba($black, 0.05);
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $primary-font;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: $on-primary;
+  background: transparent;
+  border: none;
+  border-radius: $borderRadius;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  @include media-breakpoint-up(lg){
+    padding: 0.75rem 1.5rem;
+     font-size: 1rem;
+  }
+
+  &:hover,
+  &:focus {
+    background: color.adjust($primary, $lightness: -5%);
+    color: $on-primary;
+    text-decoration: none;
+    outline: none;
+  }
+
+  &.tab-active {
+    background: $secondary;
+    color: $on-secondary;
+    box-shadow: 0 2px 8px rgba($black, 0.08);
+    cursor: default;
+  }
+
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    fill: currentColor;
+  }
+}
