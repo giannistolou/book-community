@@ -17,15 +17,17 @@ import environ
 DOMAIN_PATHS = ['', 'blog.', 'cafe.', 'www.']
 
 env = environ.Env(
-    DEBUG=(bool, True),
     SECRET_KEY=(str, 'development_stage_key'),
     ALLOWED_HOSTS=(str, '127.0.0.1')
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN")
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor', #TODO remove this
 ]
 
 MIDDLEWARE = [
@@ -82,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bookCommunity.context_processors.book_cafe_domain',
+                'bookCommunity.context_processors.is_debug_mode',
             ],
         },
     },
