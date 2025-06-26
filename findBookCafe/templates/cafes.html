@@ -1,43 +1,31 @@
 <html lang="el">
-  <head>
-    {% load static %} {% include "commonHead.html" %}
-    <title>Βρες την καφετέρια που σου ταιριάζει | {{page_title}}</title>
-    <link
-      rel="canonical"
-      content="https://cafe.book-community.com{{cafe_url}}"
-    />
-    <meta
-      name="keywords"
-      content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη, βιβλιοθήκες, library, libraries"
-    />
-    <meta
-      name="description"
-      content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
-    />
-    <meta
-      property="og:url"
-      content="https://cafe.book-community.com{{cafe_url}}"
-    />
-    <meta property="og:title" content="Book cafes {{page_title}}" />
-    <meta
-      property="og:description"
-      content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
-    />
-    <script src="{% static 'bundle.js' %}" async></script>
-    <link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
-  </head>
 
-  <body>
-    {% include "header.html" %}
-    <main>
-      {%include "tabs.html" with active_tab="cafe"%}
-      <section class="container mx-auto py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 cafes-title">
-          Βρες την καφετέρια που σου ταιριάζει
-        </h2>
-        <div class="cafes-list">{% include "cafesList.html" %}</div>
-      </section>
-      {% include "footer.html" %}
-    </main>
-  </body>
+<head>
+  {% load static %} {% include "commonHead.html" %}
+  <title>Βρες την καφετέρια που σου ταιριάζει | {{page_title}}</title>
+  <link rel="canonical" content="https://cafe.book-community.com{{cafe_url}}" />
+  <meta name="keywords"
+    content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη, βιβλιοθήκες, library, libraries" />
+  <meta name="description" content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!" />
+  <meta property="og:url" content="https://cafe.book-community.com{{cafe_url}}" />
+  <meta property="og:title" content="Book cafes {{page_title}}" />
+  <meta property="og:description" content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!" />
+  <script src="{% static 'bundle.js' %}" async></script>
+  <link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+</head>
+
+<body>
+  {% include "header.html" %}
+  <main>
+    {%include "tabs.html" with active_tab="cafe"%}
+    <section class="container mx-auto py-10">
+      <h2 class="text-3xl font-bold text-center mb-8 cafes-title">
+        Βρες την καφετέρια που σου ταιριάζει
+      </h2>
+      <div class="cafes-list">{% include "cafesList.html" %}</div>
+    </section>
+    {% include "footer.html" %}
+  </main>
+</body>
+
 </html>
