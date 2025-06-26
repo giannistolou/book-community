@@ -8,7 +8,8 @@ module.exports = {
     common: "./style/common.scss",
     collections: "./style/screens/cafe/collections.scss",
     navbar: "./style/components/navbar.scss",
-    cafes: "./style/screens/cafe/cafes.scss"
+    cafes: "./style/screens/cafe/cafes.scss",
+    debug: "./script/debug.js",
   },
   output: {
     filename: "[name].js",

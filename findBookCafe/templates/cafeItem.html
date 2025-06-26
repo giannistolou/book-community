@@ -3,7 +3,7 @@
         {% if cafe_item.type == 'CAF' %}
         <a href="/cafes/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}" class="w-full min-w-full">
             <img
-                src="https://cafe.book-community.com/media/{{cafe_item.thumbnail}}"
+                src="{{ BOOK_CAFE_DOMAIN }}/media/{{cafe_item.thumbnail}}"
                 alt="{{cafe_item.name}}"
                   {% if lazy != False %}
                 loading="lazy"
@@ -14,7 +14,7 @@
         {% else %}
         <a href="/libraries/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}" class="w-full min-w-full">
             <img
-                src="https://cafe.book-community.com/media/{{cafe_item.thumbnail}}"
+                src="{{ BOOK_CAFE_DOMAIN }}/media/{{cafe_item.thumbnail}}"
                 alt="{{cafe_item.name}}"
                    {% if lazy != False %}
                 loading="lazy"
