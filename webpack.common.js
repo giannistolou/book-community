@@ -10,6 +10,7 @@ module.exports = {
     navbar: "./style/components/navbar.scss",
     cafes: "./style/screens/cafe/cafes.scss",
     debug: "./script/debug.js",
+    bookCafe: "./style/screens/cafe/book-cafe.scss",
   },
   output: {
     filename: "[name].js",
