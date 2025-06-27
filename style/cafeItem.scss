@@ -10,10 +10,14 @@
   margin: 0 auto;
   max-width: 1200px;
 
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
+ @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    padding: 2rem 0;
+  }
+
+ @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 
@@ -29,8 +33,7 @@
   font-weight: 600;
   background: $surface;
   box-shadow: 0 2px 8px 0 rgba($black, 0.08);
-
-  @media (min-width: 1024px) {
+ @include media-breakpoint-up(lg) {
     font-size: 2.5rem;
     margin: 3rem 0 2rem 0;
   }
@@ -47,6 +50,7 @@
   margin-bottom: 2rem;
   border: none;
   position: relative;
+  width: 100%;
 
   &:hover {
     box-shadow: 0 8px 32px 0 rgba($black, 0.18);
@@ -113,6 +117,7 @@
     }
 
     .cafe-link {
+      font-family: $primary-font;
       margin-top: 0.5rem;
       font-size: 1.1rem;
       font-weight: 700;
@@ -130,19 +135,5 @@
         color: $on-primary;
       }
     }
-  }
-}
-
-// Responsive: two-column layout on large screens
-@media (min-width: 1024px) {
-  .cafes-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: flex-start;
-  }
-  .cafeItem {
-    width: calc(50% - 1rem);
-    margin-bottom: 2rem;
   }
 }

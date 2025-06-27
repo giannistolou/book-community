@@ -1,6 +1,8 @@
 @use "../../theme.scss" as *;
 @use "../../cafeItem.scss" as *;
 @use "../../components/tabs.scss" as *;
+@use "../../components/badge.scss" as *;
+
 @use "sass:color";
 
 .cafes-title {
@@ -19,7 +21,7 @@
 	}
 }
 
-.cafes-list {
+.cafes-list-container {
 	margin-top: 1rem;
 	display: flex;
 	flex-direction: column;
