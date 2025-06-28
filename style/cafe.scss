@@ -1,7 +1,8 @@
 @import "./theme.scss";
 @import "./cafeItem.scss";
+@use "./components/icons-list.scss" as *;
 
-.cafe {
+.viewCafe {
   padding: 1rem;
 
   .heading-name {
@@ -94,7 +95,6 @@
   }
   .content {
     margin-top: 1rem;
-    padding: 0 1rem;
     line-height: 1.5;
     font-size: 1rem;
     font-family: "Verdana", sans-serif;
@@ -124,9 +124,8 @@
   }
 }
 .description {
-  font-family: "Verdana", sans-serif;
+  font-family: $secondary-font;
   font-size: 1.1rem;
-  padding: 0.5 1rem;
   line-height: 1.6;
 
   margin: 1rem auto;
