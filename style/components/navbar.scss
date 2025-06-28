@@ -5,6 +5,10 @@
 .navbar {
   background-color: $primary;
   color: $on-primary;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:$headerZIndex;
 
   .navbar-container {
     display: flex;

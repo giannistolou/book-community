@@ -1,13 +1,8 @@
-
 @use "../../theme.scss" as *;
 @use "../../cafeItem.scss" as *;
 @use "sass:color";
 
-.cafe {
-  max-width: 1536px; // 2xl container
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-
+.viewCafe {
   .container {
     width: 100%;
     margin-left: auto;
@@ -23,6 +18,7 @@
     color: $on-background;
     text-align: center;
     margin-bottom: 1.5rem;
+    text-transform: capitalize;
 
     @include media-breakpoint-up(lg) {
       font-size: 2.5rem;
@@ -83,7 +79,6 @@
 
   .content {
     margin-top: 1rem;
-    padding: 0 1rem;
     line-height: 1.5;
 
     .icon-item {
@@ -111,9 +106,7 @@
   }
 
   .description {
-    max-width: 72rem;
     margin: 1rem auto;
-    padding: 0 1rem;
     line-height: 1.75;
   }
 
@@ -131,76 +124,37 @@
     }
   }
 
-  .suggestion {
-    margin: 0.5rem auto;
-    border: 2px solid $primary;
-    padding: 1rem;
+  .suggestion-cafes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
 
     @include media-breakpoint-up(lg) {
-      margin: 0 auto;
-    }
-
-    .name {
-      padding: 1rem;
-      background-color: $primary;
-      color: $on-primary;
-      font-family: $primary-font;
-      font-weight: normal;
-      margin: 0;
-      width: fit-content;
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-
-      @include media-breakpoint-up(lg) {
-        font-size: 1.5rem;
-      }
-    }
-
-    .suggestion-cafes {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-
-      @include media-breakpoint-up(md) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      @include media-breakpoint-up(lg) {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-      }
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
     }
   }
-}
 
-// Additional utility classes
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
+  .name {
+    font-family: $primary-font;
+    padding: 1rem;
+    background-color: $primary;
+    color: $on-primary;
+    font-weight: normal;
+    margin: 0;
+    width: fit-content;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-.user-select-none {
-  user-select: none;
-}
-
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.w-full {
-  width: 100%;
+    @include media-breakpoint-up(lg) {
+      font-size: 1.5rem;
+    }
+  }
 }
