@@ -18,24 +18,4 @@
     {% endfor %}
 </section>
 
-{% if page_obj.paginator.num_pages > 1 %}
-<div class="container mx-auto mt-4 flex justify-center">
-    <div class="btn-group flex flex-wrap justify-center gap-2">
-        {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Προηγούμενη</a>
-        {% endif %}
-
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-            <span class="btn btn-neutral">{{ num }}</span>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-            <a href="?page={{ num }}" class="btn btn-outline">{{ num }}</a>
-            {% endif %}
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Επόμενη</a>
-        {% endif %}
-    </div>
-</div>
-{% endif %}
+{% include "components/pagination.html" with pagination=page_obj %}
