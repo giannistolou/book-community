@@ -1,4 +1,6 @@
 @use "./theme" as *;
+@forward "./article-components";
+@forward "./inside-article.scss";
 
 .blog-logo{
     display: flex;

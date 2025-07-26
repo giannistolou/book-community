@@ -1,5 +1,4 @@
 @import "./theme.scss";
-@import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
 
 .articlesGrid{
     display: grid;
@@ -174,7 +173,7 @@ article{
 
     @include media-breakpoint-down(lg) {
         justify-content: center;
-        margin-bottom: $spacer *2;
+        margin-bottom: 2rem;
     }
 
     .img-container {
