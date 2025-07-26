@@ -1,25 +1,5 @@
 {% load static %}
 <footer class="bg-base-200 text-base-content">
-  <div
-    class="cookie-banner hidden flex-col items-center justify-center p-4 bg-secondary-300 rounded-lg shadow-lg"
-  >
-    <p class="text-center">
-      Χρησιμοποιούμε cookies για την υπηρεσία του newsletter, για περισσότερα
-      διάβασε την
-      <a
-        href="https://book-community.com/privacy-policy.html"
-        class="link link-primary"
-        >πολιτική απορρήτου</a
-      >
-    </p>
-    <div class="options flex gap-4 mt-4">
-      <button class="btn btn-outline btn-error" onclick="closeCookieBanner()">
-        Απόρριψη
-      </button>
-      <button class="btn btn-primary btn-success" onclick="acceptCookies()">Αποδοχή</button>
-    </div>
-  </div>
-
   <section class="newsletterSection commonSectionPadding">
     <div class="container">
       <div class="commonSectionTitle title">Κάνε εγγραφή στο newsletter μας</div>
@@ -27,16 +7,7 @@
         Για να μαθαίνεις την πορεία του project και ενδιαφέροντα θέματα γύρω από
         το βιβλίο!
       </div>
-
-      <div id="newsletterProblem" class="hidden">
-        <p class="text-center">
-          Αποδεχτείτε τα cookies για να κάνετε εγγραφή στο newsletter
-        </p>
-        <button class="btn btn-primary" onclick="acceptCookies()">
-          Αποδοχή cookies
-        </button>
-      </div>
-      <div id="newsletter" class="hidden">{% include "newsletter.html" %}</div>
+      <div id="newsletter">{% include "newsletter.html" %}</div>
     </div>
   </section>
   {% comment %} <div class="bg-purple-600">
@@ -101,38 +72,3 @@
     </div>
   </section>
 </footer>
-
-<script>
-  var cookieBanner = document.querySelector(".cookie-banner");
-  var newsletterProblem = document.querySelector("#newsletterProblem");
-  var newsletter = document.getElementById("newsletter");
-
-  function showCookieBanner() {
-    if (localStorage.getItem("cookieSeen") != "shown") {
-      cookieBanner.style.display = "flex";
-      newsletterProblem.style.display = "flex";
-    } else {
-      acceptCookies();
-    }
-
-    document.removeEventListener("click", showCookieBanner);
-    document.removeEventListener("scroll", showCookieBanner);
-  }
-
-  function closeCookieBanner() {
-    cookieBanner.style.animation = "cookieHide 1s";
-    setTimeout(() => {
-      cookieBanner.style.display = "none";
-    }, 1000);
-  }
-
-  function acceptCookies() {
-    closeCookieBanner();
-    newsletterProblem.style.display = "none";
-    localStorage.setItem("cookieSeen", "shown");
-    newsletter.style.display = "flex";
-  }
-
-  document.addEventListener("click", showCookieBanner);
-  document.addEventListener("scroll", showCookieBanner);
-</script>
