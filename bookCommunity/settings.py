@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import environ
+import sentry_sdk
 
 DOMAIN_PATHS = ['', 'blog.', 'cafe.', 'www.']
 
@@ -37,6 +38,8 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
+SENTRY_DSN = env("SENTRY_DSN")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -153,3 +156,11 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PROSE_ATTACHMENT_ALLOWED_FILE_SIZE = 15
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    environment="development" if DEBUG else "production",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    send_default_pii=True,
+)
