@@ -12,6 +12,7 @@ module.exports = {
     debug: "./script/debug.js",
     bookCafe: "./style/screens/cafe/book-cafe.scss",
     commonBlog: "./style/commonBlog.scss",
+    landing: "./style/landing.scss",
   },
   output: {
     filename: "[name].js",
