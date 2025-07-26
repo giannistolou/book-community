@@ -101,6 +101,8 @@
     width: 100%;
     aspect-ratio: 1.947368421;
     display: block;
+    margin-bottom: 1rem;
+
     img{
         position: absolute;
         width: 100%;
@@ -112,6 +114,7 @@
 
 
 .articleContent {
+    margin-bottom: 1rem;
     p {
         margin-bottom: 1rem; // Add bottom margin for spacing
         color: #333; // Replace with your desired text color
@@ -181,6 +184,7 @@
     margin-right: 1rem; // Equivalent to mr-4 in Tailwind
     margin-bottom: 1rem; // Equivalent to mb-4 in Tailwind
     gap: 0.75rem; // Equivalent to space-x-3 in Tailwind
+    margin-bottom: 2rem;
 
     li {
         display: inline-block;
