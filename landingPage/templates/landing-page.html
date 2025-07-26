@@ -29,6 +29,7 @@
 	<meta property="og:title" content="Book community" />
 	<meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
 	<meta property="og:image" content="{% static '/favicons/favicon-32x32.png' %}" />
+	{% include 'script-loads.html' %}
 </head>
 
 <body>
@@ -243,11 +244,6 @@
 			<div class="subtitle">
 				Για να μαθαίνεις την πορεία του project και ενδιαφέροντα θέματα γύρω από το βιβλίο!
 			</div>
-
-			<div id="newsletterProblem" style="display: none;">
-				<p style="text-align: center;">Αποδεχτείτε τα cookies για να κάνετε εγγραφή στο newsletter</p>
-				<button class="btnCookie" onclick="acceptCookies()">Αποδοχή cookies</button>
-			</div>
 			{% include "newsletter.html" %}
 		</div>
 
@@ -271,47 +267,6 @@
 			</div>
 		</div>
 	</footer>
-	<div class="cookie-banner" style="display: none;">
-		<p>
-			Χρησιμοποιούμε cookies για την υπηρεσία του newsletter, για περισσότερα διάβασε την
-			<a href="privacy-policy.html">πολιτική απορρήτου</a>
-		</p>
-		<div class="options">
-			<button class="decline" onclick="closeCookieBanner()">Απόρριψη</button>
-			<button class="accept" onclick="acceptCookies()">Αποδοχή</button>
-		</div>
-
-	</div>
-	<script>
-		var date = new Date;
-		document.getElementById("copyright").innerHTML = "&copy; " + date.getFullYear();
-		var cookieBanner = document.querySelector(".cookie-banner");
-		var decline = document.querySelector(".decline");
-		var accept = document.querySelector(".accept");
-		var iframes = document.querySelectorAll("iframe");
-		var newsletterProblem = document.querySelector("#newsletterProblem");
-
-		if (localStorage.getItem('cookieSeen') != 'shown') {
-			cookieBanner.style.display = "flex";
-			newsletterProblem.style.display = "flex";
-		} else {
-			acceptCookies();
-		}
-
-		function closeCookieBanner() {
-			cookieBanner.style.animation = "cookieHide 1s";
-			setTimeout(() => {
-				cookieBanner.style.display = "none";
-			}, 1000)
-
-		}
-
-		function acceptCookies() {
-			closeCookieBanner();
-			newsletterProblem.style.display = "none";
-			localStorage.setItem('cookieSeen', 'shown');
-		}
-	</script>
 </body>
 
 </html>
