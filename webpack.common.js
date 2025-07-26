@@ -11,6 +11,7 @@ module.exports = {
     cafes: "./style/screens/cafe/cafes.scss",
     debug: "./script/debug.js",
     bookCafe: "./style/screens/cafe/book-cafe.scss",
+    commonBlog: "./style/commonBlog.scss",
   },
   output: {
     filename: "[name].js",
