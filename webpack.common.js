@@ -13,6 +13,7 @@ module.exports = {
     bookCafe: "./style/screens/cafe/book-cafe.scss",
     commonBlog: "./style/commonBlog.scss",
     landing: "./style/landing.scss",
+    bio: "./style/bio.scss",
   },
   output: {
     filename: "[name].js",
