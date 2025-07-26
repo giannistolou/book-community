@@ -140,6 +140,34 @@ function loadClarity() {
   }
 }
 
+// Function to load Mailchimp based on consent
+function loadMailchimp() {
+  console.log('loadMailchimp called, checking marketing consent...');
+  console.log('Current consent state:', cookieConsent);
+  
+  const mcSignup = document.getElementById('mc_embed_signup');
+  console.log('Found mc_embed_signup element:', mcSignup);
+  
+  if (window.hasConsentFor && window.hasConsentFor('marketing')) {
+    // Show Mailchimp signup form
+    if (mcSignup) {
+      mcSignup.classList.add('show-newsletter');
+      mcSignup.style.display = 'block';
+      mcSignup.style.visibility = 'visible';
+      console.log('Mailchimp: Newsletter signup form shown with user consent');
+    } else {
+      console.warn('Mailchimp: mc_embed_signup element not found in DOM');
+    }
+  } else {
+    // Hide Mailchimp signup form
+    if (mcSignup) {
+      mcSignup.classList.remove('show-newsletter');
+      mcSignup.style.display = 'none';
+      console.log('Mailchimp: Newsletter signup form hidden (no marketing consent)');
+    }
+  }
+}
+
 // Load scripts based on initial consent state
 function loadConsentBasedScripts() {
   // Reset blocked services array
@@ -150,6 +178,7 @@ function loadConsentBasedScripts() {
   setTimeout(() => loadSentry(), 100);
   setTimeout(() => loadGoogleAnalytics(), 200); 
   setTimeout(() => loadClarity(), 300);
+  setTimeout(() => loadMailchimp(), 500); // Increased delay for DOM readiness
   
   // Check for blocked services after attempting to load
   setTimeout(() => {
@@ -158,6 +187,26 @@ function loadConsentBasedScripts() {
     }
   }, 1500);
 }
+
+// Manual function to show newsletter (for debugging)
+window.showNewsletterManually = function() {
+  const mcSignup = document.getElementById('mc_embed_signup');
+  if (mcSignup) {
+    mcSignup.classList.add('show-newsletter');
+    mcSignup.style.display = 'block';
+    mcSignup.style.visibility = 'visible';
+    console.log('Newsletter manually shown');
+  } else {
+    console.log('mc_embed_signup not found');
+  }
+};
+
+// Manual function to check consent state (for debugging)
+window.checkConsentState = function() {
+  console.log('Current consent:', cookieConsent);
+  console.log('Has marketing consent:', window.hasConsentFor('marketing'));
+  console.log('mc_embed_signup element:', document.getElementById('mc_embed_signup'));
+};
 
 // Listen for cookie consent changes
 if (window.addEventListener) {
@@ -171,7 +220,6 @@ if (window.addEventListener) {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     loadConsentBasedScripts();
-    myUndefinedFunction();
   }, 1000);
   
 });
@@ -179,6 +227,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- GDPR Cookie Consent Banner -->
 <style>
+/* Initially hide Mailchimp form until consent is given */
+#mc_embed_signup {
+  display: none !important;
+}
+
+/* Show Mailchimp form when consent is given */
+#mc_embed_signup.show-newsletter {
+  display: block !important;
+}
+
 .gdpr-banner {
   position: fixed;
   bottom: 0;
