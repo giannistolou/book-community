@@ -99,11 +99,13 @@ body {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
+  max-width: 100%;
+  padding: 1rem 0;
 }
 
 .bio-link {
   display: block;
-  width: 100%;
+  width: 75%;
   padding: 1rem 1.5rem;
   background: white;
   border: 2px solid transparent;
@@ -116,6 +118,7 @@ body {
   box-shadow: 0 2px 8px rgba(99, 86, 66, 0.1);
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
   
   &::before {
     content: '';
