@@ -682,6 +682,12 @@ input:disabled + .cookie-slider {
     <span class="close-modal" onclick="closeCookieSettings()">&times;</span>
     <h2 style="margin: 1rem 0;">Ρυθμίσεις Cookies</h2>
     
+    <p style="text-align: center; margin-bottom: 25px; color: #6B5D4F;">
+      Διαχειριστείτε τις προτιμήσεις σας για cookies. Διαβάστε την 
+      <a href="/privacy-policy" target="_blank" style="color: #8B7355; text-decoration: underline;">Πολιτική Απορρήτου</a> 
+      για περισσότερες πληροφορίες.
+    </p>
+    
     <div class="cookie-category">
       <h3>
         Απαραίτητα Cookies
@@ -734,9 +740,20 @@ input:disabled + .cookie-slider {
       <button class="gdpr-btn gdpr-btn-accept" onclick="saveAndAcceptSelected()">
         Αποθήκευση Προτιμήσεων
       </button>
-      <button class="gdpr-btn gdpr-btn-decline" onclick="closeCookieSettings()">
+      <button class="gdpr-btn gdpr-btn-decline" onclick="withdrawAllConsent(); closeCookieSettings();">
+        Απόρριψη Όλων
+      </button>
+      <button class="gdpr-btn gdpr-btn-settings" onclick="closeCookieSettings()">
         Ακύρωση
       </button>
+    </div>
+    
+    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e3e1de; text-align: center;">
+      <small style="color: #8B7355; font-size: 12px; line-height: 1.4;">
+        🔒 <strong>Τα δικαιώματά σας:</strong> Μπορείτε να αλλάξετε τις προτιμήσεις σας ανά πάσα στιγμή, 
+        να ζητήσετε διαγραφή των δεδομένων σας ή να αποσύρετε τη συγκατάθεσή σας. 
+        <br>Επικοινωνήστε μαζί μας για περισσότερες πληροφορίες.
+      </small>
     </div>
   </div>
 </div>
@@ -753,15 +770,31 @@ let cookieConsent = {
 // Track which services were blocked
 let blockedServices = [];
 
-// Check if consent already exists
+// Check if consent already exists and is still valid
 function checkExistingConsent() {
   const consent = localStorage.getItem('book_community_cookie_consent');
-  if (consent) {
+  const consentDate = localStorage.getItem('book_community_cookie_consent_date');
+  
+  if (consent && consentDate) {
     try {
+      const savedDate = new Date(consentDate);
+      const now = new Date();
+      const daysDiff = (now - savedDate) / (1000 * 60 * 60 * 24);
+      
+      // GDPR: Consent expires after 12 months (365 days)
+      if (daysDiff > 365) {
+        console.log('Cookie consent expired, requesting new consent');
+        localStorage.removeItem('book_community_cookie_consent');
+        localStorage.removeItem('book_community_cookie_consent_date');
+        return false;
+      }
+      
       cookieConsent = JSON.parse(consent);
       return true;
     } catch (e) {
       console.error('Error parsing cookie consent:', e);
+      localStorage.removeItem('book_community_cookie_consent');
+      localStorage.removeItem('book_community_cookie_consent_date');
     }
   }
   return false;
@@ -961,19 +994,51 @@ function saveAndAcceptSelected() {
   loadConsentBasedScripts();
 }
 
-// Save consent to localStorage
+// Save consent to localStorage with timestamp
 function saveConsent() {
   localStorage.setItem('book_community_cookie_consent', JSON.stringify(cookieConsent));
+  localStorage.setItem('book_community_cookie_consent_date', new Date().toISOString());
   
   // Dispatch event for other scripts to listen to
   window.dispatchEvent(new CustomEvent('cookieConsentChanged', { 
     detail: cookieConsent 
   }));
+  
+  console.log('GDPR: Consent saved with timestamp');
 }
 
 // Global function to check consent
 window.hasConsentFor = function(category) {
   return cookieConsent[category] === true;
+};
+
+// GDPR: Function to get consent record (for audit purposes)
+window.getConsentRecord = function() {
+  const consent = localStorage.getItem('book_community_cookie_consent');
+  const date = localStorage.getItem('book_community_cookie_consent_date');
+  
+  if (consent && date) {
+    return {
+      consent: JSON.parse(consent),
+      timestamp: date,
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
+  }
+  return null;
+};
+
+// GDPR: Function to withdraw all consent
+window.withdrawAllConsent = function() {
+  cookieConsent = {
+    necessary: true,
+    functionality: false,
+    analytics: false,
+    marketing: false
+  };
+  saveConsent();
+  loadConsentBasedScripts();
+  console.log('GDPR: All non-essential consent withdrawn');
 };
 
 // Initialize banner on page load
