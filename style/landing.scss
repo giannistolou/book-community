@@ -51,6 +51,10 @@ $spacer: 1rem;
 	flex-wrap: wrap;
 	flex-direction: row;
 
+	@include media-breakpoint-up(lg){
+		flex-wrap: nowrap;
+	}
+
 	a {
 		text-decoration: none;
 	}
@@ -484,7 +488,7 @@ html ::selection {
 
 
 	.bookCover {
-		width: 100%;
+		width: 50%;
 		padding: $spacer * 2;
 		color: $primaryBackgroundColor;
 		text-align: center;
@@ -507,12 +511,12 @@ html ::selection {
 		}
 
 		.book-title {
-			font-size: 2.5rem;
+			font-size: 1.5rem;
 			margin-bottom: $spacer;
 			@include bookFonts;
 
 			@include media-breakpoint-up(lg) {
-				font-size: 3rem;
+				font-size: 2.5rem;
 			}
 		}
 
