@@ -173,7 +173,7 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 1rem; // Add bottom margin for spacing
+        margin-bottom: 1rem;
     }
     
 }
@@ -181,9 +181,9 @@
 .tag-list {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 1rem; // Equivalent to mr-4 in Tailwind
-    margin-bottom: 1rem; // Equivalent to mb-4 in Tailwind
-    gap: 0.75rem; // Equivalent to space-x-3 in Tailwind
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    gap: 0.75rem;
     margin-bottom: 2rem;
 
     li {
@@ -191,17 +191,17 @@
 
         a {
             display: block;
-            padding: 0.5rem 1rem; // Equivalent to px-4 py-2 in Tailwind
-            border-radius: 0.5rem; // Equivalent to rounded-lg in Tailwind
-            background-color: #f0f0f0; // Replace with your theme light color
-            color: #333; // Replace with your dark text color
-            font-weight: 600; // Equivalent to font-semibold in Tailwind
-            font-size: 0.875rem; // Equivalent to text-sm in Tailwind
+            padding: 0.5rem 1rem; 
+            border-radius: 0.5rem; 
+            background-color: #f0f0f0; 
+            color: $black; 
+            font-weight: 600; 
+            font-size: 0.875rem; 
             text-decoration: none;
-            transition: color 0.3s, background-color 0.3s; // Equivalent to transition duration-300 in Tailwind
+            transition: color 0.3s, background-color 0.3s; 
 
             &:hover {
-                color: #007bff; // Replace with your primary color
+                color: #007bff;
             }
         }
     }
