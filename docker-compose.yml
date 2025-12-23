@@ -5,7 +5,7 @@ services:
             sh -c "python3 manage.py collectstatic --noinput --clear &&
                    gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000"
         volumes:
-            - staticfiles:/home/app/web/staticfiless
+            - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles
             - database:/home/app/web/database
         expose:
