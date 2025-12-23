@@ -3,11 +3,13 @@ FROM node:20.18 as dependencies
 
 COPY ./package.json .
 RUN yarn install --no-cache
-COPY ./webpack.config.js .
+COPY ./webpack.common.js .
+COPY ./webpack.prod.js .
 COPY ./style ./style
 COPY ./app.js .
 COPY ./fonts ./fonts
 COPY ./images ./images
+COPY ./script ./script
 RUN yarn build --no-cache
 COPY . .
 
