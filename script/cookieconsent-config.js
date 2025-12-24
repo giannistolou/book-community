@@ -158,7 +158,8 @@ const CookieConsentFun = () => {
   let blockedServices = [];
 
   function hasConsentFor(cookie, category) {
-    const isInLoad = cookie?.categories && cookie.categories.includes(category);
+    const acceptedCategories = cookie?.level || [];
+    const isInLoad = Array.isArray(acceptedCategories) && acceptedCategories.includes(category);
     return isInLoad ?? false;
   }
 
@@ -181,20 +182,6 @@ const CookieConsentFun = () => {
     }
   }
 
-  function loadPlausible(cookie) {
-    if (
-      hasConsentFor(cookie, "analytics") &&
-      currentAppConfig.plausible_domain &&
-      !window.plausible
-    ) {
-      const script = document.createElement("script");
-      script.defer = true;
-      script.src = `https://${currentAppConfig.plausible_domain}/js/plausible.js`;
-      script["data-domain"] = currentAppConfig.plausible_domain;
-      script.onerror = () => blockedServices.push("Plausible");
-      document.head.appendChild(script);
-    }
-  }
 
   function loadGoogleAnalytics(cookie) {
     if (
@@ -246,7 +233,6 @@ const CookieConsentFun = () => {
     blockedServices = [];
 
     setTimeout(() => loadSentry(cookie), 100);
-    setTimeout(() => loadPlausible(cookie), 200);
     setTimeout(() => loadGoogleAnalytics(cookie), 300);
     setTimeout(() => loadClarity(cookie), 400);
     setTimeout(() => loadMailchimp(cookie), 500);
