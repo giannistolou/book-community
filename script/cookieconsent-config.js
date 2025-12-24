@@ -11,7 +11,6 @@ const APP_CONFIGS = {
   blog: {
     gtag_id: "",
     clarity_id: "",
-    plausible_domain: "blog.book-community.com",
     sentry_dsn:
       "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
     sentry_environment: "blog",
@@ -19,7 +18,6 @@ const APP_CONFIGS = {
   cafe: {
     gtag_id: "G-86MQLKEQCZ",
     clarity_id: "sl12n9f03c",
-    plausible_domain: "cafe.book-community.com",
     sentry_dsn:
       "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
     sentry_environment: "cafe",
@@ -27,7 +25,6 @@ const APP_CONFIGS = {
   main: {
     gtag_id: "",
     clarity_id: "",
-    plausible_domain: "book-community.com",
     sentry_dsn:
       "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
     sentry_environment: "main",
