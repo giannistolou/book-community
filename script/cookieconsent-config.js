@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/browser";
+
 const APP_TYPE = (() => {
   const hostname = location.hostname;
   if (hostname.includes("cafe.")) return "cafe";
@@ -159,7 +161,9 @@ const CookieConsentFun = () => {
 
   function hasConsentFor(cookie, category) {
     const acceptedCategories = cookie?.level || [];
-    const isInLoad = Array.isArray(acceptedCategories) && acceptedCategories.includes(category);
+    const isInLoad =
+      Array.isArray(acceptedCategories) &&
+      acceptedCategories.includes(category);
     return isInLoad ?? false;
   }
 
@@ -173,15 +177,16 @@ const CookieConsentFun = () => {
       script.src = currentAppConfig.sentry_dsn.split("@")[0] + ".min.js";
       script.crossOrigin = "anonymous";
       script.onload = () =>
-        window.Sentry?.init({
-          dsn: currentAppConfig.sentry_dsn,
-          environment: currentAppConfig.sentry_environment,
+        Sentry.init({
+          dsn: "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
+          integrations: [Sentry.browserTracingIntegration()],
+          tracesSampleRate: 1.0,
+          sendDefaultPii: true,
         });
       script.onerror = () => blockedServices.push("Sentry");
       document.head.appendChild(script);
     }
   }
-
 
   function loadGoogleAnalytics(cookie) {
     if (

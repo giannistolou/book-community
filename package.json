@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "license": "GPL-3.0",
   "dependencies": {
+    "@sentry/browser": "^10.32.1",
     "bootstrap": "^5.2.3",
     "vanilla-cookieconsent": "3.1.0"
   },
