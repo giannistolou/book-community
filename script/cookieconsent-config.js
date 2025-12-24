@@ -1,283 +1,136 @@
-const APP_TYPE = '{{ type|default:"main" }}';
-  const APP_CONFIGS = {
-  blog: {
-    gtag_id: '',
-    clarity_id: '',
-    plausible_domain: 'blog.book-community.com',
-    sentry_dsn: 'https://3b208bcd006ce709256308f182d0c37c@sentry.io/123456',
-    sentry_environment: 'blog'
-  },
-  cafe: {
-     gtag_id: 'G-86MQLKEQCZ',
-    clarity_id: 'sl12n9f03c',
-    plausible_domain: 'cafe.book-community.com',
-    sentry_dsn: 'https://cafe-sentry-dsn@sentry.io/456789', 
-    sentry_environment: 'cafe'
-  },
-  main: {
-    gtag_id: '',
-    clarity_id: '',
-    plausible_domain: 'book-community.com',
-    sentry_dsn: 'https://3b208bcd006ce709256308f182d0c37c@sentry.io/123456',
-    sentry_environment: 'main'
-  }
+const APP_TYPE = (() => {
+  const hostname = location.hostname;
+  if (hostname.includes("cafe.")) return "cafe";
+  if (hostname.includes("blog.")) return "blog";
+  return "main";
+})();
+
+const APP_CONFIGS = {
+  blog: { gtag_id: "", clarity_id: "", plausible_domain: "blog.book-community.com", sentry_dsn: "https://3b208bcd006ce709256308f182d0c37c@sentry.io/123456", sentry_environment: "blog" },
+  cafe: { gtag_id: "G-86MQLKEQCZ", clarity_id: "sl12n9f03c", plausible_domain: "cafe.book-community.com", sentry_dsn: "https://cafe-sentry-dsn@sentry.io/456789", sentry_environment: "cafe" },
+  main: { gtag_id: "", clarity_id: "", plausible_domain: "book-community.com", sentry_dsn: "https://3b208bcd006ce709256308f182d0c37c@sentry.io/123456", sentry_environment: "main" }
 };
 
-// Get current app config
 const currentAppConfig = APP_CONFIGS[APP_TYPE] || APP_CONFIGS.main;
 
 CookieConsent.run({
-  // https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
-  guiOptions: {
-    consentModal: {
-      layout: "cloud inline",
-      position: "bottom center",
-      equalWeightButtons: true,
-      flipButtons: false,
-    },
-    preferencesModal: {
-      layout: "box",
-      equalWeightButtons: true,
-      flipButtons: false,
-    },
-  },
-
-  onFirstConsent: ({ cookie }) => {
-    console.log("onFirstConsent fired", cookie);
-  },
-
-  onConsent: ({ cookie }) => {
-    console.log("onConsent fired!", cookie);
-  },
-
-  onChange: ({ changedCategories, changedServices }) => {
-    console.log("onChange fired!", changedCategories, changedServices);
-  },
-
-  onModalReady: ({ modalName }) => {
-    console.log("ready:", modalName);
-  },
-
-  onModalShow: ({ modalName }) => {
-    console.log("visible:", modalName);
-  },
-
-  onModalHide: ({ modalName }) => {
-    console.log("hidden:", modalName);
-  },
-
   categories: {
-    necessary: {
-      enabled: true,
-      readOnly: true,
-    },
-    analytics: {
-      autoClear: {
-        cookies: [
-          {
-            name: /^_ga/,
-          },
-          {
-            name: "_gid",
-          },
-          {
-            name: /^_gat/,
-          },
-          {
-            name: /^_cl_/,
-          },
-        ],
-      },
-
-      // https://cookieconsent.orestbida.com/reference/configuration-reference.html#category-services
-      services: {
-        ga: {
-          label: "Google Analytics",
-          onAccept: () => {
-            loadGoogleAnalytics();
-          },
-          onReject: () => {},
-        },
-        clarity: {
-          label: "Microsoft Clarity",
-          onAccept: () => {
-            loadClarity();
-          },
-          onReject: () => {},
-        },
-      },
-    },
-    marketing: {
-      autoClear: {
-        cookies: [
-          {
-            name: "mailchimp_*",
-          },
-        ],
-      },
-      services: {
-        mailchimp: {
-          label: "Mailchimp Newsletter Signup",
-          onAccept: () => {
-            loadMailchimp();
-          },
-          onReject: () => {
-            hideMailchimp();
-          },
-        },
-      },
-    },
+    necessary: { enabled: true, readOnly: true },
+    functionality: { label: "Λειτουργικότητα", description: "Παρακολούθηση σφαλμάτων.", cookies: [{ id: "sentry", name: "_sentry", domain: location.hostname, path: "/", category: "functionality" }] },
+    analytics: { label: "Analytics & Μετρήσεις", description: "Ανάλυση επισκεψιμότητας.", cookies: [
+      ...(currentAppConfig.gtag_id ? [{ id: "google-analytics", name: "_ga,_gid", domain: ".google-analytics.com", path: "/", category: "analytics" }] : []),
+      ...(currentAppConfig.clarity_id ? [{ id: "clarity", name: "_clck,_clsk", domain: ".clarity.ms", path: "/", category: "analytics" }] : []),
+      { id: "plausible", name: "plausible_*", domain: currentAppConfig.plausible_domain, path: "/", category: "analytics" }
+    ]},
+    marketing: { label: "Marketing & Newsletter", description: "Newsletter.", cookies: [{ id: "mailchimp", name: "_mcid", domain: ".book-community.com", path: "/", category: "marketing" }] }
   },
-
   language: {
     default: "el",
     translations: {
       el: {
-        consentModal: {
-          title: "🍪 Χρήση Cookies",
-          description:
-            "Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας.",
-          acceptAllBtn: "Αποδοχή Όλων",
-          acceptNecessaryBtn: "Μόνο Απαραίτητα",
-          showPreferencesBtn: "Ρυθμίσεις",
-          // closeIconLabel: 'Reject all and close modal',
-          footer: `
-                        <a href="#path-to-impressum.html" target="_blank">Impressum</a>
-                        <a href="#path-to-privacy-policy.html" target="_blank">Privacy Policy</a>
-                    `,
-        },
+        consentModal: { title: "🍪 Χρήση Cookies", description: "Βελτιώνουμε την εμπειρία σας.", acceptAllBtn: "Αποδοχή Όλων", acceptNecessaryBtn: "Μόνο Απαραίτητα", showPreferencesBtn: "Ρυθμίσεις" },
         preferencesModal: {
           title: "Ρυθμίσεις Cookies",
           acceptAllBtn: "Αποδοχή Όλων",
           acceptNecessaryBtn: "Απόρριψη Όλων",
-          savePreferencesBtn: "Αποθήκευση Προτιμήσεων",
-          closeIconLabel: "Κλείσιμο",
-          serviceCounterLabel: "Υπηρεσία|Υπηρεσίες",
+          savePreferencesBtn: "Αποθήκευση",
           sections: [
-            {
-              title: "Οι επιλογές σας για την ιδιωτικότητα",
-              description: "Διαχειριστείτε τις προτιμήσεις σας για cookies.",
-            },
-            {
-              title: "Απαραίτητα Cookies",
-              description:
-                "Αυτά τα cookies είναι απαραίτητα για τη σωστή λειτουργία του ιστότοπου και δεν μπορούν να απενεργοποιηθούν.",
-              linkedCategory: "necessary",
-            },
-            {
-              title: "Analytics & Μετρήσεις",
-              description:
-                "Κατανόηση χρήσης του ιστότοπου από τους επισκέπτες.",
-              linkedCategory: "analytics",
-            },
-            {
-              title: "Newsletter και Marketing",
-              description:
-                "Αυτά τα cookies χρησιμοποιούνται για να κάνουν τα διαφημιστικά μηνύματα πιο σχετικά με εσάς και τα ενδιαφέροντά σας. Στόχος είναι η εμφάνιση διαφημίσεων που είναι σχετικές και ελκυστικές για κάθε χρήστη και επομένως πιο πολύτιμες για τους εκδότες και τους τρίτους διαφημιστές.",
-              linkedCategory: "marketing",
-            },
-            {
-              title: "Περισσότερες πληροφορίες",
-              description:
-                'Για οποιαδήποτε ερώτηση σχετικά με την πολιτική μας για τα cookies και τις επιλογές σας, παρακαλούμε <a href="/privacy-policy">επικοινωνήστε μαζί μας</a>',
-            },
-          ],
-        },
-      },
-    },
+            { title: "Οι επιλογές σας", description: "Διαχειριστείτε cookies." },
+            { title: "Απαραίτητα", description: "Απαραίτητα για λειτουργία.", linkedCategory: "necessary" },
+            { title: "Analytics", description: "Ανάλυση χρήσης.", linkedCategory: "analytics" },
+            { title: "Marketing", description: "Newsletter.", linkedCategory: "marketing" },
+            { title: "Πληροφορίες", description: '<a href="/privacy-policy">Πολιτική</a> | <a href="/terms">Όροι</a>' }
+          ]
+        }
+      }
+    }
   },
+  guiOptions: { consentModal: { layout: "cloud", position: "bottom center" }, preferencesModal: { layout: "box", position: "right panel" } },
+  
+  // ✅ ΠΕΡΑΣΝΟΥΜΕ το cookie object ΚΑΤΕΘΕΙΑΝ
+  onFirstConsent: ({ cookie }) => loadConsentBasedScripts(cookie),
+  onConsent: ({ cookie }) => loadConsentBasedScripts(cookie)
 });
 
-// Move ALL your functions here (globally available)
+// ✅ ΧΡΗΣΙΜΟΠΟΙΕΙ το cookie.categories απευθείας - ΚΑΝΕΝΑ API call
 let blockedServices = [];
-let cookieConsent = {}; // Will be populated by CookieConsent
 
-// Your existing functions (unchanged)
-function loadSentry() {
-  if (CookieConsent.hasConsent("functionality.sentry")) {
-    if (window.Sentry) return console.log("Sentry: Already loaded");
-    const script = document.createElement("script");
-    script.src =
-      "https://js-de.sentry-cdn.com/3b208bcd006ce709256308f182d0c37c.min.js";
-    script.crossOrigin = "anonymous";
-    script.onload = function () {
-      try {
-        Sentry.init({
-          /* your config */
-        });
-        console.log("Sentry: Loaded");
-      } catch (e) {
-        console.warn("Sentry init error:", e);
-      }
-    };
+function hasConsentFor(cookie, category) {
+  return cookie?.categories?.[category]?.enabled ?? false;
+}
+
+function loadSentry(cookie) {
+  if (hasConsentFor(cookie, 'functionality') && currentAppConfig.sentry_dsn && !window.Sentry) {
+    const script = document.createElement('script');
+    script.src = currentAppConfig.sentry_dsn.split('@')[0] + '.min.js';
+    script.crossOrigin = 'anonymous';
+    script.onload = () => window.Sentry?.init({ dsn: currentAppConfig.sentry_dsn, environment: currentAppConfig.sentry_environment });
+    script.onerror = () => blockedServices.push('Sentry');
     document.head.appendChild(script);
   }
 }
 
-function loadGoogleAnalytics() {
-  if (CookieConsent.hasConsent("analytics.googleAnalytics")) {
-    if (window.gtag || window.dataLayer)
-      return console.log("GA: Already loaded");
-    // Your existing GA code...
-    const script1 = document.createElement("script");
+function loadPlausible(cookie) {
+  if (hasConsentFor(cookie, 'analytics') && currentAppConfig.plausible_domain && !window.plausible) {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = `https://${currentAppConfig.plausible_domain}/js/plausible.js`;
+    script['data-domain'] = currentAppConfig.plausible_domain;
+    script.onerror = () => blockedServices.push('Plausible');
+    document.head.appendChild(script);
+  }
+}
+
+function loadGoogleAnalytics(cookie) {
+  if (hasConsentFor(cookie, 'analytics') && currentAppConfig.gtag_id && !window.gtag) {
+    const script1 = document.createElement('script');
     script1.async = true;
-    script1.src = "https://www.googletagmanager.com/gtag/js?id=G-86MQLKEQCZ";
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${currentAppConfig.gtag_id}`;
+    script1.onerror = () => blockedServices.push('Google Analytics');
     document.head.appendChild(script1);
-    // etc...
+
+    const script2 = document.createElement('script');
+    script2.innerHTML = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${currentAppConfig.gtag_id}',{anonymize_ip:true});`;
+    document.head.appendChild(script2);
   }
 }
 
-function loadClarity() {
-  if (CookieConsent.hasConsent("analytics.clarity")) {
-    // Your existing Clarity code...
+function loadClarity(cookie) {
+  if (hasConsentFor(cookie, 'analytics') && currentAppConfig.clarity_id && !window.clarity) {
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",currentAppConfig.clarity_id);
   }
 }
 
-function loadMailchimp() {
-  if (CookieConsent.hasConsent("marketing.mailchimp")) {
-    const mcSignup = document.getElementById("mc_embed_signup");
-    if (mcSignup) {
-      mcSignup.classList.add("show-newsletter");
-      mcSignup.style.display = "block";
-    }
+function loadMailchimp(cookie) {
+  if (hasConsentFor(cookie, 'marketing')) {
+    const mcSignup = document.getElementById('mc_embed_signup');
+    if (mcSignup) mcSignup.style.display = 'block';
   }
 }
 
-function hideMailchimp() {
-  const mcSignup = document.getElementById("mc_embed_signup");
-  if (mcSignup) {
-    mcSignup.classList.remove("show-newsletter");
-    mcSignup.style.display = "none";
-  }
-}
-
-function loadConsentBasedScripts() {
+function loadConsentBasedScripts(cookie) {
   blockedServices = [];
-  window.blockedServices = blockedServices;
-
-  // Load based on CookieConsent state
-  setTimeout(() => loadSentry(), 100);
-  setTimeout(() => loadGoogleAnalytics(), 200);
-  setTimeout(() => loadClarity(), 300);
-  setTimeout(() => loadMailchimp(), 500);
-
+  
+  setTimeout(() => loadSentry(cookie), 100);
+  setTimeout(() => loadPlausible(cookie), 200);
+  setTimeout(() => loadGoogleAnalytics(cookie), 300);
+  setTimeout(() => loadClarity(cookie), 400);
+  setTimeout(() => loadMailchimp(cookie), 500);
+  
   setTimeout(() => {
     if (blockedServices.length > 0) showBlockedServicesNotification();
   }, 1500);
 }
 
-// Keep your other functions: showBlockedServicesNotification, etc.
-// Update consent checks to use CookieConsent.hasConsent('category.service')
+function showBlockedServicesNotification() {
+  if (blockedServices.length === 0) return;
+  
+  const notification = document.createElement('div');
+  notification.style.cssText = 'position:fixed;top:20px;right:20px;background:#F8F4E9;color:#635642;padding:15px;border-radius:8px;border:2px solid #8B7355;z-index:10002;font-family:Arial;max-width:350px;';
+  notification.innerHTML = `🛡️ Μερικές υπηρεσίες αναλύσεων μπλοκαρίστηκαν (ad blocker).<button onclick="this.parentElement.remove()" style="margin-left:10px;background:none;border:none;font-size:18px;cursor:pointer;">×</button>`;
+  document.body.appendChild(notification);
+  setTimeout(() => notification.remove(), 8000);
+}
 
-// Global consent check (replaces your window.hasConsentFor)
-window.hasConsentFor = function (servicePath) {
-  return CookieConsent.hasConsent(servicePath);
-};
+window.hasConsentFor = (category) => hasConsentFor(CookieConsent.getCookie(), category);
 
-// Init Mailchimp CSS
-document.addEventListener("DOMContentLoaded", function () {
-  var link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = "//cdn-images.mailchimp.com/embedcode/classic-071822.css";
-  document.head.appendChild(link);
-});
