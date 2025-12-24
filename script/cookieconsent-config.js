@@ -155,7 +155,8 @@ const CookieConsentFun = () => {
   let blockedServices = [];
 
   function hasConsentFor(cookie, category) {
-    return cookie?.categories?.[category]?.enabled ?? false;
+    const isInLoad = cookie?.categories && cookie.categories.includes(category);
+    return isInLoad ?? false; 
   }
 
   function loadSentry(cookie) {
@@ -210,7 +211,8 @@ const CookieConsentFun = () => {
     }
   }
 
-  function loadClarity(cookie) {
+  function loadClarity() {
+    
     if (
       hasConsentFor(cookie, "analytics") &&
       currentAppConfig.clarity_id &&
@@ -247,9 +249,9 @@ const CookieConsentFun = () => {
     setTimeout(() => loadClarity(cookie), 400);
     setTimeout(() => loadMailchimp(cookie), 500);
 
-    setTimeout(() => {
-      if (blockedServices.length > 0) showBlockedServicesNotification();
-    }, 1500);
+    // setTimeout(() => {
+    //   if (blockedServices.length > 0) showBlockedServicesNotification();
+    // }, 1500);
   }
 
   function showBlockedServicesNotification() {
