@@ -43,15 +43,7 @@ const CookieConsentFun = () => {
       functionality: {
         label: "Λειτουργικότητα",
         description: "Παρακολούθηση σφαλμάτων.",
-        cookies: [
-          {
-            id: "sentry",
-            name: "sentry-*",
-            domain: ".sentry.io",
-            path: "/",
-            category: "functionality",
-          },
-        ],
+        cookies: [],
       },
       analytics: {
         label: "Analytics & Μετρήσεις",
