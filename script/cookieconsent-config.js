@@ -46,8 +46,8 @@ const CookieConsentFun = () => {
         cookies: [
           {
             id: "sentry",
-            name: "_sentry",
-            domain: location.hostname,
+            name: "sentry-*",
+            domain: ".sentry.io",
             path: "/",
             category: "functionality",
           },
@@ -61,8 +61,8 @@ const CookieConsentFun = () => {
             ? [
                 {
                   id: "google-analytics",
-                  name: "_ga,_gid",
-                  domain: location.hostname,
+                  name: "_ga,_gid,_gat",
+                  domain: ".book-community.com",
                   path: "/",
                   category: "analytics",
                 },
@@ -72,20 +72,13 @@ const CookieConsentFun = () => {
             ? [
                 {
                   id: "clarity",
-                  name: "_clck,_clsk",
-                  domain: location.hostname,
+                  name: "_clck,_clsk,CLID",
+                  domain: ".book-community.com",
                   path: "/",
                   category: "analytics",
                 },
               ]
             : []),
-          {
-            id: "plausible",
-            name: "plausible_*",
-            domain: currentAppConfig.plausible_domain,
-            path: "/",
-            category: "analytics",
-          },
         ],
       },
       marketing: {
