@@ -142,7 +142,7 @@ const CookieConsentFun = () => {
   let blockedServices = [];
 
   function hasConsentFor(cookie, category) {
-    const acceptedCategories = cookie?.level || [];
+    const acceptedCategories = cookie?.categories || [];
     const isInLoad =
       Array.isArray(acceptedCategories) &&
       acceptedCategories.includes(category);
