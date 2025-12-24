@@ -62,7 +62,7 @@ const CookieConsentFun = () => {
                 {
                   id: "google-analytics",
                   name: "_ga,_gid",
-                  domain: ".google-analytics.com",
+                  domain: location.hostname,
                   path: "/",
                   category: "analytics",
                 },
@@ -73,7 +73,7 @@ const CookieConsentFun = () => {
                 {
                   id: "clarity",
                   name: "_clck,_clsk",
-                  domain: ".clarity.ms",
+                  domain: location.hostname,
                   path: "/",
                   category: "analytics",
                 },
