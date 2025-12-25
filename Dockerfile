@@ -2,7 +2,7 @@
 FROM node:20.18 as dependencies
 
 COPY ./package.json .
-RUN yarn install --no-cache
+RUN yarn install
 COPY ./webpack.common.js .
 COPY ./webpack.prod.js .
 COPY ./style ./style
@@ -10,7 +10,7 @@ COPY ./app.js .
 COPY ./fonts ./fonts
 COPY ./images ./images
 COPY ./script ./script
-RUN yarn build --no-cache
+RUN yarn build
 COPY . .
 
 
