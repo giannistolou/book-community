@@ -35,7 +35,7 @@ BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = False #env('DEBUG')
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
 SENTRY_DSN = env("SENTRY_DSN")
