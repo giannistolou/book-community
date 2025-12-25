@@ -15,7 +15,7 @@ COPY . .
 
 
 
-FROM python:3.12-alpine as production
+FROM python:3.10.6-alpine as production
 
 RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
