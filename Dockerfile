@@ -1,6 +1,7 @@
 # pull official base image
-FROM node:20.18 as dependencies
+FROM node:20.18 AS dependencies  
 
+WORKDIR /app
 COPY ./package.json .
 RUN yarn install --no-cache
 COPY ./webpack.common.js .
@@ -13,44 +14,41 @@ COPY ./script ./script
 RUN yarn build
 COPY . .
 
+FROM python:3.12-slim AS production  
 
+# Install system dependencies FIRST (add only what requirements.txt needs)
+RUN apt-get update && apt-get install -y \
+    gcc g++ && \
+    rm -rf /var/lib/apt/lists/*
 
-FROM python:3.12-slim as production
+# Create app user and ALL directories as root
+RUN groupadd -r app && \
+    useradd -r -g app -m -d /home/app app && \
+    mkdir -p /home/app/web/{staticfiles,uploadsfiles,database} && \
+    chown -R app:app /home/app
 
-
-# Install system dependencies FIRST
-RUN apt-get update && apt-get install -y
-    
-RUN mkdir -p /home/app \
-    && groupadd -r app \
-    && useradd -r -g app -m -d /home/app app
-
+# Switch to app user
 USER app
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
-RUN mkdir $APP_HOME/uploadsfiles
-RUN mkdir $APP_HOME/database
 
+# Environment variables (fixed syntax)
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install Python dependencies as root (for system libs)
 USER root
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# install dependencies
+COPY requirements.txt .
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install --no-cache-dir  -r requirements.txt
-COPY --from=dependencies --chown=app:app ./dist ./dist
-# copy project
-COPY ./public ./public
-COPY  --chown=app:app . . 
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy with proper ownership
+COPY --from=dependencies --chown=app:app /app/dist ./dist
+COPY --chown=app:app ./public ./public
+COPY --chown=app:app . .
 
 USER app
 EXPOSE 8000
-
 
 CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]
