@@ -21,9 +21,9 @@ FROM python:3.12-slim as production
 # Install system dependencies FIRST
 RUN apt-get update && apt-get install -y
     
-RUN mkdir -p /home/app
-RUN addgroup -S app && adduser -S app -G app
-# set work directory
+RUN mkdir -p /home/app \
+    && groupadd -r app \
+    && useradd -r -g app -m -d /home/app app
 
 USER app
 ENV HOME=/home/app
@@ -33,6 +33,7 @@ WORKDIR $APP_HOME
 RUN mkdir $APP_HOME/staticfiles
 RUN mkdir $APP_HOME/uploadsfiles
 RUN mkdir $APP_HOME/database
+
 USER root
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
