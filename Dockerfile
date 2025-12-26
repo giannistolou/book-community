@@ -15,8 +15,14 @@ COPY . .
 
 
 
-FROM python:3.12 as production
+FROM python:3.12-slim as production
 
+
+# Install system dependencies FIRST
+RUN apt-get update && apt-get install -y \
+    libjpeg62-turbo-dev libpng-dev libwebp-dev libtiff-dev libfreetype6-dev \
+    && rm -rf /var/lib/apt/lists/*
+    
 RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
 # set work directory
