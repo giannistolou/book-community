@@ -47,7 +47,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY --from=dependencies --chown=app:app /app/dist ./dist
 COPY --chown=app:app ./public ./public
 COPY --chown=app:app . .
-RUN python manage.py collectstatic --noinput --clear
+RUN python manage.py collectstatic --noinput --clear && \
+    chown -R app:app /home/app/web/staticfiles /home/app/web/uploadsfiles
 USER app
 EXPOSE 8000
 
