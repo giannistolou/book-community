@@ -1,6 +1,7 @@
-# pull official base image
+# Stage 1: Build assets
 FROM node:20.18 as dependencies
 
+WORKDIR /build
 COPY ./package.json .
 RUN yarn install --no-cache
 COPY ./webpack.common.js .
@@ -11,45 +12,51 @@ COPY ./fonts ./fonts
 COPY ./images ./images
 COPY ./script ./script
 RUN yarn build
-COPY . .
 
-
-
-FROM python:3.12-slim as production
-
+# Stage 2: Python app
+FROM python:3.12-slim
 
 # Install system dependencies FIRST
-RUN apt-get update && apt-get install -y
-    
-RUN mkdir -p /home/app
-RUN addgroup -S app && adduser -S app -G app
-# set work directory
+RUN apt-get update && apt-get install -y \
+    libjpeg-dev \
+    libpng-dev \
+    zlib1g-dev \
+    libwebp-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-USER app
-ENV HOME=/home/app
-ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
-RUN mkdir $APP_HOME/uploadsfiles
-RUN mkdir $APP_HOME/database
-USER root
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
 
-# install dependencies
+# Create app user
+RUN groupadd -r app && useradd -r -g app app
+
+# Create directories
+RUN mkdir -p /home/app/web
+WORKDIR /home/app/web
+RUN mkdir -p staticfiles uploadsfiles database
+
+# Environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install Python dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
-RUN pip install --no-cache-dir  -r requirements.txt
-COPY --from=dependencies --chown=app:app ./dist ./dist
-# copy project
-COPY ./public ./public
-COPY  --chown=app:app . . 
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy webpack assets
+COPY --from=dependencies --chown=app:app /build/dist ./dist
+
+# Copy project
+COPY --chown=app:app . .
+COPY ./public ./public
+
+# Set permissions
+RUN chown -R app:app /home/app/web
 
 USER app
 EXPOSE 8000
 
-
-CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "bookCommunity.wsgi:application", \
+     "--workers=3", \
+     "--worker-class=gevent", \
+     "--timeout=300", \
+     "--bind=0.0.0.0:8000"]
