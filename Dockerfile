@@ -2,7 +2,7 @@
 FROM node:20.18 as dependencies
 
 COPY ./package.json .
-RUN yarn install
+RUN yarn install --no-cache
 COPY ./webpack.common.js .
 COPY ./webpack.prod.js .
 COPY ./style ./style
@@ -37,7 +37,7 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir  -r requirements.txt
 COPY --from=dependencies --chown=app:app ./dist ./dist
 # copy project
 COPY ./public ./public
