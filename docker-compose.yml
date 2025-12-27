@@ -33,8 +33,6 @@ services:
       user: root 
     nginx:
         build: ./nginx
-        ports:
-          - "8080:80"
         volumes:
             - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles
