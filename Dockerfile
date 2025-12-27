@@ -1,6 +1,7 @@
-# pull official base image
+# Build frontend assets
 FROM node:20.18 as dependencies
 
+WORKDIR /app
 COPY ./package.json .
 RUN yarn install --no-cache
 COPY ./webpack.common.js .
@@ -8,42 +9,55 @@ COPY ./webpack.prod.js .
 COPY ./style ./style
 COPY ./app.js .
 COPY . .
-
 RUN yarn build
 
+# Production Python app
+FROM python:3.10.6 as production
 
+# Install Pillow dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libjpeg-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libtiff-dev \
+    libfreetype6-dev \
+    liblcms2-dev \
+    libwebp-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-FROM python:3.10.6-alpine as production
+# Create app structure and user
+RUN mkdir -p /home/app/web/staticfiles /home/app/web/uploadsfiles /home/app/web/database
+RUN groupadd -r app && useradd -r -g app -d /home/app/web -m app
+RUN chown -R app:app /home/app
 
-RUN mkdir -p /home/app
-RUN addgroup -S app && adduser -S app -G app
-# set work directory
-
+# Switch to app user
 USER app
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
-RUN mkdir $APP_HOME/uploadsfiles
-RUN mkdir $APP_HOME/database
+
+# Back to root for pip install
 USER root
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# install dependencies
+# Install Python dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
+COPY --chown=app:app ./requirements.txt .
 RUN pip install -r requirements.txt
-COPY --from=dependencies --chown=app:app ./dist ./dist
-# copy project
-COPY ./public ./public
-COPY  --chown=app:app . . 
 
+# Copy frontend build
+COPY --from=dependencies --chown=app:app /app/dist ./dist
 
+# Copy project files
+COPY --chown=app:app ./public ./public
+COPY --chown=app:app . .
+
+# Run as app user
 USER app
 EXPOSE 8000
-
 
 CMD ["gunicorn", "bookCommunity.wsgi:application", "--bind", "0.0.0.0:8000"]

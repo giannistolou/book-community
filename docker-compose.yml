@@ -14,9 +14,27 @@ services:
             - ALLOWED_HOSTS
             - DEBUG
             - SECRET_KEY
+        depends_on:
+            - static-init
         restart: always
+
+    static-init:
+      build: ./
+      command: >
+        sh -c "
+          chown -R app:app /home/app/web/staticfiles &&
+          chown -R app:app /home/app/web/uploadsfiles &&
+          chown -R app:app /home/app/web/database
+        "
+      volumes:
+        - staticfiles:/home/app/web/staticfiles
+        - uploadsfiles:/home/app/web/uploadsfiles
+        - database:/home/app/web/database
+      user: root 
     nginx:
         build: ./nginx
+        ports:
+          - "8080:80"
         volumes:
             - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles
