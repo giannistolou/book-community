@@ -1,39 +1,39 @@
-<div class="icons cursor-default select-none flex flex-wrap gap-1 lg:justify-start">
+<div class="icons-list">
     {% if cafe.isCoffeeAllowed %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/cup-fill.svg" %}
     </div>
     {% endif %}
     {% if cafe.isBookShop %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/book.svg" %}
     </div>
     {% endif %}
     {% if cafe.hasLunch %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/egg-fried.svg" %}
     </div>
     {% endif %}
     {% if cafe.internetQuality > '0' %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/wifi.svg" %}
     </div>
     {% else %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/wifi-off.svg" %}
     </div>
     {% endif %}
     {% if cafe.powerOutlets > '0' %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/plug.svg" %}
     </div>
     {% else %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/plug-fill.svg" %}
     </div>
     {% endif %}
     {% if cafe.isAccessibleForPeopleWithDisabilities %}
-    <div class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary">
+    <div class="icon">
         {% include "icons/bootstrap/universal-access.svg" %}
     </div>
     {% endif %}

@@ -2,7 +2,7 @@ services:
     web:
         build: ./
         command: >
-            sh -c "python3 manage.py collectstatic --noinput &&
+            sh -c "python3 manage.py collectstatic --noinput --clear &&
                    gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000"
         volumes:
             - staticfiles:/home/app/web/staticfiles
@@ -14,11 +14,25 @@ services:
             - ALLOWED_HOSTS
             - DEBUG
             - SECRET_KEY
+        depends_on:
+            - static-init
         restart: always
+
+    static-init:
+      build: ./
+      command: >
+        sh -c "
+          chown -R app:app /home/app/web/staticfiles &&
+          chown -R app:app /home/app/web/uploadsfiles &&
+          chown -R app:app /home/app/web/database
+        "
+      volumes:
+        - staticfiles:/home/app/web/staticfiles
+        - uploadsfiles:/home/app/web/uploadsfiles
+        - database:/home/app/web/database
+      user: root 
     nginx:
         build: ./nginx
-        # ports:
-            # - "8000:80"
         volumes:
             - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="el">
   <head>
     {% load static %} {% include "commonHead.html" %}
@@ -19,55 +20,54 @@
       content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
     <link rel="canonical" href="https://cafe.book-community.com/" />
-    <script src="{% static 'bundle.js' %}" async></script>
+    <link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
   </head>
 
-  <body>
+  <body class="viewLandingCafe">
     <main>
-      <section
-        class="hero min-h-screen bg-cover bg-center relative"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1516196252840-f9947d2bcb7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
-        "
-      >
-        <div class="absolute inset-0 bg-black opacity-60"></div>
-        <div class="hero-content text-center text-neutral-content z-10">
-          <div class="max-w-md">
-            <h1 class="text-5xl font-bold">
-              Βρες το <b>Book café</b> που σου ταιριάζει!
-            </h1>
-            <div class="mt-8 flex justify-center space-x-4">
-              <a class="btn" href="/cafes">Ανακαλυψε!</a>
-              <a href="/map" class="btn btn-neutral">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-map"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  /></svg
-                >Βρες τα στον χαρτη
-              </a>
-            </div>
+      <section class="hero">
+        <img
+          src="{% static 'background-image.webp' %}"
+          class="hero-image"
+          alt="Background Image"
+        />
+        <div class="backdrop"></div>
+        <div class="hero-content">
+          <h1 class="title">Βρες το <b>Book café</b> που σου ταιριάζει!</h1>
+          <div class="group-buttons">
+            <a class="button primary-button buttons-hero" href="/cafes"
+              >Ανακαλυψε!</a
+            >
+            <a href="/map" class="button secondary-button buttons-hero">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                />
+              </svg>
+              <span>Βρες τα στον χαρτη</span>
+            </a>
           </div>
         </div>
       </section>
-      <section class="bg-secondary text-on-secondary py-20">
-        <div class="container mx-auto text-center">
-          <div class="max-w-2xl mx-auto">
-            <p class="text-lg mb-8">
+      <section class="about-us">
+        <div class="container">
+          <div class="about-us-content">
+            <p class="paragraph">
               Είμαστε μια παρέα που μας αρέσει να διαβάζουμε σε καφετέριες, για
               να αλλάζουμε παραστάσεις! Δεν βρίσκαμε όμως, πολλά book cafe, ή
               αρκετά από αυτά ήταν μακριά από εκεί που μέναμε. Γι'αυτό, είπαμε
               να φτιάξουμε την δικιά μας λίστα με τις καφετέριες που μας αρέσει
               να διαβάζουμε και να την μοιραστούμε.
             </p>
-            <a href="/cafes" class="btn btn-neutral"
+            <a href="/cafes" class="button primary-button about-button"
               >Που θα πας για διάβασμα;</a
             >
           </div>
@@ -75,33 +75,20 @@
       </section>
 
       {% if collections|length > 1 %}
-      <section class="container mx-auto py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 hover:underline">
-          <a href="/collections/{{collection.slug}}" class="hover:text-primary hover:underline">
-            Book Cafe Playlist
-          </a>
+      <section class="container commonSectionPadding">
+        <h2 class="commonSectionTitle">
+          <a href="/collections/{{collection.slug}}"> Book Cafe Playlist </a>
         </h2>
-        <div class="flex flex-wrap justify-center gap-4">
+        <div class="collections-grid">
           {% for collection in collections %}
-          <a
-            href="/collections/{{collection.slug}}"
-            class="card w-80 bg-base-100 shadow-xl"
-          >
-            <figure class="relative h-48">
-              <img
-                src="https://cafe.book-community.com/media/{{collection.thumbnail}}"
-                alt="{{collection.name}}"
-                class="absolute inset-0 w-full h-full object-cover"
-              />
-            </figure>
-            <div class="card-body">
-              <h3 class="card-title">{{collection.title}}</h3>
-            </div>
-          </a>
-          {% endfor %}
+           {% include "components/collection-card.html" with collection=collection %}
+          {%endfor %}
         </div>
-        <a href="/collections" class="btn btn-neutral mt-8 flex justify-center w-fit mx-auto"
-          >Δες όλες τις λίστες</a>
+        <a
+          href="/collections"
+          class="button primary-button view-all-collections"
+          >Δες όλες τις λίστες</a
+        >
       </section>
       {% endif %} {% include "footer.html" %}
     </main>

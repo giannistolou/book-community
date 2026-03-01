@@ -13,28 +13,33 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import environ
+import sentry_sdk
 
 DOMAIN_PATHS = ['', 'blog.', 'cafe.', 'www.']
 
 env = environ.Env(
-    DEBUG=(bool, True),
     SECRET_KEY=(str, 'development_stage_key'),
     ALLOWED_HOSTS=(str, '127.0.0.1')
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN")
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = False #env('DEBUG')
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
+SENTRY_DSN = env("SENTRY_DSN")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor', #TODO remove this
 ]
 
 MIDDLEWARE = [
@@ -82,6 +88,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bookCommunity.context_processors.book_cafe_domain',
+                'bookCommunity.context_processors.is_debug_mode',
             ],
         },
     },
@@ -141,9 +149,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / "dist",
     BASE_DIR / "public",
+    BASE_DIR / "images",
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PROSE_ATTACHMENT_ALLOWED_FILE_SIZE = 15
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    environment="development" if DEBUG else "production",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    send_default_pii=True,
+)
+
+APPEND_SLASH = True

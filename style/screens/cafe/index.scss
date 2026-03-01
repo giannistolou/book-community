@@ -1,0 +1,97 @@
+@use "../../theme" as *;
+@use "../../components/collections" as *;
+
+.viewLandingCafe {
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+
+    .title {
+      font-family: $primary-font;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .backdrop {
+      background-color: $black;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.6;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      background-color: rgba($black, 0.6);
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .group-buttons {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 2rem;
+      justify-content: center;
+
+      .buttons-hero {
+        @include media-breakpoint-down(md) {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: center;
+          gap: 1rem;
+          justify-content: center;
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        flex-direction: row;
+      }
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $secondary;
+      text-align: center;
+      z-index: 1;
+    }
+  }
+
+  .about-us {
+    background-color: #a4cbb4;
+    color: $primary;
+
+    .about-us-content {
+      padding: 4rem 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .paragraph {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-button {
+      max-width: fit-content;
+      margin: 0 auto;
+    }
+  }
+}

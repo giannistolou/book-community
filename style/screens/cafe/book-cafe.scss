@@ -1,0 +1,161 @@
+@use "../../theme.scss" as *;
+@use "../../cafeItem.scss" as *;
+@use "sass:color";
+
+.viewCafe {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .heading-name {
+    font-family: $primary-font;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $on-background;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  .hero-imgCnt {
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    background: $primary;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+  }
+
+  .selection {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    color: $on-primary;
+
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+      margin: 0 auto;
+      justify-content: space-around;
+    }
+
+    .icon {
+      padding: 0.5rem;
+      border-radius: 9999px;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: currentColor;
+      }
+
+      &:hover {
+        background-color: rgba($on-primary, 0.1);
+      }
+    }
+  }
+
+  .content {
+    margin-top: 1rem;
+    line-height: 1.5;
+
+    .icon-item {
+      font-family: $primary-font;
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      .icon {
+        border: 1px solid $on-secondary;
+        user-select: none;
+        padding: 0.25rem;
+        border-radius: 9999px;
+        color: $on-secondary;
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+  .description {
+    margin: 1rem auto;
+    line-height: 1.75;
+  }
+
+  .cafeMap {
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    @include media-breakpoint-up(lg) {
+      width: 50%;
+      aspect-ratio: 16/9;
+      margin: 2rem auto;
+    }
+  }
+
+  .suggestion-cafes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @include media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  .name {
+    font-family: $primary-font;
+    padding: 1rem;
+    background-color: $primary;
+    color: $on-primary;
+    font-weight: normal;
+    margin: 0;
+    width: fit-content;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.5rem;
+    }
+  }
+}

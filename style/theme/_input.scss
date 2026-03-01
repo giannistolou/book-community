@@ -1,0 +1,30 @@
+
+@use "./colors.scss" as *;
+@use "./mixins.scss" as *;
+@use "sass:map";
+@use "sass:color";
+
+$input-background: $white;
+$input-border: $black;
+$input-border-radius: $borderRadius;
+$input-padding: 0.75rem;
+$input-font-size: 1rem;
+$input-color: $black;
+$input-focus-border: $primary;
+
+@mixin input-style {
+  background-color: $input-background;
+  border: 1px solid $input-border;
+  border-radius: $input-border-radius;
+  padding: $input-padding;
+  font-size: $input-font-size;
+  color: $input-color;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border;
+    box-shadow: 0 0 0 3px color.scale($input-focus-border, $alpha: -70%);
+  }
+}

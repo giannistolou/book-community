@@ -1,81 +1,121 @@
+@use "./theme.scss" as *;
+@use "./components/icons-list.scss" as *;
+@use "sass:color";
+
+
+.cafes-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  margin: 0 auto;
+  width: 100%;
+
+ @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+ @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+.cafes-title {
+  font-family: $primary-font;
+  text-align: center;
+  border: 1px solid $primary;
+  padding: 1rem;
+  margin: 2rem 0 1rem 0;
+  color: $primary;
+  font-size: 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  background: $surface;
+  box-shadow: 0 2px 8px 0 rgba($black, 0.08);
+ @include media-breakpoint-up(lg) {
+    font-size: 2.5rem;
+    margin: 3rem 0 2rem 0;
+  }
+}
+
 .cafeItem {
-	display: flex;
-	column-gap: 1rem;
-	row-gap: 1rem;
-	flex-direction: column;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-	padding-bottom: 1rem;
-	align-items: center;
+  background-color: $surface;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba($black, 0.10);
+  transition: box-shadow 0.3s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: none;
+  position: relative;
+  width: 100%;
 
-	@media only screen and (min-width: $lg) {
-		width: 45%;
-		flex-direction: row;
-	}
+  &:hover {
+    box-shadow: 0 8px 32px 0 rgba($black, 0.18);
+    transform: translateY(-2px) scale(1.01);
+  }
 
-	.imgCnt {
-		position: relative;
-		width: 100%;
-		aspect-ratio: 1.7;
+  .imgCnt {
+    width: 100%;
+    aspect-ratio: 1.7;
+    overflow: hidden;
+    position: relative;
+    background: $background;
+	margin: 0;
 
-		img {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 1rem;
-		}
-	}
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      transition: transform 0.3s;
+      display: block;
+    }
+  }
 
-	.content {
-		display: flex;
-		flex-direction: column;
-		row-gap: 1rem;
-		align-items: center;
+  .card-body {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: $surface;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    text-decoration: none;
 
-		@media only screen and (min-width: $lg) {
-			align-items: flex-start;
-			min-width: 30%;
-		}
 
-		.cafe-link {
-			padding: 1rem;
-			text-transform: capitalize;
-			width: fit-content;
-		}
+    .location {
+      font-size: 1rem;
+      color: $on-background;
+      font-family: $primary-font;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-		svg {
-			margin: 0 0.5rem;
-			width: 1rem;
-			height: 1rem;
-		}
+    .cafe-link {
+      font-family: $primary-font;
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $on-primary;
+      background: $primary;
+      border-radius: 0.5rem;
+      padding: 0.75rem 0;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 8px 0 rgba($black, 0.08);
+      transition: background 0.2s, color 0.2s;
 
-		.location {
-			padding: 0 1rem;
-			font-family: "Verdana", sans-serif;
-			font-weight: 400;
-		}
-
-		.icons {
-			padding: 0 1rem;
-			cursor: default;
-			user-select: none;
-			justify-content: center;
-			display: flex;
-			flex-wrap: wrap;
-			column-gap: 0.2rem;
-			row-gap: 0.2rem;
-
-			@media only screen and (min-width: $lg) {
-				justify-content: flex-start;
-			}
-
-			.icon {
-				border: 1px solid $on-secondary;
-				user-select: none;
-				padding: 0.2rem;
-				border-radius: 100%;
-				color: $on-secondary;
-			}
-		}
-	}
+      &:hover {
+        background: color.adjust($primary, $lightness: -10%);
+        color: $on-primary;
+      }
+    }
+  }
 }
