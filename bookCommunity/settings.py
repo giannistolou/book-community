@@ -35,7 +35,7 @@ BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #env('DEBUG')
+DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
 SENTRY_DSN = env("SENTRY_DSN")
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'adminsortable2',
     'django_quill',
     'prose',
+    'turnstile',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -156,13 +157,17 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PROSE_ATTACHMENT_ALLOWED_FILE_SIZE = 15
-
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    environment="development" if DEBUG else "production",
-    # Add data like request headers and IP for users,
-    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
-    send_default_pii=True,
-)
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        environment="development" if DEBUG else "production",
+        # Add data like request headers and IP for users,
+        # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+        send_default_pii=True,
+    )
 
 APPEND_SLASH = True
+
+RESEND_API_KEY = env("RESEND_API_KEY")
+TURNSTILE_SITE_KEY = env("TURNSTILE_SITE_KEY")
+TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY")
