@@ -1,0 +1,72 @@
+<div
+  id="mc_embed_signup"
+  class="newsletterSection"
+  style="max-width: 880px; margin: 0 auto; width: fit-content; min-width: 100%"
+>
+  <form
+    action="/newsletter-subscribe/"
+    method="post"
+    id="mc-embedded-subscribe-form"
+    class="newsletter-form container-newsletter"
+    style="min-width: 50%"
+  >
+    {% csrf_token %}
+
+    <div id="mc_embed_signup_scroll">
+      <div class="mc-field-group">{{ form.email }}</div>
+
+      <div style="position: absolute; left: -5000px" aria-hidden="true">
+        {{ form.honeypot }}
+      </div>
+
+      <div
+        class="cf-turnstile"
+        data-sitekey="{{ TURNSTILE_SITE_KEY }}"
+        data-callback="onTurnstileSuccess"
+        data-error-callback="onTurnstileError"
+        data-expired-callback="onTurnstileError"
+        style="margin-bottom: 1rem"
+      ></div>
+
+      {% if form.email.errors %}
+      <div class="response error" style="display: block; color: #de350b">
+        {{ form.email.errors.0 }}
+      </div>
+      {% endif %}
+      <div class="optionalParent">
+        <div class="clear foot">
+          <input
+            type="submit"
+            id="submit-btn"
+            value="Εγγραφή"
+            class="button primary-button"
+            style="margin-bottom: 1rem"
+            disabled
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+  <script>
+    const submitBtn = document.getElementById("submit-btn");
+
+    // Called when the user successfully completes the captcha
+    function onTurnstileSuccess(token) {
+      if (token) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.style.cursor = "pointer";
+      }
+    }
+
+    // Called if there is a network error, invalid key, or the token expires
+    function onTurnstileError() {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.5";
+      submitBtn.style.cursor = "not-allowed";
+
+      // Optional: Alert the user or log the error
+      console.error("Cloudflare Turnstile failed to load or validate.");
+    }
+  </script>
+</div>

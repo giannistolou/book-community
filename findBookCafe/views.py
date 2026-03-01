@@ -1,7 +1,11 @@
+from ckeditor_demo import settings
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import Http404
+
+from bookCommunity import settings as settings_app
 from .models import Region, Shop, City, SimplePage, Collection
+from landingPage.forms import SubscribeForm
 
 # Create your views here.
 
@@ -12,11 +16,13 @@ def page500(exception):
     return render('404.html', exception)
 
 def index(request):
+    form = SubscribeForm()
+    TURNSTILE_SITE_KEY = settings_app.TURNSTILE_SITE_KEY
     try:
         collections = Collection.objects.all().order_by('order_position')[:4]
     except:
         collections = []
-    return render(request, 'index.html', {'collections': collections})
+    return render(request, 'index.html', {'collections': collections, 'form': form, 'TURNSTILE_SITE_KEY': TURNSTILE_SITE_KEY})
 
 def findType(url_type):
     if url_type == 'cafes':
