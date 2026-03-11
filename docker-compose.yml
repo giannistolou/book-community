@@ -14,6 +14,9 @@ services:
             - ALLOWED_HOSTS
             - DEBUG
             - SECRET_KEY
+            - TURNSTILE_SITE_KEY
+            - TURNSTILE_SECRET_KEY
+            - RESEND_API_KEY
         depends_on:
             - static-init
         restart: always
