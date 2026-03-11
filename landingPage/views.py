@@ -9,6 +9,7 @@ import resend
 
 
 resend.api_key = settings.RESEND_API_KEY
+TURNSTILE_SECRET = settings.TURNSTILE_SECRET_KEY
 
 def index(request):
     return render(request, 'landing-page.html')
@@ -37,7 +38,7 @@ def subscribe(request):
 
             import requests
             resp = requests.post('https://challenges.cloudflare.com/turnstile/v0/siteverify', 
-                                data={'secret': settings.TURNSTILE_SECRET, 'response': token})
+                                data={'secret': TURNSTILE_SECRET, 'response': token})
             
             if not resp.json().get('success'):
                 messages.error(request, "Captcha failed.")
