@@ -26,6 +26,8 @@ def bio(request):
 def thank_you_subscribe(request):
     return render(request, 'thank-you-subscribe.html')
    
+def newsletter(request):
+    return render(request, 'newsletter-page.html')
 
 def subscribe(request):
     subscribe_form = SubscribeForm(request.POST or None)

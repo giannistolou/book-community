@@ -11,4 +11,5 @@ urlpatterns = [
     # TODO make it universal
     path("newsletter-subscribe/", subscribe, name="newsletter_subscribe"),
     path('thank-you-subscribe/', thank_you_subscribe, name='thank_you_subscribe'),
+    path('newsletter/', views.newsletter, name='newsletter')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
