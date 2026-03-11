@@ -27,12 +27,12 @@ def thank_you_subscribe(request):
    
 
 def subscribe(request):
-    form = SubscribeForm(request.POST or None)
+    subscribe_form = SubscribeForm(request.POST or None)
 
     if request.method == "POST":
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            honeypot = form.cleaned_data['honeypot']
+        if subscribe_form.is_valid():
+            email = subscribe_form.cleaned_data['email']
+            honeypot = subscribe_form.cleaned_data['honeypot']
             token = request.POST.get('cf-turnstile-response')
 
             import requests
@@ -41,7 +41,7 @@ def subscribe(request):
             
             if not resp.json().get('success'):
                 messages.error(request, "Captcha failed.")
-                return render(request, "subscribe-newsletter.html", {'form': form})
+                return render(request, "subscribe-newsletter.html", {'subscribe_form': subscribe_form})
 
             try:
                 resend.Contacts.create({
@@ -54,5 +54,5 @@ def subscribe(request):
         else:
             messages.error(request, "Please correct the errors below.")
 
-    return render(request, "subscribe-newsletter.html", {'form': form})
+    return render(request, "subscribe-newsletter.html", {'subscribe_form': subscribe_form})
         

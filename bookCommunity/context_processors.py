@@ -10,6 +10,6 @@ def is_debug_mode(request):
 
 def common_data(request):
     return {
-        'form': SubscribeForm(),
-        'TURNSTILE_SITE_KEY': settings_app.TURNSTILE_SITE_KEY,
+        'subscribe_form': SubscribeForm(),
+        'TURNSTILE_SITE_KEY': getattr(settings, 'TURNSTILE_SITE_KEY', ''),
     }
