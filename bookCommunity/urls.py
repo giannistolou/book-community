@@ -20,7 +20,7 @@ from django.conf import settings
 from prose import views
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('landingPage.urls')),
     path("attachment/", views.upload_attachment, name="prose_upload_attachment"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
