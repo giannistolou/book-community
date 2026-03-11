@@ -162,6 +162,7 @@ if not DEBUG:
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         environment="development" if DEBUG else "production",
+        debug=DEBUG,
         # Add data like request headers and IP for users,
         # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
         send_default_pii=True,
