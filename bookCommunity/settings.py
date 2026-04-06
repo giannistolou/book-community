@@ -172,6 +172,10 @@ if not DEBUG:
 
 APPEND_SLASH = True
 
+# Referrer Policy for OpenStreetMap tile requests
+# https://wiki.openstreetmap.org/wiki/Referer
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
 RESEND_API_KEY = env("RESEND_API_KEY")
 TURNSTILE_SITE_KEY = env("TURNSTILE_SITE_KEY")
 TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY")
