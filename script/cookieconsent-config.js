@@ -11,6 +11,7 @@ const APP_CONFIGS = {
   blog: {
     gtag_id: "",
     clarity_id: "",
+    //debug: true,
     sentry_dsn:
       "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
     sentry_environment: "blog",

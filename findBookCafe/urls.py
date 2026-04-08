@@ -1,5 +1,7 @@
 from django.urls import path
 
+from landingPage.views import subscribe, thank_you_subscribe
+
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -7,6 +9,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name='index'),
     path('map/', views.map, name='map'),
+        # TODO make it universal
+    path("newsletter-subscribe/", subscribe, name="newsletter_subscribe"),
+    path('thank-you-subscribe/', thank_you_subscribe, name='thank_you_subscribe'),
     path('collections/', views.collections, name="collections"),
     path('collections/<str:page_slug>/', views.collection, name="collection"),
     path('page/<str:page_slug>/', views.simple_page, name='page'),

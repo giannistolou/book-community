@@ -11,9 +11,12 @@ services:
         expose:
             - 8000
         environment:
-            - ALLOWED_HOSTS
-            - DEBUG
-            - SECRET_KEY
+            - ALLOWED_HOSTS=${ALLOWED_HOSTS:?}
+            - DEBUG=${DEBUG:?}
+            - SECRET_KEY=${SECRET_KEY:?}
+            - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY:?}
+            - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY?:}
+            - RESEND_API_KEY=${RESEND_API_KEY?:}
         depends_on:
             - static-init
         restart: always

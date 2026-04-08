@@ -1,6 +1,8 @@
+from ckeditor_demo import settings
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import Http404
+
 from .models import Region, Shop, City, SimplePage, Collection
 
 # Create your views here.

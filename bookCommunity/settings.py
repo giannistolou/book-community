@@ -22,25 +22,27 @@ env = environ.Env(
     ALLOWED_HOSTS=(str, '127.0.0.1')
 )
 
+# 1. Initialize environ
+env = environ.Env(
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ['127.0.0.1']),
+    CSRF_TRUSTED_ORIGINS=(list, []),
+)
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN")
+env_file = os.path.join(BASE_DIR, ".env")
+if os.path.exists(env_file):
+    environ.Env.read_env(env_file)
 
+SECRET_KEY = env("SECRET_KEY", default="change-me-in-coolify-ui")
+DEBUG = env("DEBUG") 
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 
+SENTRY_DSN = env("SENTRY_DSN", default=None)
+BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN", default="localhost")
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #env('DEBUG')
-ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(',')
-CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(',')
-SENTRY_DSN = env("SENTRY_DSN")
-
-# Application definition
 
 INSTALLED_APPS = [
     'findBookCafe.apps.FindbookcafeConfig',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'adminsortable2',
     'django_quill',
     'prose',
+    'turnstile',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -90,6 +93,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bookCommunity.context_processors.book_cafe_domain',
                 'bookCommunity.context_processors.is_debug_mode',
+                'bookCommunity.context_processors.common_data'
             ],
         },
     },
@@ -156,13 +160,22 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PROSE_ATTACHMENT_ALLOWED_FILE_SIZE = 15
-
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    environment="development" if DEBUG else "production",
-    # Add data like request headers and IP for users,
-    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
-    send_default_pii=True,
-)
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        environment="development" if DEBUG else "production",
+        debug=DEBUG,
+        # Add data like request headers and IP for users,
+        # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+        send_default_pii=True,
+    )
 
 APPEND_SLASH = True
+
+# Referrer Policy for OpenStreetMap tile requests
+# https://wiki.openstreetmap.org/wiki/Referer
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+
+RESEND_API_KEY = env("RESEND_API_KEY")
+TURNSTILE_SITE_KEY = env("TURNSTILE_SITE_KEY")
+TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY")
