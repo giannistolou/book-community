@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="retro" lang="el">
+<html lang="el">
    <head>
       <title>Βρες την καφετέρια που σου ταιριάζει</title>
       {% load static %} {% include "commonHead.html" %}
@@ -19,6 +19,7 @@
          content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
       />
       <link rel="stylesheet" href="{% static 'style/theme.css' %}" />
+         <link rel="stylesheet" href="{% static 'style/map.css' %}" />
       <link rel="canonical" href="https://cafe.book-community.com/map/" />
       <meta
          name="viewport"
@@ -35,25 +36,16 @@
          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
          crossorigin=""
       ></script>
-
-      <style>
-         body {
-            margin: 0;
-            padding: 0;
-         }
-         #map {
-            position: absolute;
-            top: 60px;
-            bottom: 0;
-            width: 100%;
-         }
-      </style>
    </head>
    <body>
       {% include "header.html" %}
       <main >
          <div id="map"></div>
+         <section class="nearCafesLocation" id="nearestShopsList">
+</section>
       </main>
+
+
 
       <script>
          var coordinates = [37.9753429, 23.7324272];
@@ -97,8 +89,68 @@
                )
                .addTo(map);
          }
+
+
+        function calculateDistance(locationA, locationB) {
+            const R = 6371; // Earth's radius in km
+            const dLat = (locationB.latitude - locationA.latitude) * Math.PI / 180;
+            const dLon = (locationB.longitude - locationA.longitude) * Math.PI / 180;
+
+            const a =
+               Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+               Math.cos(locationA.latitude * Math.PI / 180) *
+               Math.cos(locationB.latitude * Math.PI / 180) *
+               Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+         }
+
+         function showFourNearest({latitude, longitude}) {
+            var shops = geojson.features;
+            if(!shops || shops.length < 1) {
+               return;
+            }
+
+            for(var i in shops){
+               var shop = shops[i]
+               shop.distance = calculateDistance({
+                  latitude, longitude
+               }, {
+                  latitude: shop.geometry.coordinates[1],
+                  longitude: shop.geometry.coordinates[0],
+               })
+            }
+            shops = shops.sort((shopA, shopB) => shopA.distance - shopB.distance )
+            var shopsToShow = shops.slice(0, 4);
+            var html = shopsToShow.map(shop => `
+                     <div class="cafeItem cafeItemMap">
+                           <a href="${shop.path}/${shop.slug}" class="card-body">
+                              <img
+                              class="thumbnail"
+                              src="https://book-community.com/media/${shop.thumbnail}"
+                              alt="{{shop.name}}"
+                           />
+                              <div class="cafe-link">${shop.name}</div>
+                              <div class="location">${shop.address}, ${shop.distance.toFixed(1)} km</div>
+                           </a>
+                     </div>
+            `).join('');
+
+    document.getElementById('nearestShopsList').innerHTML = html;
+
+         }
+          function reloadNearestShops() {
+            const center = map.getCenter();
+            const coords = {
+               latitude: center.lat,
+               longitude: center.lng
+            };
+          showFourNearest(coords);
+         }
+
+            map.on("moveend", reloadNearestShops);
+            
       </script>
    </body>
 </html>
-
-Copy
