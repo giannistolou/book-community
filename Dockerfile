@@ -1,5 +1,5 @@
 # Build frontend assets
-FROM node:20.18 as dependencies
+FROM node:24.14 as dependencies
 
 WORKDIR /app
 COPY ./package.json .
@@ -12,7 +12,7 @@ COPY . .
 RUN yarn build
 
 # Production Python app
-FROM python:3.10.6 as production
+FROM python:3.12.13 as production
 
 # Install Pillow dependencies
 RUN apt-get update && apt-get install -y \
