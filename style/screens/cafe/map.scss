@@ -49,6 +49,10 @@ body {
          max-width: 20%;
       }
       .thumbnail{
+         display: none;
+         @include media-breakpoint-up(lg) {
+            display: block;
+         }
          width: 200px;
          height: 100px;
          object-fit: cover;
