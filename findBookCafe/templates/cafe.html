@@ -131,6 +131,15 @@
             {% include "icons/link.html" %}</a
           >
           {% endif %}
+          <button
+            style="display: none;"
+            id="shareCafeButton"
+            type="button"
+             class="icon icon-social plausible-event-name=share p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            aria-label="Share this cafe"
+          >
+            {% include "icons/bootstrap/send.svg" %}
+          </button>
         </div>
         <div class="content mt-4 px-4 leading-6">
           <div
@@ -183,6 +192,26 @@
       </section>
       {% endif %}
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (){
+        const browserSupportsShare = !!navigator.share;
+        const shareButton = document.getElementById("shareCafeButton");
+         shareButton.style.display = "block";
+        if (browserSupportsShare) {
+          shareButton.style.display = "block";
+          shareButton.addEventListener("click", function () {
+            navigator.share({
+              title: "{{cafe.name}} | Book Cafe",
+              text: "Δες {% if cafe.type == 'CAF' %}το cafe{% else %}την βιβλιοθήκη{% endif %} {{cafe.name}} που βρήκα στο Book Community!",
+              url: window.location.href,
+            });
+          });
+        } else {
+           shareButton.style.display = "none";
+        }
+      });
+    
+    </script>
     {% include "footer.html" %}
   </body>
 </html>

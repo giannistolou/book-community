@@ -3,6 +3,13 @@
 @use "sass:color";
 
 .viewCafe {
+
+    .icon-social {
+         background-color: transparent;
+         border: 0;
+         cursor: pointer;
+  }
+
   .container {
     width: 100%;
     margin-left: auto;
