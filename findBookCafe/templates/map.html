@@ -41,7 +41,7 @@
       {% include "header.html" %}
       <main >
          <div id="map"></div>
-         <button class="hideSuggestionEye" onclick="toggleNearestShopsList(event)">{% include "icons/bootstrap/eye.svg" %}</button>
+         <button class="hideSuggestionEye" id="toggleButtonShopList" onclick="toggleNearestShopsList(event)">{% include "icons/bootstrap/eye.svg" %}</button>
          <section class="nearCafesLocation" id="nearestShopsList">
 </section>
       </main>
@@ -161,15 +161,14 @@
          function toggleNearestShopsList(e) {
             e.preventDefault();
             const list = document.getElementById('nearestShopsList');
-   
+            const button = document.getElementById('toggleButtonShopList');
+            
             if(list.style.display === 'flex') {
                list.style.display = 'none';
-               e.preventDefault();
-               e.target.classList.add('active');
+               button.classList.add('active');
             } else {
                list.style.display = 'flex';
-               e.preventDefault();
-               e.target.classList.remove('active');
+               button.classList.remove('active');
             }
          }
             
