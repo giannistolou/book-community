@@ -49,6 +49,7 @@
 
 
       <script>
+         var userLocation = null;
          var coordinates = [37.9753429, 23.7324272];
 
          // Initialize the Leaflet map
@@ -63,12 +64,16 @@
          // Geolocation
          function getLocation() {
             if (navigator.geolocation) {
-               navigator.geolocation.getCurrentPosition(showPosition);
+               navigator.geolocation.getCurrentPosition(showPosition, () => map.setView(coordinates, 10));
             }
          }
 
          function showPosition(position) {
             coordinates = [position.coords.latitude, position.coords.longitude];
+            userLocation = {
+               latitude: position.coords.latitude,
+               longitude: position.coords.longitude
+            };
             map.setView(coordinates, 12);
          }
 
@@ -112,7 +117,7 @@
             if(!shops || shops.length < 1) {
                return;
             }
-
+            const hasPermissionsForUserLocation = !!userLocation;
             for(var i in shops){
                var shop = shops[i]
                shop.distance = calculateDistance({
@@ -134,7 +139,7 @@
                               alt="{{shop.name}}"
                            />
                               <div class="cafe-link">${shop.name}</div>
-                              <div class="location">${shop.address}</div>
+                              <div class="location">${shop.address}${hasPermissionsForUserLocation ? ' • ' + calculateDistance(userLocation, { latitude: shop.geometry.coordinates[1], longitude: shop.geometry.coordinates[0] }).toFixed(1) + ' km' : ''}</div>
                            </a>
                      </div>
             `).join('');
