@@ -41,6 +41,7 @@
       {% include "header.html" %}
       <main >
          <div id="map"></div>
+         <button class="hideSuggestionEye" onclick="toggleNearestShopsList(event)">{% include "icons/bootstrap/eye.svg" %}</button>
          <section class="nearCafesLocation" id="nearestShopsList">
 </section>
       </main>
@@ -121,8 +122,9 @@
                   longitude: shop.geometry.coordinates[0],
                })
             }
-            shops = shops.sort((shopA, shopB) => shopA.distance - shopB.distance )
-            var shopsToShow = shops.slice(0, 4);
+            var shopsToShow = shops.filter(shop => shop.distance < 50);
+            shopsToShow = shopsToShow.sort((shopA, shopB) => shopA.distance - shopB.distance )
+            shopsToShow = shopsToShow.slice(0, 4);
             var html = shopsToShow.map(shop => `
                      <div class="cafeItem cafeItemMap">
                            <a href="${shop.path}/${shop.slug}" class="card-body">
@@ -132,7 +134,7 @@
                               alt="{{shop.name}}"
                            />
                               <div class="cafe-link">${shop.name}</div>
-                              <div class="location">${shop.address}, ${shop.distance.toFixed(1)} km</div>
+                              <div class="location">${shop.address}</div>
                            </a>
                      </div>
             `).join('');
@@ -150,6 +152,21 @@
          }
 
             map.on("moveend", reloadNearestShops);
+
+         function toggleNearestShopsList(e) {
+            e.preventDefault();
+            const list = document.getElementById('nearestShopsList');
+   
+            if(list.style.display === 'flex') {
+               list.style.display = 'none';
+               e.preventDefault();
+               e.target.classList.add('active');
+            } else {
+               list.style.display = 'flex';
+               e.preventDefault();
+               e.target.classList.remove('active');
+            }
+         }
             
       </script>
    </body>

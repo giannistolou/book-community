@@ -103,7 +103,7 @@ def map(request):
             path_type = 'libraries'
         path = "/" + path_type + '/' + shop.region.city.slug + '/' + shop.region.slug
         thumbnail = str(shop.thumbnail) if shop.thumbnail else ''
-        data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions': shop.googleMaps, 'path': path, 'shopType': shop_type, 'thumbnail': thumbnail, 'type': "Feature", 'properties': {'iconSize': [60, 60]}, 'geometry': {'type': "Point", 'coordinates': [shop.longitude, shop.latitude]}, 'address': f"{shop.region.name}, {shop.address}"})
+        data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions': shop.googleMaps, 'path': path, 'shopType': shop_type, 'thumbnail': thumbnail, 'type': "Feature", 'properties': {'iconSize': [60, 60]}, 'geometry': {'type': "Point", 'coordinates': [shop.longitude, shop.latitude]}, 'address': f"{shop.address}"})
     return render(request, 'map.html', {'shops': data})
 
 def simple_page(request, page_slug):

@@ -41,6 +41,35 @@ body {
 
 }
 
+.hideSuggestionEye{
+   position: fixed;
+   top: calc($headerHeight + 10px);
+   height: 2.5rem;
+   width: 2.5rem;
+   border-radius: $borderRadius;
+   right: 10px;
+   z-index: 3;
+   background-color: $primary;
+   border: 0;
+   padding: 0;
+   cursor: pointer;
+
+  
+
+   svg{
+      fill: white;
+      width: 1.5rem;
+      height: 1.5rem;
+   }
+   
+   &.active{
+      background-color: white;
+
+      svg{
+         fill: $primary;
+      }
+   }
+}
     .cafeItemMap{
       min-width: 75%;
       height: fit-content;
@@ -49,6 +78,7 @@ body {
          min-width: unset;
          max-width: 20%;
       }
+
       .thumbnail{
          display: none;
          @include media-breakpoint-up(lg) {
