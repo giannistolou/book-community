@@ -14,7 +14,8 @@ module.exports = {
     commonBlog: "./style/commonBlog.scss",
     landing: "./style/landing.scss",
     bio: "./style/bio.scss",
-    cookieConsentConfig: "./script/cookieconsent-config.js"
+    cookieConsentConfig: "./script/cookieconsent-config.js",
+    map: "./style/screens/cafe/map.scss"
   },
   output: {
     filename: "[name].js",

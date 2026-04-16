@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="retro" lang="el">
+<html lang="el">
    <head>
       <title>Βρες την καφετέρια που σου ταιριάζει</title>
       {% load static %} {% include "commonHead.html" %}
@@ -19,6 +19,7 @@
          content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
       />
       <link rel="stylesheet" href="{% static 'style/theme.css' %}" />
+         <link rel="stylesheet" href="{% static 'style/map.css' %}" />
       <link rel="canonical" href="https://cafe.book-community.com/map/" />
       <meta
          name="viewport"
@@ -35,27 +36,20 @@
          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
          crossorigin=""
       ></script>
-
-      <style>
-         body {
-            margin: 0;
-            padding: 0;
-         }
-         #map {
-            position: absolute;
-            top: 60px;
-            bottom: 0;
-            width: 100%;
-         }
-      </style>
    </head>
    <body>
       {% include "header.html" %}
       <main >
          <div id="map"></div>
+         <button class="hideSuggestionEye" id="toggleButtonShopList" onclick="toggleNearestShopsList(event)">{% include "icons/bootstrap/eye.svg" %}</button>
+         <section class="nearCafesLocation" id="nearestShopsList">
+</section>
       </main>
 
+
+
       <script>
+         var userLocation = null;
          var coordinates = [37.9753429, 23.7324272];
 
          // Initialize the Leaflet map
@@ -70,12 +64,16 @@
          // Geolocation
          function getLocation() {
             if (navigator.geolocation) {
-               navigator.geolocation.getCurrentPosition(showPosition);
+               navigator.geolocation.getCurrentPosition(showPosition, () => map.setView(coordinates, 10));
             }
          }
 
          function showPosition(position) {
             coordinates = [position.coords.latitude, position.coords.longitude];
+            userLocation = {
+               latitude: position.coords.latitude,
+               longitude: position.coords.longitude
+            };
             map.setView(coordinates, 12);
          }
 
@@ -97,8 +95,83 @@
                )
                .addTo(map);
          }
+
+
+        function calculateDistance(locationA, locationB) {
+            const R = 6371; // Earth's radius in km
+            const dLat = (locationB.latitude - locationA.latitude) * Math.PI / 180;
+            const dLon = (locationB.longitude - locationA.longitude) * Math.PI / 180;
+
+            const a =
+               Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+               Math.cos(locationA.latitude * Math.PI / 180) *
+               Math.cos(locationB.latitude * Math.PI / 180) *
+               Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+         }
+
+         function showFourNearest({latitude, longitude}) {
+            var shops = geojson.features;
+            if(!shops || shops.length < 1) {
+               return;
+            }
+            const hasPermissionsForUserLocation = !!userLocation;
+            for(var i in shops){
+               var shop = shops[i]
+               shop.distance = calculateDistance({
+                  latitude, longitude
+               }, {
+                  latitude: shop.geometry.coordinates[1],
+                  longitude: shop.geometry.coordinates[0],
+               })
+            }
+            var shopsToShow = shops.filter(shop => shop.distance < 50);
+            shopsToShow = shopsToShow.sort((shopA, shopB) => shopA.distance - shopB.distance )
+            shopsToShow = shopsToShow.slice(0, 4);
+            var html = shopsToShow.map(shop => `
+                     <div class="cafeItem cafeItemMap">
+                           <a href="${shop.path}/${shop.slug}" class="card-body">
+                              <img
+                              class="thumbnail"
+                              src="https://book-community.com/media/${shop.thumbnail}"
+                              alt="{{shop.name}}"
+                           />
+                              <div class="cafe-link">${shop.name}</div>
+                              <div class="location">${shop.address}${hasPermissionsForUserLocation ? ' • ' + calculateDistance(userLocation, { latitude: shop.geometry.coordinates[1], longitude: shop.geometry.coordinates[0] }).toFixed(1) + ' km' : ''}</div>
+                           </a>
+                     </div>
+            `).join('');
+
+    document.getElementById('nearestShopsList').innerHTML = html;
+
+         }
+          function reloadNearestShops() {
+            const center = map.getCenter();
+            const coords = {
+               latitude: center.lat,
+               longitude: center.lng
+            };
+          showFourNearest(coords);
+         }
+
+            map.on("moveend", reloadNearestShops);
+
+         function toggleNearestShopsList(e) {
+            e.preventDefault();
+            const list = document.getElementById('nearestShopsList');
+            const button = document.getElementById('toggleButtonShopList');
+            
+            if(list.style.display === 'flex') {
+               list.style.display = 'none';
+               button.classList.add('active');
+            } else {
+               list.style.display = 'flex';
+               button.classList.remove('active');
+            }
+         }
+            
       </script>
    </body>
 </html>
-
-Copy
