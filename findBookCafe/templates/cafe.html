@@ -194,7 +194,7 @@
     </main>
     <script>
       document.addEventListener("DOMContentLoaded", function (){
-        const browserSupportsShare = !!navigator.share;
+        const browserSupportsShare = navigator.canShare() && navigator.canShare({ url: window.location.href });
         const shareButton = document.getElementById("shareCafeButton");
          shareButton.style.display = "block";
         if (browserSupportsShare) {
