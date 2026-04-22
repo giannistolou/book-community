@@ -91,7 +91,7 @@
                { color: "#635642" }
             )
                .bindPopup(
-                  `<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank">Google Maps</a>`
+                  `<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
                )
                .addTo(map);
          }
