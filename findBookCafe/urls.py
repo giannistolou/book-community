@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from landingPage.views import subscribe, thank_you_subscribe
 
