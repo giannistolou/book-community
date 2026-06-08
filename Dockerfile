@@ -2,6 +2,7 @@
 FROM node:22-alpine as dependencies
 
 WORKDIR /app
+RUN corepack enable
 COPY ./package.json .
 RUN yarn install --no-cache
 COPY ./webpack.common.js .
