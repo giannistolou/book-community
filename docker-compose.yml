@@ -23,6 +23,7 @@ services:
 
     static-init:
       build: ./
+      restart: "no"
       command: >
         sh -c "
           chown -R app:app /home/app/web/staticfiles &&
