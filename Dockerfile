@@ -1,5 +1,5 @@
 # Build frontend assets
-FROM node:24.14 as dependencies
+FROM node:22-alpine as dependencies
 
 WORKDIR /app
 COPY ./package.json .
