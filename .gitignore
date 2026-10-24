@@ -143,3 +143,5 @@ uploads/
 
 
 virtual_env
+# Generated WebP thumbnails
+uploadsfiles/thumbs/

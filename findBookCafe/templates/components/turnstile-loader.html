@@ -1,0 +1,21 @@
+<script>
+  // Load Turnstile only when a widget is about to scroll into view; it is heavy and most visitors never reach the form
+  document.addEventListener("DOMContentLoaded", function () {
+    var widgets = document.querySelectorAll(".cf-turnstile");
+    if (!widgets.length) return;
+    var loadTurnstile = function () {
+      var script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      document.head.appendChild(script);
+    };
+    if (!("IntersectionObserver" in window)) return loadTurnstile();
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries.some(function (entry) { return entry.isIntersecting; })) {
+        observer.disconnect();
+        loadTurnstile();
+      }
+    }, { rootMargin: "600px 0px" });
+    widgets.forEach(function (widget) { observer.observe(widget); });
+  });
+</script>

@@ -80,11 +80,9 @@
         <div
           class="hero-imgCnt relative w-full aspect-w-16 aspect-h-9 mx-auto bg-primary rounded-lg"
         >
-          <img
-            src="{{ BOOK_CAFE_DOMAIN }}/media/{{cafe.thumbnail}}"
-            alt="thumbnail {{cafe.name}}"
-            class="absolute w-full h-full object-cover rounded-lg"
-          />
+          {% with alt="thumbnail "|add:cafe.name %}
+          {% include "components/responsive-image.html" with image=cafe.thumbnail alt=alt class="absolute w-full h-full object-cover rounded-lg" lazy=False sizes="(min-width: 1200px) 1200px, 100vw" %}
+          {% endwith %}
         </div>
         <div
           class="selection text-on-primary p-4 w-1/2 mx-auto flex justify-between items-center lg:justify-around"

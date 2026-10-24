@@ -1,0 +1,9 @@
+{% load images %}
+<img
+    src="{{ BOOK_CAFE_DOMAIN }}/media/{% thumbnail image 800 %}"
+    srcset="{% thumbnail_srcset image BOOK_CAFE_DOMAIN|add:'/media/' %}"
+    sizes="{{ sizes|default:'(min-width: 992px) 33vw, (min-width: 768px) 50vw, calc(100vw - 5rem)' }}"
+    alt="{{ alt }}"
+    {% if class %}class="{{ class }}"{% endif %}
+    {% if lazy == False %}fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}
+/>

@@ -1,3 +1,4 @@
 {% load static %}
 <script type="module" src="{% static 'style/cookieConsentConfig.js' %}" with type="{{ type|default:'main' }}"></script>
-<link rel="stylesheet" href="{% static 'style/cookieConsentConfig.css' %}">
+<link rel="stylesheet" href="{% static 'style/cookieConsentConfig.css' %}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{% static 'style/cookieConsentConfig.css' %}"></noscript>

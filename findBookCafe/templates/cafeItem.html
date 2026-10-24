@@ -2,23 +2,11 @@
     <figure class="imgCnt">
         {% if cafe_item.type == 'CAF' %}
         <a href="/cafes/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}">
-            <img
-                src="{{ BOOK_CAFE_DOMAIN }}/media/{{cafe_item.thumbnail}}"
-                alt="{{cafe_item.name}}"
-                {% if lazy != False %}
-                loading="lazy"
-                {% endif %}
-            />
+            {% include "components/responsive-image.html" with image=cafe_item.thumbnail alt=cafe_item.name lazy=lazy %}
         </a>
         {% else %}
         <a href="/libraries/{{cafe_item.region.city.slug}}/{{cafe_item.region.slug}}/{{cafe_item.slug}}">
-            <img
-                src="{{ BOOK_CAFE_DOMAIN }}/media/{{cafe_item.thumbnail}}"
-                alt="{{cafe_item.name}}"
-                {% if lazy != False %}
-                loading="lazy"
-                {% endif %}
-            />
+            {% include "components/responsive-image.html" with image=cafe_item.thumbnail alt=cafe_item.name lazy=lazy %}
         </a>
         {% endif %}
     </figure>
