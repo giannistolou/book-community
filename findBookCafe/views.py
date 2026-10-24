@@ -1,4 +1,3 @@
-from ckeditor_demo import settings
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import Http404
@@ -8,10 +7,10 @@ from .models import Region, Shop, City, SimplePage, Collection
 # Create your views here.
 
 def page404(request, exception):
-    return render(request, '404.html')
+    return render(request, '404.html', status=404)
 
-def page500(exception):
-    return render('404.html', exception)
+def page500(request):
+    return render(request, '404.html', status=500)
 
 def index(request):
     try:

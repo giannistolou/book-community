@@ -17,6 +17,12 @@ services:
             - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY:?}
             - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY?:}
             - RESEND_API_KEY=${RESEND_API_KEY?:}
+            - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-}
+            - SENTRY_DSN=${SENTRY_DSN:-}
+            - BOOK_CAFE_DOMAIN=${BOOK_CAFE_DOMAIN:-localhost}
+            - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
+            - SECURE_HSTS_SECONDS=${SECURE_HSTS_SECONDS:-0}
+            - SECURE_HSTS_INCLUDE_SUBDOMAINS=${SECURE_HSTS_INCLUDE_SUBDOMAINS:-False}
         depends_on:
             - static-init
         restart: always

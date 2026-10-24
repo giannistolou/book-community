@@ -3,3 +3,10 @@
 ./uploads
 ./staticfiles
 ./dist
+./.venv
+./.env
+./.git
+./.idea
+./.vscode
+./database
+./uploadsfiles

@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import environ
 import sentry_sdk
+from django.core.exceptions import ImproperlyConfigured
 
 DOMAIN_PATHS = ['', 'blog.', 'cafe.', 'www.']
 
@@ -35,10 +36,24 @@ env_file = os.path.join(BASE_DIR, ".env")
 if os.path.exists(env_file):
     environ.Env.read_env(env_file)
 
-SECRET_KEY = env("SECRET_KEY", default="change-me-in-coolify-ui")
-DEBUG = env("DEBUG") 
+DEBUG = env("DEBUG")
+SECRET_KEY = env("SECRET_KEY", default="")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
+
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured("SECRET_KEY must be set in production")
+    SECRET_KEY = "insecure-development-only-key"
+
+# HTTPS hardening; TLS is terminated by the reverse proxy in front of nginx
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
+    SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=0)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", default=False)
 
 SENTRY_DSN = env("SENTRY_DSN", default=None)
 BOOK_CAFE_DOMAIN = env("BOOK_CAFE_DOMAIN", default="localhost")
@@ -58,7 +73,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor', #TODO remove this
 ]
 
 MIDDLEWARE = [
