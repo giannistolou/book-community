@@ -2,7 +2,7 @@
 @use "./colors.scss" as *;
 
 body {
-  font-family: "Lora", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: $on-background;
@@ -55,7 +55,7 @@ h6 {
   line-height: 1.7;
 }
 p {
-  font-family: "Lora", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   margin: 0 0 1rem;

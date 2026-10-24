@@ -1,19 +1,19 @@
-// body text: Lora
+// body text: Roboto
 // Heading ui: Open Sans
-// Variable fonts subset to Latin + Greek, built from the TTFs in fonts/Lora and fonts/Open_Sans
+// Variable fonts subset to Latin + Greek, built from the TTFs in fonts/Roboto and fonts/Open_Sans
 
 @font-face {
-  font-family: "Lora";
-  src: url("/fonts/web/Lora-Variable.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Roboto";
+  src: url("/fonts/web/Roboto-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Lora";
-  src: url("/fonts/web/Lora-Italic-Variable.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Roboto";
+  src: url("/fonts/web/Roboto-Italic-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
@@ -35,4 +35,4 @@
 }
 
 $primary-font: "Open Sans", sans-serif;
-$secondary-font: "Lora", serif;
+$secondary-font: "Roboto", sans-serif;
