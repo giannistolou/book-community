@@ -3,9 +3,9 @@ services:
         build: ./
         command: >
             sh -c "python3 manage.py migrate --noinput &&
-                   python3 manage.py generate_thumbnails &&
                    python3 manage.py collectstatic --noinput --clear &&
-                   gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000"
+                   (python3 manage.py generate_thumbnails &) &&
+                   exec gunicorn bookCommunity.wsgi:application --bind 0.0.0.0:8000"
         volumes:
             - staticfiles:/home/app/web/staticfiles
             - uploadsfiles:/home/app/web/uploadsfiles
