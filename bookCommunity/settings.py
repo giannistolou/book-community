@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'landingPage.apps.LandingpageConfig',
     'blog.apps.BlogConfig',
     'adminsortable2',
-    'django_quill',
     'prose',
     'turnstile',
     'django.contrib.admin',

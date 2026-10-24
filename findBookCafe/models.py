@@ -1,7 +1,7 @@
 from cProfile import label
 from random import choices
 from django.db import models
-from django_quill.fields import QuillField
+from prose.fields import RichTextField
 
 # Create your models here.
 
@@ -58,7 +58,7 @@ class Shop(models.Model):
 	hasLunch = models.BooleanField(default=False)
 	internetQuality = models.CharField(choices=INTERNET_CHOICE, max_length=1, default=INTERNET_CHOICE[2])
 	powerOutlets = models.CharField(choices=POWER_OUTLETS_CHOICE, max_length=1, default=POWER_OUTLETS_CHOICE[2])
-	description = QuillField()
+	description = RichTextField()
 	created_date = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now= True)
 	order_position = models.IntegerField(default=0)
@@ -73,7 +73,7 @@ class SimplePage(models.Model):
 	id = models.AutoField(primary_key=True, editable=False)
 	title = models.CharField(max_length=500, unique=True)
 	slug = models.CharField(max_length=300, unique=True)
-	content = QuillField()
+	content = RichTextField()
 	created_date = models.DateField(auto_now_add = True)
 	updated_on = models.DateField(auto_now= True)
 

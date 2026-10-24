@@ -1,3 +1,5 @@
+import * as CookieConsent from "vanilla-cookieconsent";
+import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as Sentry from "@sentry/browser";
 
 const APP_TYPE = (() => {

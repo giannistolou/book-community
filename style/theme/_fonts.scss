@@ -1,22 +1,37 @@
 // body text: Lora
 // Heading ui: Open Sans
+// Variable fonts subset to Latin + Greek, built from the TTFs in fonts/Lora and fonts/Open_Sans
 
 @font-face {
   font-family: "Lora";
-  src: url("/fonts/Lora/static/Lora-Regular.ttf") format("truetype"),
-       url("/fonts/Lora/static/Lora-Italic.ttf") format("truetype"),
-       url("/fonts/Lora/static/Lora-Bold.ttf") format("truetype");
-  font-weight: normal;
+  src: url("/fonts/web/Lora-Variable.woff2") format("woff2");
+  font-weight: 400 700;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/web/Lora-Italic-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Open Sans";
-  src: url("/fonts/Open_Sans/static/OpenSans-Regular.ttf") format("truetype"),
-       url("/fonts/Open_Sans/static/OpenSans-Bold.ttf") format("truetype"),
-       url("/fonts/Open_Sans/static/OpenSans-Italic.ttf") format("truetype");
-  font-weight: normal;
+  src: url("/fonts/web/OpenSans-Variable.woff2") format("woff2");
+  font-weight: 300 800;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/web/OpenSans-Italic-Variable.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
 }
 
 $primary-font: "Open Sans", sans-serif;

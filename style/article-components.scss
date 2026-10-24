@@ -1,4 +1,5 @@
 @use "./theme" as *;
+@use "sass:color";
 
 .articlesGrid {
   display: grid;
@@ -337,7 +338,7 @@ article {
       transition: color 0.3s ease;
 
       &:hover {
-        color: darken($primary, 10%);
+        color: color.adjust($primary, $lightness: -10%);
       }
 
       svg {

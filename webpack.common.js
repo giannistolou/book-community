@@ -30,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
@@ -51,11 +51,10 @@ module.exports = {
         ],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)$/,
+        test: /\.(woff(2)?|ttf|eot)$/,
         type: "asset/resource",
         generator: {
           filename: "fonts/[name][ext]",
-          publicPath: "/fonts/",
         },
       },
       {
@@ -63,7 +62,6 @@ module.exports = {
         type: "asset/resource",
         generator: {
           filename: "images/[name][ext]",
-          publicPath: "/images/",
         },
       },
     ],
