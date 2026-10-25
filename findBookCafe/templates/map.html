@@ -2,7 +2,7 @@
 <html lang="el">
    <head>
       <title>Βρες την καφετέρια που σου ταιριάζει</title>
-      {% load static %} {% include "commonHead.html" %}
+      {% load static %} {% load assets %} {% include "commonHead.html" %}
       <meta
          name="keywords"
          content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
@@ -12,14 +12,14 @@
          name="description"
          content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
       />
-      <meta property="og:url" content="https://cafe.book-community.com/" />
+      <meta property="og:url" content="{{ canonical_url }}" />
       <meta property="og:title" content="Book cafe" />
       <meta
          property="og:description"
          content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
       />
-         <link rel="stylesheet" href="{% static 'style/map.css' %}" />
-      <link rel="canonical" href="https://cafe.book-community.com/map/" />
+         {% inline_css 'style/map.css' %}
+      <link rel="canonical" href="{{ canonical_url }}" />
       <meta
          name="viewport"
          content="initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -47,6 +47,7 @@
 
 
 
+      {{ shops|json_script:"shops-data" }}
       <script>
          var userLocation = null;
          var coordinates = [37.9753429, 23.7324272];
@@ -81,7 +82,7 @@
          // Add markers from geojson
          const geojson = {
             type: "FeatureCollection",
-            features: JSON.parse("{{shops|escapejs}}".replace(/'/g, '"')),
+            features: JSON.parse(document.getElementById("shops-data").textContent),
          };
 
          for (const marker of geojson.features) {
@@ -90,7 +91,7 @@
                { color: "#635642" }
             )
                .bindPopup(
-                  `<a href="${marker.path}/${marker.slug}" style="font-weight: bold; font-size:1.2rem; text-transform: capitalize;" >${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
+                  `<a href="${marker.path}/${marker.slug}" class="map-popup-title">${marker.name}</a><p>${marker.shopType}</p><a href="${marker.directions}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
                )
                .addTo(map);
          }
@@ -135,7 +136,7 @@
                               <img
                               class="thumbnail"
                               src="https://book-community.com/media/${shop.thumbnail}"
-                              alt="{{shop.name}}"
+                              alt="${shop.name}"
                            />
                               <div class="cafe-link">${shop.name}</div>
                               <div class="location">${shop.address}${hasPermissionsForUserLocation ? ' • ' + calculateDistance(userLocation, { latitude: shop.geometry.coordinates[1], longitude: shop.geometry.coordinates[0] }).toFixed(1) + ' km' : ''}</div>

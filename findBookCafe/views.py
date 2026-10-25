@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import Http404
 
 from .models import Region, Shop, City, SimplePage, Collection
+from .thumbnails import best_thumbnail
 
 # Create your views here.
 
@@ -101,7 +102,7 @@ def map(request):
             shop_type = 'Βιβλιοθήκη'
             path_type = 'libraries'
         path = "/" + path_type + '/' + shop.region.city.slug + '/' + shop.region.slug
-        thumbnail = str(shop.thumbnail) if shop.thumbnail else ''
+        thumbnail = best_thumbnail(str(shop.thumbnail), 400) if shop.thumbnail else ''
         data.append({'name': shop.name, 'slug': shop.slug, 'id': shop.id, 'directions': shop.googleMaps, 'path': path, 'shopType': shop_type, 'thumbnail': thumbnail, 'type': "Feature", 'properties': {'iconSize': [60, 60]}, 'geometry': {'type': "Point", 'coordinates': [shop.longitude, shop.latitude]}, 'address': f"{shop.address}"})
     return render(request, 'map.html', {'shops': data})
 

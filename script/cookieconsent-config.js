@@ -1,6 +1,5 @@
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
-import * as Sentry from "@sentry/browser";
 
 const APP_TYPE = (() => {
   const hostname = location.hostname;
@@ -152,24 +151,27 @@ const CookieConsentFun = () => {
     return isInLoad ?? false;
   }
 
+  let sentryStarted = false;
+
   function loadSentry(cookie) {
     if (
       hasConsentFor(cookie, "functionality") &&
       currentAppConfig.sentry_dsn &&
-      !window.Sentry
+      !sentryStarted
     ) {
-      const script = document.createElement("script");
-      script.src = currentAppConfig.sentry_dsn.split("@")[0] + ".min.js";
-      script.crossOrigin = "anonymous";
-      script.onload = () =>
-        Sentry.init({
-          dsn: "https://3b208bcd006ce709256308f182d0c37c@o4509735697186816.ingest.de.sentry.io/4509735911227472",
-          integrations: [Sentry.browserTracingIntegration()],
-          tracesSampleRate: 1.0,
-          sendDefaultPii: true,
-        });
-      script.onerror = () => blockedServices.push("Sentry");
-      document.head.appendChild(script);
+      sentryStarted = true;
+      // Separate chunk: visitors who do not consent never download the SDK
+      import(/* webpackChunkName: "sentry" */ "@sentry/browser")
+        .then((Sentry) =>
+          Sentry.init({
+            dsn: currentAppConfig.sentry_dsn,
+            environment: currentAppConfig.sentry_environment,
+            integrations: [Sentry.browserTracingIntegration()],
+            tracesSampleRate: 1.0,
+            sendDefaultPii: true,
+          }),
+        )
+        .catch(() => blockedServices.push("Sentry"));
     }
   }
 

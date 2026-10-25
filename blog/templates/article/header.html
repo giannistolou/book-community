@@ -1,3 +1,4 @@
+{% load static %}
 <div class="articleHeader">
     <h1 class="title">
         {{ post.title }}
@@ -6,11 +7,11 @@
         <li class="author">
             <a
                 href="/author/{{ post.author.slug }}"
-                class="flex items-center hover:text-primary font-medium"
+               
             >
                 <img
-                    src="{{ post.author.image_url|default:'https://picsum.photos/50/50' }}"
-                    alt="{{ post.author.name }}"
+                    src="{% if post.author.image_url %}{{ post.author.image_url }}{% else %}{% static 'favicons/android-chrome-192x192.png' %}{% endif %}"
+                    alt="" class="author-avatar"
                     width="50"
                     height="50"
                     loading="lazy"
@@ -19,11 +20,11 @@
                 <span>{{ post.author.name }}</span>
             </a>
         </li>
-        <li class="">{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
-        <li class="">
+        <li>{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
+        <li>
             {% include "svg/category.html" %}
             <ul>
-                <li class="inline-block">
+                <li>
                     <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
                 </li>
             </ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="el">
   <head>
-    {% load static %} {% include "commonHead.html" %}
+    {% load static %} {% load assets %} {% include "commonHead.html" %}
     <title>Book Cafe</title>
 
     <meta
@@ -13,14 +13,14 @@
       name="description"
       content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
-    <meta property="og:url" content="https://cafe.book-community.com/" />
+    <meta property="og:url" content="{{ canonical_url }}" />
     <meta property="og:title" content="Book cafe" />
     <meta
       property="og:description"
       content="Βρες το book cafe που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
-    <link rel="canonical" href="https://cafe.book-community.com/" />
-    <link rel="stylesheet" href="{% static 'style/cafe.css' %}" />
+    <link rel="canonical" href="{{ canonical_url }}" />
+    {% inline_css 'style/cafe.css' %}
   </head>
 
   <body class="viewLandingCafe">

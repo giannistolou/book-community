@@ -1,35 +1,22 @@
 <!DOCTYPE html>
-<html lang="el" data-theme="retro">
+<html lang="el">
 
 <head>
-	{% load static %}
+	{% load static %} {% load assets %}
+	{% include "components/site-head.html" with analytics_domain="book-community.com" theme_color="#e3e1de" %}
 	<title>Book Community</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="google" content="notranslate" />
-	<link rel="stylesheet" href="{% static 'style/common.css' %}" />
-	<link rel="stylesheet" href="{% static 'style/landing.css' %}" />
-	<meta name="application-name" content="Book community" />
-	<link rel="canonical" href="https://book-community.com/" />
-	<script defer data-domain="book-community.com" src="https://analytics.giannistolou.gr/js/script.js"></script>
-	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}" />
-	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}" />
-	<link rel="manifest" href="{% static 'favicons/site.webmanifest' %}" />
-	<link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5" />
-	<meta name="apple-mobile-web-app-title" content="Book Community" />
-	<meta name="application-name" content="Book Community" />
-	<meta name="msapplication-TileColor" content="#da532c" />
-	<meta name="theme-color" content="#e3e1de" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{% inline_css 'style/common.css' %}
+	{% inline_css 'style/landing.css' %}
+	<link rel="canonical" href="{{ canonical_url }}" />
 	<!-- SEO -->
 	<meta name="keywords" content="Book, books, reading, βιβλίο, βιβλία, διάβασμα, social media" />
 	<meta name="description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
 
-	<meta property="og:url" content="https://book-community.com/" />
+	<meta property="og:url" content="{{ canonical_url }}" />
 	<meta property="og:title" content="Book community" />
 	<meta property="og:description" content="Το κοινωνικό δίκτυο του βιβλίου..." />
-	<meta property="og:image" content="{% static 'favicons/favicon-32x32.png' %}" />
-	{% include "cookie-consent.html" %}
+	<meta property="og:image" content="{{ SITE_ORIGIN }}{% static 'favicons/android-chrome-512x512.png' %}" />
 	 
 </head>
 
@@ -67,8 +54,7 @@
 					</div>
 
 					<div class="clickNewsletterCnt">
-						<a href="#newsletter" class="button primary-button"
-							style="padding: 1rem">
+						<a href="#newsletter" class="button primary-button newsletter-cta">
 							Κάνε εγγραφή στο newsletter
 						</a>
 					</div>
@@ -146,7 +132,7 @@
 		<div class="container">
 			<div class="title">Τι είναι το book community;</div>
 			<div class="text">
-				<p style="text-align: center;">
+				<p class="text-center">
 					Το book community είναι μια προσπάθεια, δημιουργίας κοινότητας, η οποία θα φέρει κοντά τα άτομα που
 					τους αρέσει να διαβάζουνε, να συζητάνε και να ανταλλάζουνε ιδέες για τα βιβλία και τα συναισθήματα
 					που τους δημιουργούν αυτά. Όλο αυτό θα επιτευχθεί μέσω, project και δράσεων που συνθέτουν στο book

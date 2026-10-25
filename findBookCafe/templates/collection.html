@@ -1,15 +1,17 @@
-<html data-theme="retro" lang="el">
+<!DOCTYPE html>
+<html lang="el">
 	<head>
-		{% load static %} {% include "commonHead.html" %}
+		{% load static %} {% load assets %} {% include "commonHead.html" %}
 		<title>{{page_title}}</title>
-		<link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+		{% inline_css 'style/cafes.css' %}
 		<meta
 			name="keywords"
 			content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη,
 		βιβλιοθήκες, library, libraries"
 		/>
-		<meta property="og:url" content="https://cafe.book-community.com/collections/{{page_slug}}" />
-		<link rel="canonical" href="https://cafe.book-community.com/collections/{{page_slug}}" />
+		<meta property="og:url" content="{{ canonical_url }}" />
+		<link rel="canonical" href="{{ canonical_url }}" />
+		<meta name="description" content="{{description}}" />
 		<meta property="og:title" content="{{page_title}}" />
 		<meta
 			property="og:description"
@@ -19,7 +21,7 @@
 
 	<body>
 		{% include "header.html" %}
-		<main class="py-5">
+		<main>
 			{% include "cafesList.html" %}
 		</main>
 		{% include "footer.html" %}

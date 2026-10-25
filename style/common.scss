@@ -148,3 +148,20 @@ img {
   margin-top: 4rem;
   padding: 1rem 0;
 }
+
+.page-404 {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  h1 {
+    color: black;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  a {
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+  }
+}

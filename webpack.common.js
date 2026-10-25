@@ -20,6 +20,9 @@ module.exports = {
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist/style"),
+    publicPath: "/static/style/",
+    // Content hash in the name lets nginx cache lazily loaded chunks for a year
+    chunkFilename: "[name].[contenthash:12].js",
     clean: true,
   },
   plugins: [

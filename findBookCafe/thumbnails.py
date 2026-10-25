@@ -61,6 +61,15 @@ def existing_thumbnails(name):
     }
 
 
+def best_thumbnail(name, width):
+    """Closest existing thumbnail not narrower than width, else the largest one, else the original."""
+    thumbnails = existing_thumbnails(name)
+    for thumb_width in sorted(thumbnails):
+        if thumb_width >= width:
+            return thumbnails[thumb_width]
+    return thumbnails[max(thumbnails)] if thumbnails else name
+
+
 def ensure_thumbnails(name):
     """Create any missing WebP copies of an uploaded image."""
     if not name or not default_storage.exists(name):

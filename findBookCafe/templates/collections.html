@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="el">
   <head>
-    {% load static %} {% include "commonHead.html" %}
-    <link rel="stylesheet" href="{% static 'style/collections.css' %}" />
+    {% load static %} {% load assets %} {% include "commonHead.html" %}
+    {% inline_css 'style/collections.css' %}
     <title>Collections</title>
+    <meta name="description" content="Θεματικές συλλογές με book cafes και βιβλιοθήκες για διάβασμα και δουλειά." />
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <meta property="og:url" content="{{ canonical_url }}" />
+    <meta property="og:title" content="Collections | Book Cafe" />
+    <meta property="og:description" content="Θεματικές συλλογές με book cafes και βιβλιοθήκες για διάβασμα και δουλειά." />
   </head>
   <body>
     <main class="viewCollections">
       {% include "header.html" %}
       <div class="container">
         <h1 class="pageTitle">{{ page_title }}</h1>
-        <p class="text-lg text-center mb-8">{{ description }}</p>
+        <p class="text-center">{{ description }}</p>
         <section class="collections-grid commonSectionPadding">
           {% for collection in page_obj %}
             {% include "components/collection-card.html" with collection=collection %}

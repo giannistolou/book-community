@@ -1,6 +1,6 @@
 <ul class="container tag-list articleComponentContainer">
     {% for tag in post.tags.all %}
-        <li class="inline-block">
+        <li>
             <a href="/tag/{{ tag.slug }}/">
                 #{{ tag.name }}
             </a>

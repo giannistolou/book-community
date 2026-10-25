@@ -1,8 +1,9 @@
-<html data-theme="retro" lang="el">
+<!DOCTYPE html>
+<html lang="el">
   <head>
-    {% load static %} {% include "commonHead.html" %}
+    {% load static %} {% load assets %} {% include "commonHead.html" %}
     <title>Βρες την βιβλιοθήκη που σου ταιριάζει | {{page_title}}</title>
-    <link rel="canonical" href="https://cafe.book-community.com/libraries/" />
+    <link rel="canonical" href="{{ canonical_url }}" />
     <meta
       name="keywords"
       content="book, books, reading, βιβλίο, βιβλία, διάβασμα, social media, book cafe, cafe, καφετέριες, βιβλιοθήκη, βιβλιοθήκες, library, libraries"
@@ -11,21 +12,21 @@
       name="description"
       content="Βρες το βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
-    <meta property="og:url" content="https://cafe.book-community.com/" />
+    <meta property="og:url" content="{{ canonical_url }}" />
     <meta property="og:title" content="Βιβλιοθήκες {{page_title}}" />
     <meta
       property="og:description"
       content="Βρες την βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!"
     />
-    <link rel="stylesheet" href="{% static 'style/cafes.css' %}" />
+    {% inline_css 'style/cafes.css' %}
   </head>
 
   <body>
     {% include "header.html" %}
     <main class="commonView">
       {%include "tabs.html" with active_tab="library"%}
-      <section class="container mx-auto py-10">
-        <h2 class="text-3xl font-bold text-center mb-8 cafes-title">
+      <section class="container">
+        <h2 class="font-bold text-center cafes-title">
           Βρες την βιβλιοθήκη που σου ταιριάζει
         </h2>
         <div class="cafes-list-container">{% include "cafesList.html" %}</div>

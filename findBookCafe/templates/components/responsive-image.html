@@ -1,7 +1,7 @@
-{% load images %}
+{% load images %}{% firstof media_origin BOOK_CAFE_DOMAIN as origin %}
 <img
-    src="{{ BOOK_CAFE_DOMAIN }}/media/{% thumbnail image 800 %}"
-    srcset="{% thumbnail_srcset image BOOK_CAFE_DOMAIN|add:'/media/' %}"
+    src="{{ origin }}/media/{% thumbnail image 800 %}"
+    srcset="{% thumbnail_srcset image origin|add:'/media/' %}"
     sizes="{{ sizes|default:'(min-width: 992px) 33vw, (min-width: 768px) 50vw, calc(100vw - 5rem)' }}"
     alt="{{ alt }}"
     {% if class %}class="{{ class }}"{% endif %}

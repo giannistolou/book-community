@@ -1,0 +1,26 @@
+{% load static %}
+{% comment %}
+Shared <head> tags for every site. Parameters:
+  analytics_domain  Plausible site, e.g. "cafe.book-community.com"
+  theme_color       browser UI colour (default #F8F4E9)
+  cookie_consent    set to False to skip the cookie banner
+{% endcomment %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}" />
+<link rel="manifest" href="{% static 'favicons/site.webmanifest' %}" />
+<link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5" />
+<meta name="apple-mobile-web-app-title" content="Book Community" />
+<meta name="application-name" content="Book Community" />
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="{{ theme_color|default:'#F8F4E9' }}" />
+{% include "components/turnstile-loader.html" %}
+{% if not DEBUG and analytics_domain %}
+<script defer data-domain="{{ analytics_domain }}" src="https://analytics.giannistolou.gr/js/script.js"></script>
+<script defer data-domain="{{ analytics_domain }}" src="https://analytics.giannistolou.gr/js/script.tagged-events.js"></script>
+{% endif %}
+{% if cookie_consent != False %}
+{% include "cookie-consent.html" %}
+{% endif %}

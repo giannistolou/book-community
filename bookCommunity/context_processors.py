@@ -13,3 +13,14 @@ def common_data(request):
         'subscribe_form': SubscribeForm(),
         'TURNSTILE_SITE_KEY': getattr(settings, 'TURNSTILE_SITE_KEY', ''),
     }
+
+def seo(request):
+    # Production is always served over HTTPS, even if a proxy header goes missing
+    scheme = request.scheme if settings.DEBUG else 'https'
+    host = request.get_host().removeprefix('www.')
+    origin = f"{scheme}://{host}"
+    canonical_url = origin + request.path
+    page = request.GET.get('page', '')
+    if page.isdigit() and page != '1':
+        canonical_url += f"?page={page}"
+    return {'SITE_ORIGIN': origin, 'canonical_url': canonical_url}

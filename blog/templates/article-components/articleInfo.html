@@ -1,12 +1,13 @@
+{% load static %}
 <div class="articleInfoCnt">
     <ul class="articleInfo">
       {% if not hideAuthor %}
       <li class="author">
         <a href="/author/{{ post.author.slug }}">
           <img
-            src="{{ post.author.image_url|default:'https://picsum.photos/50/50' }}"
-            alt="{{ post.author.name }}"
-            class="mr-2 h-6 w-6 rounded-full"
+            src="{% if post.author.image_url %}{{ post.author.image_url }}{% else %}{% static 'favicons/android-chrome-192x192.png' %}{% endif %}"
+            alt="" class="author-avatar"
+           
             width="50"
             height="50"
             loading="lazy"
@@ -16,11 +17,11 @@
         </a>
       </li>
       {% endif %}
-      <li class="">{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
-      <li class="">
+      <li>{% include "svg/date.html" %} {{ post.published_at|date:"d/m/Y" }}</li>
+      <li>
         {% include "svg/category.html" %}
         <ul>
-          <li class="inline-block">
+          <li>
             <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
           </li>
         </ul>

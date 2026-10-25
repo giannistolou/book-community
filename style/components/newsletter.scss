@@ -26,3 +26,34 @@
     margin-bottom: 1rem;
   }
 }
+
+#mc_embed_signup.newsletterSection {
+  max-width: 880px;
+  margin: 0 auto;
+  width: fit-content;
+  min-width: 100%;
+
+  .newsletter-form {
+    min-width: 50%;
+  }
+
+  // Off-screen trap field for bots
+  .newsletter-honeypot {
+    position: absolute;
+    left: -5000px;
+  }
+
+  .cf-turnstile {
+    margin-bottom: 1rem;
+  }
+
+  .response.error {
+    display: block;
+    color: #de350b;
+  }
+
+  #submit-btn {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}

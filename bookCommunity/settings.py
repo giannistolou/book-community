@@ -106,7 +106,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bookCommunity.context_processors.book_cafe_domain',
                 'bookCommunity.context_processors.is_debug_mode',
-                'bookCommunity.context_processors.common_data'
+                'bookCommunity.context_processors.common_data',
+                'bookCommunity.context_processors.seo',
             ],
         },
     },

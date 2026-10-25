@@ -1,6 +1,7 @@
-<html data-theme="retro" lang="el">
+<!DOCTYPE html>
+<html lang="el">
   <head>
-    {% load static %} {% include "commonHead.html" %}
+    {% load static seo %} {% load assets %} {% include "commonHead.html" %}
     <title>{{cafe.name}} | Book Cafe</title>
     <meta
       name="keywords"
@@ -8,7 +9,7 @@
     />
     <meta
       name="description"
-      content="Βρες το book cafe ή την βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!"
+      content="{{ cafe.description|meta_description|default:'Βρες το book cafe ή την βιβλιοθήκη που σου ταιριάζει για διάβασμα ή δουλειά!' }}"
     />
     <meta property="og:title" content="{{cafe.name}} | Book Cafe" />
     <link
@@ -17,11 +18,6 @@
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var script = document.createElement("script");
@@ -50,26 +46,10 @@
       });
     </script>
 
-    {% if cafe.type == 'CAF' %}
-    <link
-      rel="canonical"
-      href="https://cafe.book-community.com/cafes/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}/"
-    />
-    <meta
-      property="og:url"
-      content="https://cafe.book-community.com/cafes/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}/"
-    />
-    {% else %}
-    <meta
-      property="og:url"
-      content="https://cafe.book-community.com/libraries/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}/"
-    />
-    <link
-      rel="canonical"
-      href="https://cafe.book-community.com/libraries/{{cafe.region.city.slug}}/{{cafe.region.slug}}/{{cafe.slug}}/"
-    />
-    {% endif %}
-    <link rel="stylesheet" href="{% static 'style/bookCafe.css' %}" />
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <meta property="og:url" content="{{ canonical_url }}" />
+    {% shop_structured_data cafe %}
+    {% inline_css 'style/bookCafe.css' %}
   </head>
 
   <body>
@@ -78,27 +58,29 @@
       <section class="container">
         <h1 class="heading-name">{{cafe.name}}</h1>
         <div
-          class="hero-imgCnt relative w-full aspect-w-16 aspect-h-9 mx-auto bg-primary rounded-lg"
+          class="hero-imgCnt"
         >
           {% with alt="thumbnail "|add:cafe.name %}
-          {% include "components/responsive-image.html" with image=cafe.thumbnail alt=alt class="absolute w-full h-full object-cover rounded-lg" lazy=False sizes="(min-width: 1200px) 1200px, 100vw" %}
+          {% include "components/responsive-image.html" with image=cafe.thumbnail alt=alt lazy=False sizes="(min-width: 1200px) 1200px, 100vw" %}
           {% endwith %}
         </div>
         <div
-          class="selection text-on-primary p-4 w-1/2 mx-auto flex justify-between items-center lg:justify-around"
+          class="selection"
         >
           {% if cafe.facebook %}
           <a
             rel="noopener noreferrer"
             href="{{cafe.facebook}}"
             target="_blank"
-            class="icon plausible-event-name=cafeFacebookIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            class="icon plausible-event-name=cafeFacebookIcon"
+            aria-label="Facebook"
             >{% include "icons/facebook.html" %}</a
           >
           {% endif %} {% if cafe.googleMaps %}
           <a
             href="{{cafe.googleMaps}}"
-            class="icon plausible-event-name=cafeGoogleMapsIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            class="icon plausible-event-name=cafeGoogleMapsIcon"
+            aria-label="Google Maps"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -107,7 +89,8 @@
           {% endif %} {% if cafe.instagram %}
           <a
             href="{{cafe.instagram}}"
-            class="icon plausible-event-name=cafeInstagramIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            class="icon plausible-event-name=cafeInstagramIcon"
+            aria-label="Instagram"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -116,7 +99,8 @@
           {% endif %} {% if cafe.tripadvisor %}
           <a
             href="{{cafe.tripadvisor}}"
-            class="icon plausible-event-name=cafeTripadvisorIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            class="icon plausible-event-name=cafeTripadvisorIcon"
+            aria-label="Tripadvisor"
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -126,7 +110,8 @@
           <a
             href="{{cafe.website}}"
             rel="noopener noreferrer"
-            class="icon plausible-event-name=cafeWebsiteIcon p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+            class="icon plausible-event-name=cafeWebsiteIcon"
+            aria-label="Ιστοσελίδα"
             target="_blank"
           >
             {% include "icons/link.html" %}</a
@@ -136,28 +121,28 @@
             style="display: none;"
             id="shareCafeButton"
             type="button"
-             class="icon icon-social plausible-event-name=share p-2 transition-colors duration-200 rounded-full hover:bg-on-primary"
+             class="icon icon-social plausible-event-name=share"
             aria-label="Share this cafe"
           >
             {% include "icons/bootstrap/send.svg" %}
           </button>
         </div>
-        <div class="content mt-4 px-4 leading-6">
+        <div class="content">
           <div
-            class="icon-item font-roboto font-normal flex items-center gap-2 mb-2"
+            class="icon-item"
           >
             <div
-              class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary"
+              class="icon user-select-none"
             >
               {% include "icons/bootstrap/geo-alt-fill.svg" %}
             </div>
             {{cafe.address}}
           </div>
           <div
-            class="icon-item font-roboto font-normal flex items-center gap-2 mb-2"
+            class="icon-item"
           >
             <div
-              class="icon border border-on-secondary user-select-none p-1 rounded-full text-on-secondary"
+              class="icon user-select-none"
             >
               {% include "icons/bootstrap/building.svg" %}
             </div>
@@ -182,7 +167,7 @@
         class="container"
       >
         <h2
-          class="name p-4 bg-primary text-on-primary font-roboto font-normal m-0 text-xl w-fit mb-4 lg:text-2xl"
+          class="name"
         >
           Άλλα μέρη για διάβασμα στην ίδια περιοχή!
         </h2>
