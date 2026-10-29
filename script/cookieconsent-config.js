@@ -10,7 +10,7 @@ const APP_TYPE = (() => {
 
 const APP_CONFIGS = {
   blog: {
-    gtag_id: "",
+    gtag_id: "G-BP001DL52K",
     clarity_id: "",
     //debug: true,
     sentry_dsn:
