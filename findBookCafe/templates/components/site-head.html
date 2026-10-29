@@ -17,10 +17,6 @@ Shared <head> tags for every site. Parameters:
 <meta name="msapplication-TileColor" content="#da532c" />
 <meta name="theme-color" content="{{ theme_color|default:'#F8F4E9' }}" />
 {% include "components/turnstile-loader.html" %}
-{% if not DEBUG and analytics_domain %}
-<script defer data-domain="{{ analytics_domain }}" src="https://analytics.giannistolou.gr/js/script.js"></script>
-<script defer data-domain="{{ analytics_domain }}" src="https://analytics.giannistolou.gr/js/script.tagged-events.js"></script>
-{% endif %}
 {% if cookie_consent != False %}
 {% include "cookie-consent.html" %}
 {% endif %}
